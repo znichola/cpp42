@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/28 18:33:56 by znichola          #+#    #+#              #
-#    Updated: 2023/03/01 18:50:31 by znichola         ###   ########.fr        #
+#    Updated: 2023/03/01 19:38:23 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,11 @@ CFLAGS	+= -std=c++98
 
 FILES	= megaphone
 
+OBJS_PATH = 
+SRCS_PATH =  
+
 SRCS	:= $(addsuffix .c, $(FILES))
-OBJS	:= $(addsuffix .o, $(FILES))
+OBJS	:= $(addprefix $(OBJS_PATH), $(addsuffix .o, $(FILES)))
 
 all	: $(NAME)
 

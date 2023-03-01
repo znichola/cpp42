@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 18:34:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/01 18:15:36 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:17:19 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ int	main(int ac, char **av)
 	}	
 	for (int i = 1; i < ac; i++)
 	{
-		//std::cout << std::toupper((av[i])) << std::endl;
+		std::string s(av[i]);
+		std::cout << s.size();
+		for (int i = 0; i < s.size(); i++)
+		{
+			wchar_t	c = s[i];
+			std::cout << c.toupper();
+		}
+	//	for (int i = 0; av[i].size(); i++
+	//	std::cout << std::toupper((av[i])) << std::endl;
 	}		
 }
