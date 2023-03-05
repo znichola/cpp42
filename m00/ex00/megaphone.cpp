@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 18:34:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/02 03:52:51 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/05 00:53:47 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,20 @@ int	main(int ac, char **av)
 	}	
 	for (int i = 1; i < ac; i++)
 	{
-		auto& f = std::use_facet<std::ctype<char>>(std::locale());
+	//	auto& f = std::use_facet<std::ctype<char>>(std::locale());
+	//	std::string str(av[i]);
+	//	f.toupper(&str[0], &str[0] + str.size());
+	//	std::cout << str;
+	
 		std::string str(av[i]);
-		f.toupper(&str[0], &str[0] + str.size());
+		
+		std::use_facet< std::ctype<char> >(std::locale()).toupper(&str[0], &str[str.size()]);
 		std::cout << str;
+
+
+	//	std::string strav[i]);
+	//	std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+	//	std::cout << str;
 		if (i != ac - 1)
 			std::cout << " ";
 	}
