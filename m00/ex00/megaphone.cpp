@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 18:34:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/06 04:52:00 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:27:47 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 	{
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return (1);
-	}	
+	}
 	for (int i = 1; i < ac; i++)
 	{
 	//	auto& f = std::use_facet<std::ctype<char>>(std::locale());
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 
 	// https://cplusplus.com/reference/locale/ctype/toupper/
 		std::string str(av[i]);
-		
+
 		std::use_facet< std::ctype<char> >(std::locale()).toupper(&str[0], &str[str.size()]);
 		std::cout << str;
 

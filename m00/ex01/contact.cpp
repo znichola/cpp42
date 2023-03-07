@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*   contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 04:57:10 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/06 14:29:41 by znichola         ###   ########.fr       */
+/*   Created: 2023/03/06 04:55:56 by znichola          #+#    #+#             */
+/*   Updated: 2023/03/07 22:10:39 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include <iostream>
+#include <string>
 
-PhoneBook::PhoneBook(void)
-{
-	this->_size = 0;
-}
+#include "contact.hpp"
 
-PhoneBook::~PhoneBook(void) {}
+Contact::Contact(void) {}
 
-void	PhoneBook::addContact(Contact contact)
-{
-	if (this->_size >= 8)
-	{
-		//need to call the shuffleback
-	}
-	this->_contacts[_size] = contact;
-	this->_size += 1;	
-	return ;
-}
-
+Contact::~Contact(void) {}

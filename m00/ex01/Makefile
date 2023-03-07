@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/28 18:33:56 by znichola          #+#    #+#              #
-#    Updated: 2023/03/06 04:59:01 by znichola         ###   ########.fr        #
+#    Updated: 2023/03/07 22:06:06 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ CFLAGS	= -Wall -Wextra
 CFLAGS	+= -Werror
 CFLAGS	+= -std=c++98
 
-FILES	=  Contact PhoneBook main
+FILES	=  contact phonebook main
 
 OBJS_PATH = objs/
-SRCS_PATH = 
+SRCS_PATH =
 INCS_PATH = -I.
 
 SRCS	= $(addprefix $(SRCS_PATH), $(addsuffix .cpp, $(FILES)))
