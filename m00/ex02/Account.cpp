@@ -6,12 +6,13 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 21:42:35 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/08 23:39:41 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/09 00:03:44 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <ctime>
+#include <sstream>
 
 #include "Account.hpp"
 
@@ -128,19 +129,44 @@ void Account::displayStatus(void) const
 				<< "withdrawals:" << this->_nbWithdrawals << std::endl;
 }
 
+static	std::string	add_leading_zero(int n);
+
 void Account::_displayTimestamp(void)
 {
-	// std::cout << "[19920104_091532]" << std::endl;
+	// std::cout << "[19920104_091532] " << std::flush;
 
 	time_t ttime = time(0);
 	tm *local_time = localtime(&ttime);
 	std::cout	<< "["
 				<< 1900 + local_time->tm_year
-				<< 1 + local_time->tm_mon
-				<< local_time->tm_mday
+				<< add_leading_zero(1 + local_time->tm_mon)
+				<< add_leading_zero(local_time->tm_mday)
 				<< "_"
-				<< 1 + local_time->tm_hour
-				<< 1 + local_time->tm_min
-				<< 1 + local_time->tm_sec
-				<< "] ";
+				<< add_leading_zero(1 + local_time->tm_hour)
+				<< add_leading_zero(1 + local_time->tm_min)
+				<< add_leading_zero(1 + local_time->tm_sec)
+				<< "] " << std::flush;
 }
+
+static	std::string	add_leading_zero(int n)
+{
+	std::ostringstream	ostr;
+	if (n < 10)
+		ostr << 0;
+	ostr << n;
+	return ostr.str();
+}
+
+	// time_t ttime = time(0);
+	// tm *local_time = localtime(&ttime);
+	// std::cout	<< "["
+	// 			<< 1900 + local_time->tm_year;
+	// if (1 + local_time->tm_mon < 10)
+	// 	std::cout	<< "0";
+	// std::cout	<< 1 + local_time->tm_mon
+	// 			<< local_time->tm_mday
+	// 			<< "_"
+	// 			<< 1 + local_time->tm_hour
+	// 			<< 1 + local_time->tm_min
+	// 			<< 1 + local_time->tm_sec
+	// 			<< "] " << std::flush;
