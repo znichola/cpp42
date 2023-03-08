@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 21:42:35 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/09 00:03:44 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/09 00:20:07 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,17 +156,3 @@ static	std::string	add_leading_zero(int n)
 	ostr << n;
 	return ostr.str();
 }
-
-	// time_t ttime = time(0);
-	// tm *local_time = localtime(&ttime);
-	// std::cout	<< "["
-	// 			<< 1900 + local_time->tm_year;
-	// if (1 + local_time->tm_mon < 10)
-	// 	std::cout	<< "0";
-	// std::cout	<< 1 + local_time->tm_mon
-	// 			<< local_time->tm_mday
-	// 			<< "_"
-	// 			<< 1 + local_time->tm_hour
-	// 			<< 1 + local_time->tm_min
-	// 			<< 1 + local_time->tm_sec
-	// 			<< "] " << std::flush;
