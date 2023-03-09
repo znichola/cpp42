@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:34:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/09 12:39:45 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/09 13:21:14 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Weapon::Weapon(std::string t)
 {
-	this->type = t;
+	this->setType(t);
 }
 
 Weapon::~Weapon()

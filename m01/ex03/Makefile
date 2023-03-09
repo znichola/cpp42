@@ -6,11 +6,11 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/28 18:33:56 by znichola          #+#    #+#              #
-#    Updated: 2023/03/09 12:32:28 by znichola         ###   ########.fr        #
+#    Updated: 2023/03/09 20:20:49 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= brain
+NAME	= humans
 
 CC	= c++
 CFLAGS	= -Wall -Wextra
@@ -19,6 +19,10 @@ CFLAGS	+= -std=c++98
 
 ifdef DEBUG
 CFLAGS	+= -g3 -fsanitize=address
+else
+ifdef DEBUGL
+CFLAGS += -g3
+endif
 endif
 
 FILES	= main Weapon HumanA HumanB
@@ -46,5 +50,12 @@ fclean	: clean
 	$(RM) $(NAME)
 
 re	: fclean all
+
+leaks	:
+	unset DEBUG
+	export DEBUGL=1
+	valgrind -s --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./$(NAME)
+	unset DEBUGL
+	export DEBUG=1
 
 .PHONY: all clean fclean re

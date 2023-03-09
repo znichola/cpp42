@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:00:59 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/09 13:10:14 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/09 13:27:02 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 HumanB::HumanB(std::string newName)
 {
 	this->_Name = newName;
+	this->_Weapon = NULL;
 	this->_Armed = false;
 }
 
@@ -29,14 +30,14 @@ void HumanB::attack(void) const
 	if (this->_Armed)
 		std::cout	<< this->_Name
 					<< " attacks with their "
-					<< this->_Weapon.getType() << std::endl;
+					<< this->_Weapon->getType() << std::endl;
 	else
 		std::cout	<< this->_Name
 					<< " can't attack, they are unarmed!" << std::endl;
 }
 
-void HumanB::setWeapon(Weapon newWeapon)
+void HumanB::setWeapon(Weapon &newWeapon)
 {
 	this->_Armed = true;
-	this->_Weapon = newWeapon;
+	this->_Weapon = &newWeapon;
 }
