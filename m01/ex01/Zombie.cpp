@@ -13,14 +13,19 @@
 #include "Zombie.hpp"
 #include "iostream"
 
-Zombie::Zombie(std::string n)
+Zombie::Zombie()
 {
-	this->_name = n;
+	std::cout << "new_zed: initialiiizzedd..." << std::endl;
+}
+
+void Zombie::Name(std::string name)
+{
+	this->_name = name;
 }
 
 Zombie::~Zombie()
 {
-	std::cout << this->_name << ": has dieeddd.." << std::endl;
+	std::cout << this->_name << ": has dieeddd..." << std::endl;
 }
 
 void Zombie::annouce(void)

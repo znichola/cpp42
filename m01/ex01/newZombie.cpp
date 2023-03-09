@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 00:35:56 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/09 01:41:33 by znichola         ###   ########.fr       */
+/*   Created: 2023/03/09 00:36:20 by znichola          #+#    #+#             */
+/*   Updated: 2023/03/09 01:58:54 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#include "iostream"
 
-Zombie::Zombie(std::string n)
+Zombie *newZombie(std::string name)
 {
-	this->_name = n;
-}
+	Zombie	*newZed;
 
-Zombie::~Zombie()
-{
-	std::cout << this->_name << ": has dieeddd.." << std::endl;
-}
-
-void Zombie::annouce(void)
-{
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	newZed = new Zombie;
+	newZed->Name(name);
+	return newZed;
 }

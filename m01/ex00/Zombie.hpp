@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 00:35:49 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/09 00:47:08 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/09 01:41:33 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ public:
 	~Zombie();
 	void	annouce(void);
 private:
-	std::string	name;
+	std::string	_name;
 };

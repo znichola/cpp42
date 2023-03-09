@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 00:35:56 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/09 01:41:33 by znichola         ###   ########.fr       */
+/*   Created: 2023/03/09 00:44:10 by znichola          #+#    #+#             */
+/*   Updated: 2023/03/09 02:01:27 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#include "iostream"
+#include <iostream>
 
-Zombie::Zombie(std::string n)
-{
-	this->_name = n;
-}
+Zombie *newZombie(std::string name);
+void randomChump(std::string name);
+Zombie	*zombieHorde(int N, std::string name);
 
-Zombie::~Zombie()
+int	main(int ac, char **av)
 {
-	std::cout << this->_name << ": has dieeddd.." << std::endl;
-}
+	(void)ac;
+	(void)av;
 
-void Zombie::annouce(void)
-{
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	const int	num_zeds = 6;
+
+	std::cout << "Hoard mode : " << std::endl;
+
+	Zombie *Zeds = zombieHorde(num_zeds, "Derk");
+
+	for (int i = 0; i < num_zeds; i++)
+		Zeds[i].annouce();
+	delete []Zeds;
+	return 0;
 }
