@@ -6,15 +6,15 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:02:11 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/09 13:12:57 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/09 13:15:44 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HUMANB_HPP
 # define HUMANB_HPP
 
-#include <string>
-#include "Weapon.hpp"
+# include <string>
+# include "Weapon.hpp"
 
 class HumanB
 {

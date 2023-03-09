@@ -6,14 +6,14 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:33:04 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/09 13:13:23 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/09 13:15:48 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WEAPON_HPP
 # define WEAPON_HPP
 
-#include <string>
+# include <string>
 
 class Weapon
 {
