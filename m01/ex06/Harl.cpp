@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:12:43 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/10 11:37:46 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:57:24 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <iostream>
 
 #include "Harl.hpp"
+
+static void	print_all(const std::string msg[], int n);
 
 Harl::Harl()
 {
@@ -26,11 +28,33 @@ Harl::~Harl()
 
 void Harl::complain(std::string level) const
 {
-	static void	(Harl::*f[])(void) const = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	static const std::string msgLevel[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	for (int i = 0; i < 4; i++)
+	int i = 0;
+	for (; i < 4; i++)
 		if (msgLevel[i] == level)
-			(this->*f[i])();
+			break;
+	switch (i)
+	{
+	case 0:
+		this->debug();
+		std::cout << std::endl;
+	// fall through
+	case 1:
+		this->info();
+		std::cout << std::endl;
+	// fall through
+	case 2:
+		this->warning();
+		std::cout << std::endl;
+	// fall through
+	case 3:
+		this->error();
+		std::cout << std::endl;
+		break ;
+	default:
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+		break;
+	}
 }
 
 void Harl::debug(void) const
@@ -54,7 +78,8 @@ void Harl::debug(void) const
 		"Debugging is a journey, not a destination.",
 		"I don't always debug, but when I do, I prefer to do it with coffee.",
 	};
-	std::cout << "DEBUG: " << debug_msg[std::rand() % 17] << std::endl;
+	std::cout << "[ DEBUG ]" << std::endl;
+	print_all(debug_msg, 17);
 }
 
 void Harl::info(void) const
@@ -77,7 +102,8 @@ void Harl::info(void) const
 		"It's not a bug, it's an undocumented feature.",
 		"Programming is easy. It's debugging that's hard.",
 	};
-	std::cout << "INFO: " << info_msg[std::rand() % 16] << std::endl;
+	std::cout << "[ INFO ]" << std::endl;
+	print_all(info_msg, 16);
 }
 
 void Harl::warning(void) const
@@ -96,7 +122,8 @@ void Harl::warning(void) const
 		"Use this code at your own risk. Side effects may include euphoria, caffeine addiction, and irrational confidence.",
 		"This code may cause excessive use of exclamation marks!",
 	};
-	std::cout << "WARNING: " << warning_msg[std::rand() % 12] << std::endl;
+	std::cout << "[ WARNING ]" << std::endl;
+	print_all(warning_msg, 12);
 }
 
 void Harl::error(void) const
@@ -117,5 +144,13 @@ void Harl::error(void) const
 		"This code is a ticking time bomb.",
 		"This code has crashed and burned.",
 	};
-	std::cout << "ERROR: " << error_msg[std::rand() % 14] << std::endl;
+	std::cout << "[ ERROR ]" << std::endl;
+	print_all(error_msg, 14);
+}
+
+
+static void	print_all(const std::string msg[], int n)
+{
+	for (int i = 0; i < n; i++)
+		std::cout << msg[i] << std::endl;
 }

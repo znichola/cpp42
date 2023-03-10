@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:52:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/10 11:53:32 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:49:00 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,20 @@
 
 #include "Harl.hpp"
 
-int	main(void)
+int	main(int ac, char **av)
 {
+	if (ac != 2)
+	{
+		std::cout << "Usage: ./harlFilter <LEVEL>" << std::endl;
+		return 1;
+	}
 	// for random msg selection
 	std::srand(std::time(0));
 
 	Harl		HarlBot;
-	std::string	input;
+	std::string	input = av[1];
 
-	do
-	{
-		std::cout << "Enter a level of complaint: " << std::flush;
-		std::cin >> input;
-		HarlBot.complain(input);
-		std::cout << std::endl;
-	} while (input != "EXIT" && input.size() != 0 && !std::cin.eof());
+	HarlBot.complain(input);
 
 	return 0;
 }
