@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/28 18:33:56 by znichola          #+#    #+#              #
-#    Updated: 2023/03/10 00:18:06 by znichola         ###   ########.fr        #
+#    Updated: 2023/03/10 01:05:22 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ re	: fclean all
 leaks	:
 	unset DEBUG
 	export DEBUGL=1
-	valgrind -s --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./$(NAME)
+	$(MAKE) -C .
+	valgrind -s --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./$(NAME) $(ARGS)
 	unset DEBUGL
 	export DEBUG=1
 
