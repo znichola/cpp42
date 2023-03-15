@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:14:15 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/08 13:14:11 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/15 02:37:13 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CONTACT_HPP
 
 # include <string>
-//typdef std::string t_string;
 
 class Contact
 {

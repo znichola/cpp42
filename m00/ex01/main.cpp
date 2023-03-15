@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 04:58:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/08 20:14:20 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/15 02:37:32 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(int ac, char **av)
 		if (buff == "ADD")
 		{
 			phonebook.GetNewContact();
-			//do adding
 		}
 		else if (buff == "SEARCH")
 		{
@@ -43,7 +42,6 @@ int	main(int ac, char **av)
 			phonebook.GetContactId();
 		}
 		else
-			// std::cout << "not a valid command [" << buff << "]" << std::endl;
 			std::cout << "\"" << buff << "\" : invalid phonebook command" << std::endl;
 	}
 
