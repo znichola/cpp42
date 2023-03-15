@@ -6,15 +6,15 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 00:44:10 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/09 01:12:57 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:42:06 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 #include <iostream>
 
-Zombie *newZombie(std::string name);
-void randomChump(std::string name);
+Zombie	*newZombie(std::string name);
+void	randomChump(std::string name);
 
 int	main(int ac, char **av)
 {

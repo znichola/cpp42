@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/28 18:33:56 by znichola          #+#    #+#              #
-#    Updated: 2023/03/10 01:05:22 by znichola         ###   ########.fr        #
+#    Updated: 2023/03/15 13:27:23 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,12 +55,15 @@ fclean	: clean
 
 re	: fclean all
 
-leaks	:
-	unset DEBUG
-	export DEBUGL=1
-	$(MAKE) -C .
-	valgrind -s --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./$(NAME) $(ARGS)
-	unset DEBUGL
-	export DEBUG=1
+# leaks	:
+# 	unset DEBUG
+# 	export DEBUGL=1
+# 	$(MAKE) -C .
+# 	valgrind -s --leak-check=full --show-leak-kinds=definite,indirect,possible --track-origins=yes ./$(NAME) $(ARGS)
+# 	unset DEBUGL
+# 	export DEBUG=1
+
+leaks : re
+	leaks -atExit -- ./$(NAME)
 
 .PHONY: all clean fclean re
