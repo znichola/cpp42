@@ -260,3 +260,5 @@ fi
 
 # main "${1}" "${2}" "${3}" "${4}"
 main $@
+
+# ls -d */* | xargs -I {} bash -c "cd '{}' && make fclean"
