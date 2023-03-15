@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/28 18:33:56 by znichola          #+#    #+#              #
-#    Updated: 2023/03/15 13:27:23 by znichola         ###   ########.fr        #
+#    Updated: 2023/03/15 15:23:13 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,6 @@ re	: fclean all
 # 	export DEBUG=1
 
 leaks : re
-	leaks -atExit -- ./$(NAME)
+	leaks -atExit -- ./$(NAME) $(ARGS)
 
 .PHONY: all clean fclean re

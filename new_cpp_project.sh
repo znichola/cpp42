@@ -89,7 +89,6 @@ leaks : re
 }
 
 main () {
-
 	mkdir $1
 	cd $1
 	mkdir srcs includes
@@ -105,3 +104,5 @@ if [ ${#} -ne 2 ]; then
 fi
 
 main "${1}" "${2}"
+
+# ls -d */* | xargs -I {} bash -c "cd '{}' && make fclean"
