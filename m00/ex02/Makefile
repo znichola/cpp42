@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 21:43:00 by znichola          #+#    #+#              #
-#    Updated: 2023/03/08 22:07:30 by znichola         ###   ########.fr        #
+#    Updated: 2023/03/15 02:49:25 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC	= c++
 CFLAGS	= -Wall -Wextra
 CFLAGS	+= -Werror
 CFLAGS	+= -std=c++98
-CFLAGS	+= -g3 -fsanitize=address
+# CFLAGS	+= -g3 -fsanitize=address
 FILES	=  Account tests
 
 OBJS_PATH = objs/
@@ -42,5 +42,8 @@ fclean	: clean
 	$(RM) $(NAME)
 
 re	: fclean all
+
+leaks : re
+	leaks -atExit -- ./$(NAME)
 
 .PHONY: all clean fclean re
