@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+*.swp
+
+.vscode
+
+phonebook
+megaphone
+account
