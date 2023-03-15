@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 18:34:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/07 19:27:47 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/15 00:43:11 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	main(int ac, char **av)
 	//	std::string strav[i]);
 	//	std::transform(str.begin(), str.end(), str.begin(), ::toupper);
 	//	std::cout << str;
-		if (i != ac - 1)
-			std::cout << " ";
+		// if (i != ac - 1)
+		// 	std::cout << " ";
 	}
 	std::cout << std::endl;
 }
