@@ -4,7 +4,7 @@
 printf "generate cpp project boilerplate files\n"
 
 help () {
-	printf "usage: [project folder] [project name]\n"
+	printf "usage: [project folder] [project name] <Class1> <Class2> <ClassN> \n"
 }
 
 ################ file header ##########
