@@ -236,7 +236,7 @@ leaks : re
 main () {
 	project_dir=${1}
 	project_name=${2}
-	echo $project_name > .gitignore
+	echo $project_name >> .gitignore
 	shift
 	shift
 
