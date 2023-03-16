@@ -1,47 +1,185 @@
 #!/bin/zsh
 
+
 printf "generate cpp project boilerplate files\n"
 
 help () {
 	printf "usage: [project folder] [project name]\n"
 }
 
+################ file header ##########
+
+std_header () {
+	file_name="${1}"
+
+	creation_date=$(date +'%Y/%m/%d')
+	creation_time=$(date +'%H:%M:%S')
+
+	printf "/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   "
+	printf "%-44s" ${file_name}
+
+	printf "       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: "
+	printf "%-43s" "$USER <$USER@student.42lausanne.ch>"
+	printf "+#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: ${creation_date} ${creation_time} by znichola          #+#    #+#             */
+/*   Updated: ${creation_date} ${creation_time} by znichola         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+"
+}
+
+std_header_make () {
+	file_name="${1}"
+
+	creation_date=$(date +'%Y/%m/%d')
+	creation_time=$(date +'%H:%M:%S')
+
+	printf "# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    "
+	printf "%-44s" ${file_name}
+
+	printf "       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: "
+	printf "%-43s" "$USER <$USER@student.42lausanne.ch>"
+	printf "+#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: ${creation_date} ${creation_time} by znichola          #+#    #+#              #
+#    Updated: ${creation_date} ${creation_time} by znichola         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+"
+}
+
+################# header ##################
+
 make_header () {
 	# file_name=$(printf "%s.hpp" "${1}" | awk '{print tolower($0)}')
 	file_name=$(printf "%s.hpp" "${1}")
+	shift
+
 	# Set to upper the argument and append _H
-	header_guard_name=$(printf "%s_H" "${1}" | awk '{print toupper($0)}')
+	header_guard_name=$(printf "%s_HPP" "${1}" | awk '{print toupper($0)}')
 	{
+		std_header $file_name
+
 		printf "#ifndef %s\n" "${header_guard_name}" ;
 		printf "# define %s\n\n" "${header_guard_name}";
 
-		printf "#include <iostream>\n"
+		printf "# include <iostream>\n\n"
+
+		for var in "$@"
+		do
+			printf "# include \"$var.hpp\"\n"
+		done
 
 		printf "\n#endif /* %s */\n" "${header_guard_name}"
 	} > includes/"${file_name}"
 }
 
+################## main ###################
+
 make_main () {
 	file_name=$(printf "main.cpp")
+
 	# Set to upper the argument and append _H
 	{
+
+		std_header $file_name
+
 		printf "#include <iostream>\n"
 		printf "\n#include \"${1}.hpp\"\n"
+
 		printf "\nint\tmain(int ac, char **av)\n{\n\t(void)ac;\n\t(void)av;\n"
 		printf "\tstd::cout << \"hello ${1}!\" << std::endl;\n"
 		printf "\treturn(0);\n}\n"
 	} > srcs/"${file_name}"
 }
 
-make_make () {
-	file_name=$(printf "%s.cpp" "main" | awk '{print tolower($0)}')
+################## class ###################
+
+make_class_header () {
+	class_name="${1}"
+	file_name=$(printf "%s.hpp" "${class_name}")
+
+	header_guard_name=$(printf "%s_HPP" "${class_name}" | awk '{print toupper($0)}')
 	{
-		printf "NAME	= ${1}\n"
+		std_header $file_name
+
+		printf "#ifndef %s\n" "${header_guard_name}" ;
+		printf "# define %s\n" "${header_guard_name}";
+
+		print "
+class ${class_name}
+{
+private:
+
+public:
+	${class_name}();
+	~${class_name}();
+};
+"
+
+		printf "#endif /* %s */\n" "${header_guard_name}"
+	} > includes/"${file_name}"
+}
+
+make_class_source () {
+	class_name="${1}"
+
+	file_name=$(printf "%s.cpp" "${class_name}")
+
+	{
+		std_header $file_name
+
+		printf "
+#include \"${class_name}.hpp\"
+
+${class_name}::${class_name}()
+{
+}
+
+${class_name}::~${class_name}()
+{
+}
+
+"
+	} > srcs/"${file_name}"
+}
+
+make_class () {
+	class_name="${1}"
+
+	make_class_header $class_name
+	make_class_source $class_name
+}
+
+################## make ###################
+
+make_make () {
+	file_name="Makefile"
+	project_name="${1}"
+	shift
+
+	{
+		std_header_make $file_name
+
+		printf "NAME	= ${project_name}\n"
 		printf '
-CC	= c++
+CC		= c++
 CFLAGS	= -Wall -Wextra
 CFLAGS	+= -Werror
-CFLAGS	+= -std=c++98
+CFLAGS	+= -std=c++98 -pedantic
 
 ifdef DEBUG
 CFLAGS	+= -g3 -fsanitize=address
@@ -51,7 +189,14 @@ CFLAGS += -g3
 endif
 endif
 
-FILES	= main
+FILES	= main'
+
+	for var in "$@"
+	do
+		printf " $var"
+	done
+
+printf '
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/
@@ -84,24 +229,34 @@ leaks : re
 
 
 		'
-	} > "Makefile"
+	} > $file_name
 
 }
 
 main () {
+	project_dir=${1}
+	project_name=${2}
+	shift
+	shift
 
-	mkdir $1
-	cd $1
+	mkdir $project_dir
+	cd $project_dir
 	mkdir srcs includes
-	make_header $2
-	make_main $2
-	make_make $2
+	make_header $project_name $@
+	make_main $project_name
+	make_make $project_name $@
+
+	for var in "$@"
+	do
+		make_class "$var"
+	done
 }
 
 # Check the number of arguments
-if [ ${#} -ne 2 ]; then
+if [ ${#} -lt 2 ]; then
 	help
 	exit 1
 fi
 
-main "${1}" "${2}"
+# main "${1}" "${2}" "${3}" "${4}"
+main $@
