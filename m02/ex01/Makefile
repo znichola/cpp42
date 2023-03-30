@@ -6,11 +6,11 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 23:19:12 by znichola          #+#    #+#              #
-#    Updated: 2023/03/30 23:19:12 by znichola         ###   ########.fr        #
+#    Updated: 2023/03/31 00:06:46 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= orthodox
+NAME	= floater
 
 CC		= c++
 CFLAGS	= -Wall -Wextra
@@ -55,6 +55,3 @@ leaks : re
 	leaks -atExit -- ./$(NAME)
 
 .PHONY: all clean fclean re
-
-
-		
