@@ -125,8 +125,17 @@ class ${class_name}
 private:
 
 public:
+// Default constructor
 	${class_name}();
+
+// Copy constructor
+	${class_name}(const ${class_name} &other);
+
+// Destructor
 	~${class_name}();
+
+// Copy assignment operator
+	${class_name} & operator=(const ${class_name} &other);
 };
 "
 
@@ -145,13 +154,30 @@ make_class_source () {
 		printf "
 #include \"${class_name}.hpp\"
 
+// Default constructor
 ${class_name}::${class_name}()
 {
 }
 
+// Copy constructor
+${class_name}::${class_name}(const ${class_name} &other)
+{
+	*this = other;
+}
+
+// Destructor
 ${class_name}::~${class_name}()
 {
 }
+
+// Copy assignment operator
+${class_name} &${class_name}::operator=(const ${class_name} &other)
+{
+	(void)other;
+	// TODO: insert return statement here
+	return *this;
+}
+
 
 "
 	} > srcs/"${file_name}"
