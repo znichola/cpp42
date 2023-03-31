@@ -288,6 +288,19 @@ if [ ${#} -lt 2 ]; then
 	exit 1
 fi
 
+if [ "$1" = "class" ]; then
+	echo "make a class!"
+
+	shift
+
+	for var in "$@"
+	do
+		make_class "$var"
+	done
+
+	exit 1
+fi
+
 # main "${1}" "${2}" "${3}" "${4}"
 main $@
 
