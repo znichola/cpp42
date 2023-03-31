@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:19:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/31 03:39:28 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:16:57 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,72 +15,45 @@
 #include <iostream>
 
 // Default constructor
-Fixed::Fixed()
-{
-	this->_num = 0;
-	std::cout << "Default constructor called" << std::endl;
-}
 
-// Copy constructor
-Fixed::Fixed(const Fixed &other)
-{
-	std::cout << "Copy constructor called" << std::endl;
-	*this = other;
-}
+Fixed::~Fixed() { }
 
-Fixed::Fixed(const int &integer)
-{
-	std::cout << "Int constructor called" << std::endl;
-	setRawBits(integer << _offset);
-}
+Fixed::Fixed() 						{ this->_num = 0U; }
+Fixed::Fixed(const Fixed &other)	{ *this = other; }
+Fixed::Fixed(const int &i)			{ _num = i << _offset; }
+Fixed::Fixed(const float &f)		{ _num = int(f * float(1U << _offset) + (f >= 0 ? 0.5 : -0.5)); }
 
-Fixed::Fixed(const float &floater)
-{
-	std::cout << "Float constructor called" << std::endl;
-	_num = roundf(floater * (1U << _offset));
-}
+Fixed	&Fixed::operator=(const Fixed &other) 			{ _num = other._num; return *this; }
 
-// Destructor
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-}
+bool	Fixed::operator  >  (const Fixed &rhs) const	{ return _num >  rhs._num; }
+bool	Fixed::operator  <  (const Fixed &rhs) const	{ return _num <  rhs._num; }
+bool	Fixed::operator  >= (const Fixed &rhs) const	{ return _num >= rhs._num; }
+bool	Fixed::operator  <= (const Fixed &rhs) const	{ return _num <= rhs._num; }
+bool	Fixed::operator  == (const Fixed &rhs) const	{ return _num == rhs._num; }
+bool	Fixed::operator  != (const Fixed &rhs) const	{ return _num != rhs._num; }
 
-// Copy assignment operator
-Fixed &Fixed::operator=(const Fixed &other)
-{
-	std::cout << "Copy assignment operator called" << std::endl;
-	_num = other.getRawBits();
-	return *this;
-}
+Fixed	Fixed::operator  +  (const Fixed &rhs) const	{ return rawFixed(_num + rhs._num); }
+Fixed	Fixed::operator  -  (const Fixed &rhs) const	{ return rawFixed(_num - rhs._num); }
+Fixed	Fixed::operator  *  (const Fixed &rhs) const	{ return rawFixed(int64_t(_num) * int64_t(rhs._num) >> _offset); }
+Fixed	Fixed::operator  /  (const Fixed &rhs) const	{ return rawFixed((int64_t(_num) << _offset) / int64_t(rhs._num)); }
 
-float	Fixed::toFloat(void) const						{ return _num / (1U << _offset); }
-int		Fixed::toInt(void) const						{ return _num >> _offset; }
 
-bool	Fixed::operator  >  (const Fixed *rhs)			{ return _num >  rhs->_num; }
-bool	Fixed::operator  <  (const Fixed *rhs)			{ return _num <  rhs->_num; }
-bool	Fixed::operator  >= (const Fixed *rhs)			{ return _num >= rhs->_num; }
-bool	Fixed::operator  <= (const Fixed *rhs)			{ return _num <= rhs->_num; }
-bool	Fixed::operator  == (const Fixed *rhs)			{ return _num == rhs->_num; }
-bool	Fixed::operator  != (const Fixed *rhs)			{ return _num != rhs->_num; }
-
-Fixed	Fixed::operator  +  (const Fixed &rhs) const	{ Fixed ret(_num + rhs._num); return ret; }
-Fixed	Fixed::operator  -  (const Fixed &rhs) const	{ Fixed ret(_num - rhs._num); return ret; }
-Fixed	Fixed::operator  *  (const Fixed &rhs) const	{ Fixed ret(_num * rhs._num); return ret; }
-Fixed	Fixed::operator  /  (const Fixed &rhs) const	{ Fixed ret(_num / rhs._num); return ret; }
-
-Fixed	&Fixed::operator ++ (void)						{ _num += (1U << _offset); return *this; }
-Fixed	&Fixed::operator -- (void)						{ _num -= (1U << _offset); return *this; }
+Fixed	&Fixed::operator ++ (void)						{ _num += 1U; return *this; }
+Fixed	&Fixed::operator -- (void)						{ _num -= 1U; return *this; }
 Fixed	Fixed::operator  ++ (int)						{ Fixed old = *this; operator++(); return old; }
 Fixed	Fixed::operator  -- (int)						{ Fixed old = *this; operator--(); return old; }
 
-Fixed	&Fixed::min(Fixed &a, Fixed &b) const			{ return a > b ? b : a;}
-Fixed	&Fixed::max(Fixed &a, Fixed &b) const			{ return a > b ? a : b;}
+Fixed		&Fixed::min (Fixed &a, Fixed &b)			{ return a > b ? b : a; }
+Fixed		&Fixed::max (Fixed &a, Fixed &b)			{ return a > b ? a : b; }
+const Fixed	&Fixed::min(const Fixed &a, const Fixed &b) { return a > b ? b : a; }
+const Fixed	&Fixed::max(const Fixed &a, const Fixed &b) { return a > b ? a : b; }
 
-const Fixed	&Fixed::min(const Fixed &a, const Fixed &b) const	{ return a > b ? b : a;}
-const Fixed	&Fixed::max(const Fixed &a, const Fixed &b) const	{ return a > b ? a : b;}
+float	Fixed::toFloat(void) const						{ return _num / float(1U << _offset); }
+int		Fixed::toInt(void) const						{ return _num >> _offset; }
 
-void	Fixed::setRawBits(int const raw)	{ _num = raw; }
-int		Fixed::getRawBits(void) const		{ return _num; }
+void	Fixed::setRawBits(int const raw)				{ _num = raw; }
+int		Fixed::getRawBits(void) const					{ return _num; }
 
+// Helper functions; really, they could be called friends.
 std::ostream	&operator<<(std::ostream &os, const Fixed &other) { os << other.toFloat(); return os; }
+Fixed			rawFixed(int raw) { Fixed res; res.setRawBits(raw); return res; }

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:19:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/31 03:41:25 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:13:35 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,27 @@
 class Fixed
 {
 private:
-	int					_num;
+	int32_t					_num;
 	static const int	_offset = 8;
 
 public:
-// Default constructor
-	Fixed();
+	~Fixed();
 
-// Copy constructor
+	Fixed();
 	Fixed(const Fixed &other);
 	Fixed(const int &integer);
 	Fixed(const float &floater);
-
-	// Destructor
-	~Fixed();
-
 // Copy assignment operator
 	Fixed	&operator = (const Fixed &other);
 
+
 // Comparison operators
-	bool	operator >  (const Fixed *rhs);
-	bool	operator <  (const Fixed *rhs);
-	bool	operator >= (const Fixed *rhs);
-	bool	operator <= (const Fixed *rhs);
-	bool	operator == (const Fixed *rhs);
-	bool	operator != (const Fixed *rhs);
+	bool	operator >  (const Fixed &rhs) const;
+	bool	operator <  (const Fixed &rhs) const;
+	bool	operator >= (const Fixed &rhs) const;
+	bool	operator <= (const Fixed &rhs) const;
+	bool	operator == (const Fixed &rhs) const;
+	bool	operator != (const Fixed &rhs) const;
 
 // Arithmetic operators
 	Fixed	operator + (const Fixed &rhs) const ;
@@ -57,10 +53,10 @@ public:
 	Fixed	operator  -- (int);
 
 // Funcs
-	Fixed	&min(const Fixed &a, const Fixed &b) const;
-	Fixed	&max(const Fixed &a, const Fixed &b) const;
-	Fixed	&min(Fixed &a, Fixed &b) const;
-	Fixed	&max(Fixed &a, Fixed &b) const;
+static const Fixed	&min(const Fixed &a, const Fixed &b);
+static const Fixed	&max(const Fixed &a, const Fixed &b);
+static Fixed		&min(Fixed &a, Fixed &b);
+static Fixed		&max(Fixed &a, Fixed &b);
 
 // Acessors
 	int		getRawBits( void ) const;
@@ -70,7 +66,10 @@ public:
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
 
-	friend std::ostream & operator<< (std::ostream &os, const Fixed &other);
 };
+
+// Helper functions; really, they could be called friends.
+std::ostream	&operator<< (std::ostream &os, const Fixed &other);
+Fixed			rawFixed(int raw);
 
 #endif /* FIXED_HPP */
