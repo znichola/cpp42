@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:19:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/31 17:16:57 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:24:44 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ Fixed	Fixed::operator  +  (const Fixed &rhs) const	{ return rawFixed(_num + rhs.
 Fixed	Fixed::operator  -  (const Fixed &rhs) const	{ return rawFixed(_num - rhs._num); }
 Fixed	Fixed::operator  *  (const Fixed &rhs) const	{ return rawFixed(int64_t(_num) * int64_t(rhs._num) >> _offset); }
 Fixed	Fixed::operator  /  (const Fixed &rhs) const	{ return rawFixed((int64_t(_num) << _offset) / int64_t(rhs._num)); }
-
 
 Fixed	&Fixed::operator ++ (void)						{ _num += 1U; return *this; }
 Fixed	&Fixed::operator -- (void)						{ _num -= 1U; return *this; }

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:19:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/31 17:13:35 by znichola         ###   ########.fr       */
+/*   Updated: 2023/03/31 23:31:01 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Fixed
 {
 private:
-	int32_t					_num;
+	int32_t				_num;
 	static const int	_offset = 8;
 
 public:
@@ -53,10 +53,10 @@ public:
 	Fixed	operator  -- (int);
 
 // Funcs
-static const Fixed	&min(const Fixed &a, const Fixed &b);
-static const Fixed	&max(const Fixed &a, const Fixed &b);
-static Fixed		&min(Fixed &a, Fixed &b);
-static Fixed		&max(Fixed &a, Fixed &b);
+	static const Fixed	&min(const Fixed &a, const Fixed &b);
+	static const Fixed	&max(const Fixed &a, const Fixed &b);
+	static Fixed		&min(Fixed &a, Fixed &b);
+	static Fixed		&max(Fixed &a, Fixed &b);
 
 // Acessors
 	int		getRawBits( void ) const;

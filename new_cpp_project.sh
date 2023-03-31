@@ -248,6 +248,9 @@ fclean	: clean
 
 re	: fclean all
 
+run : all
+	./$(NAME)
+
 leaks : re
 	leaks -atExit -- ./$(NAME)
 
