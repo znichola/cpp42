@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 23:19:12 by znichola          #+#    #+#              #
-#    Updated: 2023/03/31 23:46:47 by znichola         ###   ########.fr        #
+#    Updated: 2023/04/01 11:07:50 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CFLAGS += -g3
 endif
 endif
 
-FILES	= main Fixed Point
+FILES	= main Fixed Point bsp
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/
