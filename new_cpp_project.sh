@@ -4,7 +4,7 @@
 printf "generate cpp project boilerplate files\n"
 
 help () {
-	printf "usage: [project folder] [project name]\n"
+	printf "usage: [project folder] [project name] <Class1> <Class2> <ClassN> \n"
 }
 
 ################ file header ##########
@@ -125,8 +125,17 @@ class ${class_name}
 private:
 
 public:
+// Default constructor
 	${class_name}();
+
+// Copy constructor
+	${class_name}(const ${class_name} &other);
+
+// Destructor
 	~${class_name}();
+
+// Copy assignment operator
+	${class_name} & operator=(const ${class_name} &other);
 };
 "
 
@@ -145,13 +154,30 @@ make_class_source () {
 		printf "
 #include \"${class_name}.hpp\"
 
+// Default constructor
 ${class_name}::${class_name}()
 {
 }
 
+// Copy constructor
+${class_name}::${class_name}(const ${class_name} &other)
+{
+	*this = other;
+}
+
+// Destructor
 ${class_name}::~${class_name}()
 {
 }
+
+// Copy assignment operator
+${class_name} &${class_name}::operator=(const ${class_name} &other)
+{
+	(void)other;
+	// TODO: insert return statement here
+	return *this;
+}
+
 
 "
 	} > srcs/"${file_name}"
@@ -222,6 +248,9 @@ fclean	: clean
 
 re	: fclean all
 
+run : all
+	./$(NAME)
+
 leaks : re
 	leaks -atExit -- ./$(NAME)
 
@@ -236,6 +265,7 @@ leaks : re
 main () {
 	project_dir=${1}
 	project_name=${2}
+	echo $project_name >> .gitignore
 	shift
 	shift
 
@@ -255,6 +285,19 @@ main () {
 # Check the number of arguments
 if [ ${#} -lt 2 ]; then
 	help
+	exit 1
+fi
+
+if [ "$1" = "class" ]; then
+	echo "make a class!"
+
+	shift
+
+	for var in "$@"
+	do
+		make_class "$var"
+	done
+
 	exit 1
 fi
 
