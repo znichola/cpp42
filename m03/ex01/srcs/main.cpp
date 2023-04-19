@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/19 12:58:19 by znichola         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:30:41 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ int	main(void)
 	s.takeDamage(2);
 	s.guardGate();
 	s.statRep();
+	
+	std::cout << std::endl;
+
+	ScavTrap z = s;
+	z.statRep();	
 
 	std::cout << std::endl;
 	

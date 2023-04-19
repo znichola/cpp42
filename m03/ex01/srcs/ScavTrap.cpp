@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/19 12:53:00 by znichola         ###   ########.fr       */
+/*   Updated: 2023/04/19 16:54:27 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,26 @@ ScavTrap::~ScavTrap()
 
 void	ScavTrap::guardGate(void)
 {
-	std::cout << "\"" << _name << "\"" << " is in Guard mode, beware!"
+	std::cout << "\"" << _name << "\""
+		<< " is in Gate Keeper mode, beware!"
 		<< std::endl;
 }
 
+// TODO: need to fix it so this function actually gets called!
+void	ScavTrap::attack(const std::string &target)
+{
+	if (_energyPoints - _attackDamage > 0)
+	{
+		std::cout << "\"" << _name << "\" scav attacks " << target
+		<< " for " << _attackDamage << " damage, yikes!"
+		<< std::endl;
+		_energyPoints -= _attackDamage;
+	}
+	else
+	{
+		std::cout << "\"" << _name << "\"" << " can't scav attack for " 
+		<< _attackDamage << ", need another "
+		<< _attackDamage - _energyPoints << " energy points" << std::endl;
+	}
+}
 

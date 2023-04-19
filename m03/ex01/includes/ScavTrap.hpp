@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/14 19:02:50 by znichola         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:17:01 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ public:
 // Copy assignment operator
 	ScavTrap & operator=(const ScavTrap &other);
 
+	void	attack(const std::string &target);
 	void	guardGate(void);
 };
 
