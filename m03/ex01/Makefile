@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 02:29:34 by znichola          #+#    #+#              #
-#    Updated: 2023/04/14 17:13:57 by znichola         ###   ########.fr        #
+#    Updated: 2023/04/25 16:52:29 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ fclean	: clean
 re	: fclean all
 
 run : all
-	./$(NAME)
+	./$(NAME) | less 
 
 leaks : re
 	leaks -atExit -- ./$(NAME)
