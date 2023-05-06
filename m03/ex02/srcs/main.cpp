@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/25 17:39:47 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:04:29 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
-#include "FragTrap.cpp"
+#include "FragTrap.hpp"
 
 int	main(void)
 {
