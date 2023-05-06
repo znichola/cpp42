@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/25 17:31:12 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/06 16:09:38 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ ScavTrap::~ScavTrap()
 {
 	std::cout << "ScavTrap \"" << _name << "\" destructor called " << std::endl;
 }
-
-// Copy assignment operator
-// ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 
 void	ScavTrap::guardGate(void)
 {

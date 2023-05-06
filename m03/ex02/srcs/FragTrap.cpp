@@ -6,16 +6,12 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/25 17:36:00 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/06 16:19:49 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "FragTrap.hpp"
 #include <iostream>
-
-// Default constructor
-// FragTrap::FragTrap() {}
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
@@ -36,7 +32,6 @@ FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
 FragTrap &FragTrap::operator=(const FragTrap &other)
 {
 	std::cout << "FragTrap Copy \"" << _name << "\"  assignment operator called" << std::endl;
-	//*this = other;
 	_name = other._name;
 	_hitPoints = other._hitPoints;
 	_energyPoints = other._energyPoints;
@@ -49,9 +44,6 @@ FragTrap::~FragTrap()
 {
 	std::cout << "FragTrap \"" << _name << "\" destructor called " << std::endl;
 }
-
-// Copy assignment operator
-// FragTrap &FragTrap::operator=(const FragTrap &other)
 
 void	FragTrap::highFivesGuys(void)
 {
