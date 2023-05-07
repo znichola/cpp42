@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 02:29:34 by znichola          #+#    #+#              #
-#    Updated: 2023/04/25 17:26:55 by znichola         ###   ########.fr        #
+#    Updated: 2023/05/07 14:45:47 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CFLAGS += -g3
 endif
 endif
 
-FILES	= main ClapTrap ScavTrap FragTrap
+FILES	= main ClapTrap ScavTrap FragTrap DiamondTrap
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/
@@ -52,12 +52,9 @@ fclean	: clean
 re	: fclean all
 
 run : all
-	./$(NAME) | less 
+	./$(NAME) | less
 
 leaks : re
 	leaks -atExit -- ./$(NAME)
 
 .PHONY: all clean fclean re
-
-
-		

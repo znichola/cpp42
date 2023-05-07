@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/06 13:04:29 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/07 14:47:18 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
@@ -76,6 +77,18 @@ int	main(void)
 	f.highFivesGuys();
 	f.beRepaired(64);
 	f.statRep();
+
+	std::cout << std::endl;
+
+	DiamondTrap d("Dianna");
+
+	d.WhoAmI();
+	d.statRep();
+	d.attack("Charles");
+	d.ScavTrap::takeDamage(14);
+	d.FragTrap::beRepaired(9);
+	d.guardGate();
+	d.highFivesGuys();
 
 	std::cout << std::endl;
 
