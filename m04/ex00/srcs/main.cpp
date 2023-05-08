@@ -3,21 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niki <niki@student.42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/07 19:13:12 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/07 19:48:14 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-#include "animal_kingdom.hpp"
+#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	(void)ac;
-	(void)av;
-	std::cout << "hello animal_kingdom!" << std::endl;
+	std::cout << "Welcome to my Animal Kingdom!" << std::endl;
+
+	const Animal* meta = new Animal();
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
+
+	(void)meta;
+	(void)j;
+	(void)i;
+
+	// std::cout << j->getType() << " " << std::endl;
+	// std::cout << i->getType() << " " << std::endl;
+	// i->makeSound(); //will output the cat sound!
+	// j->makeSound();
+	// meta->makeSound();
+
 	return(0);
 }
