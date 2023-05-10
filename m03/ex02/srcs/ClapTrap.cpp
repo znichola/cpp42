@@ -6,13 +6,22 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/06 16:19:55 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 00:48:49 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include <iostream>
 #include <string>
+
+ClapTrap::ClapTrap()
+{
+	_name = "Defaultus";
+	_hitPoints = 0;
+	_energyPoints = 0;
+	_attackDamage = 0;
+	std::cout << "ClapTrap \"" << _name << "\" has been spawned" << std::endl;
+}
 
 ClapTrap::ClapTrap(std::string name)
 {

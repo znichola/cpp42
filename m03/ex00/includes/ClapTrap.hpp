@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/14 13:03:00 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 00:43:17 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ private:
 	std::string	_name;
 	int		_hitPoints;
 	int		_energyPoints;
-	int		_attackDamage;	
+	int		_attackDamage;
 
 	static int	_allClaps;
 public:
 // Default constructor
+	ClapTrap();
 	ClapTrap(std::string name);
 
 // Copy constructor
@@ -42,7 +43,6 @@ public:
 	void	beRepaired(unsigned int amount);
 	void	statRep(void);
 	void	setAttackDmg(unsigned int amount);
-	ClapTrap &findClap(std::string name);
 };
 
 #endif /* CLAPTRAP_HPP */

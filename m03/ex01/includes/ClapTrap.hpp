@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/14 18:46:34 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 00:49:32 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ protected:
 	std::string	_name;
 	int		_hitPoints;
 	int		_energyPoints;
-	int		_attackDamage;	
+	int		_attackDamage;
 
 public:
 // Default constructor
+	ClapTrap();
 	ClapTrap(std::string name);
 
 // Copy constructor

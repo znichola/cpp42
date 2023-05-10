@@ -6,13 +6,22 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/14 18:46:48 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 00:48:39 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include <iostream>
 #include <string>
+
+ClapTrap::ClapTrap()
+{
+	_name = "Defaultus";
+	_hitPoints = 0;
+	_energyPoints = 0;
+	_attackDamage = 0;
+	std::cout << "ClapTrap \"" << _name << "\" has been spawned" << std::endl;
+}
 
 ClapTrap::ClapTrap(std::string name)
 {
@@ -27,17 +36,17 @@ ClapTrap::ClapTrap(std::string name)
 ClapTrap::ClapTrap(const ClapTrap &other)
 {
 	*this = other;
-	std::cout << "ClapTrap \"" << _name << "\" Copy constructor called" << std::endl; 
+	std::cout << "ClapTrap \"" << _name << "\" Copy constructor called" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap \"" << _name << "\" destructor called " << std::endl; 
+	std::cout << "ClapTrap \"" << _name << "\" destructor called " << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
-	std::cout << "ClapTrap Copy \"" << _name << "\"  assignment operator called" << std::endl; 
+	std::cout << "ClapTrap Copy \"" << _name << "\"  assignment operator called" << std::endl;
 	//*this = other;
 	_name = other._name;
 	_hitPoints = other._hitPoints;
@@ -57,7 +66,7 @@ void	ClapTrap::attack(const std::string &target)
 	}
 	else
 	{
-		std::cout << "\"" << _name << "\"" << " can't attack for " 
+		std::cout << "\"" << _name << "\"" << " can't attack for "
 		<< _attackDamage << ", need another "
 		<< _attackDamage - _energyPoints << " energy points" << std::endl;
 	}
@@ -72,7 +81,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	if (_hitPoints <= 0)
 	{
 		_hitPoints = 0;
- 		std::cout << "\"" << _name << "\"" << " has 0 health left :(" << std::endl;	
+ 		std::cout << "\"" << _name << "\"" << " has 0 health left :(" << std::endl;
 
 	}
 }
@@ -94,7 +103,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 
 void	ClapTrap::statRep(void)
 {
-	std::cout	<< "~~ status-report: \"" << _name << "\"" 
+	std::cout	<< "~~ status-report: \"" << _name << "\""
 			<< " dmg:" << _attackDamage
 			<< " HP:" << _hitPoints
 			<< " EP:" << _energyPoints
@@ -103,8 +112,7 @@ void	ClapTrap::statRep(void)
 
 void	ClapTrap::setAttackDmg(unsigned int amount)
 {
-	_attackDamage = amount;	
+	_attackDamage = amount;
 	std::cout	<< "\"" << _name << "\"" << " new attack damage is "
 			<< _attackDamage << std::endl;
 }
-
