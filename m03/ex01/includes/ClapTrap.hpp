@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/11 00:49:32 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 00:55:47 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ public:
 	void	beRepaired(unsigned int amount);
 	void	statRep(void);
 	void	setAttackDmg(unsigned int amount);
-	// void	setName(std::string name);
 };
 
 #endif /* CLAPTRAP_HPP */

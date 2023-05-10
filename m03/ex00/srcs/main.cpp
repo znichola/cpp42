@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/11 00:47:11 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 01:18:14 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,11 @@ int	main(void)
 	c.statRep();
 
 	std::cout << std::endl;
+
+	a = c;
+	c.statRep();
+
+	std::cout << std::endl;
+
 	return(0);
 }

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/19 15:17:01 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 00:56:45 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ private:
 
 public:
 // Default constructor
+	ScavTrap();
 	ScavTrap(std::string name);
 
 // Copy constructor

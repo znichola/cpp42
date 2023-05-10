@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/06 13:04:29 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 01:18:12 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ int	main(void)
 	c.attack("Georgina");
 	c.attack("Galia");
 	c.attack("Gleb");
+	c.statRep();
+
+	std::cout << std::endl;
+
+	a = c;
 	c.statRep();
 
 	std::cout << std::endl;

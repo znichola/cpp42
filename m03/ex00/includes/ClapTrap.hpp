@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/11 00:43:17 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 00:55:37 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ private:
 	int		_energyPoints;
 	int		_attackDamage;
 
-	static int	_allClaps;
 public:
 // Default constructor
 	ClapTrap();

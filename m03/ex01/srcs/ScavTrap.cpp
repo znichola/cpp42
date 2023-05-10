@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/19 16:54:27 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 01:08:07 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 #include <iostream>
 
 // Default constructor
-// ScavTrap::ScavTrap() {}
+ScavTrap::ScavTrap()
+{
+	_name = "Defaultus_Scavus";
+	std::cout << "ScavTrap \"" << _name << "\" has been spawned" << std::endl;
+}
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	_hitPoints = 100;
 	_energyPoints = 50;
-	_attackDamage = 20;	
-	
+	_attackDamage = 20;
+
 	std::cout << "ScavTrap \"" << _name << "\"" << " has been spawned"
 		<< std::endl;
 }
@@ -30,12 +34,12 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
 	*this = other;
-	std::cout << "ScavTrap \"" << _name << "\" Copy constructor called" << std::endl; 
+	std::cout << "ScavTrap \"" << _name << "\" Copy constructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 {
-	std::cout << "ScavTrap Copy \"" << _name << "\"  assignment operator called" << std::endl; 
+	std::cout << "ScavTrap Copy \"" << _name << "\"  assignment operator called" << std::endl;
 	//*this = other;
 	_name = other._name;
 	_hitPoints = other._hitPoints;
@@ -45,9 +49,9 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 }
 
 // Destructor
-ScavTrap::~ScavTrap() 
+ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap \"" << _name << "\" destructor called " << std::endl; 
+	std::cout << "ScavTrap \"" << _name << "\" destructor called " << std::endl;
 }
 
 // Copy assignment operator
@@ -72,9 +76,8 @@ void	ScavTrap::attack(const std::string &target)
 	}
 	else
 	{
-		std::cout << "\"" << _name << "\"" << " can't scav attack for " 
+		std::cout << "\"" << _name << "\"" << " can't scav attack for "
 		<< _attackDamage << ", need another "
 		<< _attackDamage - _energyPoints << " energy points" << std::endl;
 	}
 }
-
