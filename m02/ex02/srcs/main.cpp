@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:19:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/31 23:27:39 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:53:13 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,19 @@ int	main(int ac, char **av)
 	Fixed x(42);
 
 	std::cout << std::endl << "Incramentors" << std::endl;
-	std::cout << ++x << std::endl;
-	std::cout << x++ << std::endl;
-	std::cout << x-- << std::endl;
-	std::cout << --x << std::endl;
+	std::cout << "x is "    << x << std::endl;
+	std::cout << "++x : x = " << ++x << std::endl;
+	std::cout << "x++ : x = " << x++ << std::endl;
+	std::cout << "x-- : x = " << x-- << std::endl;
+	std::cout << "--x : x = " << --x << std::endl;
+	std::cout << "x is "    << x << std::endl;
 
 	x = 73.042f;
 	std::cout << std::endl << "Min Max" << std::endl;
-	std::cout << Fixed::max(x, a) << std::endl;
-	std::cout << Fixed::min(x, a) << std::endl;
-
+	std::cout << "(" << x << ", " << a << ")" << std::endl;
+	std::cout << "max " << Fixed::max(x, a) << std::endl;
+	std::cout << "min " << Fixed::min(x, a) << std::endl;
+	std::cout << std::endl;
 	return 0;
 }
 

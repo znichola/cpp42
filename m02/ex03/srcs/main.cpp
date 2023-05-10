@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:19:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/01 12:55:47 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/10 20:04:08 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	test(const Point &a, const Point &b, const Point &c, const Point &p)
 {
 	std::cout	<< "point " << p
 				<< "	is" << (bsp(a, b, c, p) ? BLUE(inside) : GREEN(outside))
-				<< "traingle " << a << " " << b << " " << c << std::endl;
+				<< " traingle " << a << " " << b << " " << c << std::endl;
 }
 
 static void	draw(int u, int v, const Point &a, const Point &b, const Point &c)

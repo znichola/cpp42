@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:19:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/03/31 01:37:44 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:34:32 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ std::ostream &operator<<(std::ostream &os, const Fixed &other)
 
 float Fixed::toFloat(void) const
 {
-	// return this->getRawBits() >> _fracBits + this->getRawBits() ;
-	return _num / (1U << _offset);
+	return _num / float(1U << _offset);
 }
 
 int Fixed::toInt(void) const
