@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/11 01:18:57 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:42:58 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
+#define GREEN(w) "\033[92m" << w << "\033[0m"
+
 int	main(void)
 {
+	ClapTrap d1;
 
 	ClapTrap a("Alice");
 	ClapTrap b("Bobby");
@@ -51,11 +54,14 @@ int	main(void)
 	std::cout << std::endl;
 
 	a = c;
+	a.statRep();
 	c.statRep();
 
 	std::cout << std::endl;
 
-	ScavTrap def;
+	std::cout << GREEN(">>> THE NEW SCAVTRAP <<<") << std::endl << std::endl;
+
+	ScavTrap d2;
 
 	ScavTrap s("Savyy");
 
@@ -70,9 +76,17 @@ int	main(void)
 
 	std::cout << std::endl;
 
-	ScavTrap z = s;
+	ScavTrap z;
+	z = s;
 	s.statRep();
 	z.statRep();
+
+	std::cout << std::endl << GREEN("HERE!") << std::endl;
+
+	ScavTrap t = s;
+	s.takeDamage(15);
+	s.statRep();
+	t.statRep();
 
 	std::cout << std::endl;
 

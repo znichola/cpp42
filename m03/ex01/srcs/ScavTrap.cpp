@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/11 01:08:07 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:49:15 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 
 // Default constructor
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
 	_name = "Defaultus_Scavus";
 	std::cout << "ScavTrap \"" << _name << "\" has been spawned" << std::endl;
@@ -33,18 +33,18 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
-	*this = other;
+	// *this = other;
 	std::cout << "ScavTrap \"" << _name << "\" Copy constructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 {
 	std::cout << "ScavTrap Copy \"" << _name << "\"  assignment operator called" << std::endl;
-	//*this = other;
-	_name = other._name;
-	_hitPoints = other._hitPoints;
-	_energyPoints = other._energyPoints;
-	_attackDamage = other._attackDamage;
+	ClapTrap::operator=(other);
+	// _name = other._name;
+	// _hitPoints = other._hitPoints;
+	// _energyPoints = other._energyPoints;
+	// _attackDamage = other._attackDamage;
 	return *this;
 }
 

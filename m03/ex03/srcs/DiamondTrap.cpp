@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:25:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/07 15:46:11 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:54:27 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <iostream>
 
 // Default constructor
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clapname"),
-												FragTrap(name), ScavTrap(name)
+DiamondTrap::DiamondTrap(std::string name) :
+	ClapTrap(name + "_clapname"), FragTrap(name), ScavTrap(name)
 {
 	FragTrap t("tmp");
 
