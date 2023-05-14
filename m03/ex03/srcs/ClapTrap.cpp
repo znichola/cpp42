@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/11 00:48:56 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/14 23:05:42 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,42 @@
 #include <iostream>
 #include <string>
 
-ClapTrap::ClapTrap()
+
+ClapTrap::ClapTrap() :
+_name("Defaultus"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	_name = "Defaultus";
-	_hitPoints = 0;
-	_energyPoints = 0;
-	_attackDamage = 0;
 	std::cout << "ClapTrap \"" << _name << "\" has been spawned" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name)
+ClapTrap::ClapTrap(std::string name) :
+_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	_name = name;
-	_hitPoints = 10;
-	_energyPoints = 10;
-	_attackDamage = 0;
 	std::cout << "ClapTrap \"" << _name << "\" has been spawned" << std::endl;
 
 }
 
-ClapTrap::ClapTrap(const ClapTrap &other)
+ClapTrap::ClapTrap(const ClapTrap &other) :
+_name(other._name), _hitPoints(other._hitPoints),
+_energyPoints(other._energyPoints), _attackDamage(other._attackDamage)
 {
-	*this = other;
-	std::cout << "ClapTrap \"" << _name << "\" Copy constructor called" << std::endl;
+	std::cout << "ClapTrap \"" << _name
+		<< "\" Copy constructor called" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap \"" << _name << "\" destructor called " << std::endl;
+	std::cout << "ClapTrap \"" << _name
+		<< "\" destructor called " << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
-	std::cout << "ClapTrap Copy \"" << _name << "\"  assignment operator called" << std::endl;
-	_name = other._name;
-	_hitPoints = other._hitPoints;
+	_name         = other._name;
+	_hitPoints    = other._hitPoints;
 	_energyPoints = other._energyPoints;
 	_attackDamage = other._attackDamage;
+	std::cout << "ClapTrap Copy \"" << _name
+			<< "\"  assignment operator called" << std::endl;
 	return *this;
 }
 
@@ -80,7 +79,8 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	if (_hitPoints <= 0)
 	{
 		_hitPoints = 0;
- 		std::cout << "\"" << _name << "\"" << " has 0 health left :(" << std::endl;
+ 		std::cout << "\"" << _name
+			<< "\"" << " has 0 health left :(" << std::endl;
 
 	}
 }
@@ -100,7 +100,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 			<< std::endl;
 }
 
-void	ClapTrap::statRep(void)
+void	ClapTrap::statRep(void) const
 {
 	std::cout	<< "~~ status-report: \"" << _name << "\""
 			<< " dmg:" << _attackDamage

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/11 01:18:12 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/14 21:03:10 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	main(void)
 	z.statRep();
 
 	std::cout << std::endl;
+
+	std::cout << GREEN(">>> THE NEW FRAGTRAP <<<") << std::endl << std::endl;
 
 	FragTrap f("Filly");
 

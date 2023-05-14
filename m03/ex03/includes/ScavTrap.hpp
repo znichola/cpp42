@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/07 13:35:54 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/14 19:18:56 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@
 
 class ScavTrap : virtual public ClapTrap
 {
-private:
+protected:
+	static const int	_defaultHP;
+	static const int	_defaultEP;
+	static const int	_defaultAD;
 
 public:
 // Default constructor
+	ScavTrap();
 	ScavTrap(std::string name);
 
 // Copy constructor
@@ -33,7 +37,7 @@ public:
 	ScavTrap & operator=(const ScavTrap &other);
 
 	void	attack(const std::string &target);
-	void	guardGate(void);
+	void	guardGate(void) const;
 };
 
 #endif /* SCAVTRAP_HPP */

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/11 00:55:37 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/14 17:49:38 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ class ClapTrap
 {
 private:
 	std::string	_name;
-	int		_hitPoints;
-	int		_energyPoints;
-	int		_attackDamage;
+	int			_hitPoints;
+	int			_energyPoints;
+	int			_attackDamage;
 
 public:
 // Default constructor
@@ -40,7 +40,7 @@ public:
 	void	attack(const std::string &target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
-	void	statRep(void);
+	void	statRep(void) const;
 	void	setAttackDmg(unsigned int amount);
 };
 

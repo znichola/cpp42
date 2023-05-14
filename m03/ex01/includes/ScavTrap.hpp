@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/11 10:32:45 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/14 19:05:05 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ public:
 	ScavTrap & operator=(const ScavTrap &other);
 
 	void	attack(const std::string &target);
-	void	guardGate(void);
+	void	guardGate(void) const;
 };
 
 #endif /* SCAVTRAP_HPP */

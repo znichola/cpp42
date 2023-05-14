@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/04/25 17:28:41 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/14 19:04:32 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ private:
 
 public:
 // Default constructor
+	FragTrap();
 	FragTrap(std::string name);
 
 // Copy constructor
@@ -33,7 +34,7 @@ public:
 	FragTrap & operator=(const FragTrap &other);
 
 	void	attack(const std::string &target);
-	void	highFivesGuys(void);
+	void	highFivesGuys(void) const;
 };
 
 #endif /* FRAGTRAP_HPP */

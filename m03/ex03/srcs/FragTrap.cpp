@@ -6,46 +6,54 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:07:45 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/06 16:19:49 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/14 23:05:54 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 #include <iostream>
 
+const int FragTrap::_defaultHP = 100;
+const int FragTrap::_defaultEP = 100;
+const int FragTrap::_defaultAD = 30;
+
+FragTrap::FragTrap() : ClapTrap("Defaultus_Fragus")
+{
+	_hitPoints    = _defaultHP;
+	_energyPoints = _defaultEP;
+	_attackDamage = _defaultAD;
+	std::cout << "FragTrap \"" << _name << "\" has been spawned" << std::endl;
+}
+
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	_hitPoints = 100;
-	_energyPoints = 100;
-	_attackDamage = 30;
-
+	_hitPoints    = _defaultHP;
+	_energyPoints = _defaultEP;
+	_attackDamage = _defaultAD;
 	std::cout << "FragTrap \"" << _name << "\"" << " has been spawned"
 		<< std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
 {
-	*this = other;
-	std::cout << "FragTrap \"" << _name << "\" Copy constructor called" << std::endl;
+	std::cout << "FragTrap \"" << _name
+		<< "\" Copy constructor called" << std::endl;
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &other)
 {
-	std::cout << "FragTrap Copy \"" << _name << "\"  assignment operator called" << std::endl;
-	_name = other._name;
-	_hitPoints = other._hitPoints;
-	_energyPoints = other._energyPoints;
-	_attackDamage = other._attackDamage;
+	std::cout << "FragTrap Copy \""
+		<< _name << "\"  assignment operator called" << std::endl;
+	ClapTrap::operator=(other);
 	return *this;
 }
 
-// Destructor
 FragTrap::~FragTrap()
 {
 	std::cout << "FragTrap \"" << _name << "\" destructor called " << std::endl;
 }
 
-void	FragTrap::highFivesGuys(void)
+void	FragTrap::highFivesGuys(void) const
 {
 	std::cout << "\"" << _name << "\""
 		<< " is asking for a high five from the guys, let's gooo!"

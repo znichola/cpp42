@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:25:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/07 12:49:44 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/14 21:31:19 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,20 @@ private:
 
 public:
 // Default constructor
+	DiamondTrap();
 	DiamondTrap(std::string name);
 
 // Copy constructor
-	// DiamondTrap(const DiamondTrap &other);
+	DiamondTrap(const DiamondTrap &other);
 
 // Destructor
 	~DiamondTrap();
 
 // Copy assignment operator
-	// DiamondTrap & operator=(const DiamondTrap &other);
+	DiamondTrap & operator=(const DiamondTrap &other);
 
-	using	ScavTrap::attack;
+	// using	ScavTrap::attack;
+	void	attack(const std::string &target);
 
 	void	WhoAmI(void);
 };

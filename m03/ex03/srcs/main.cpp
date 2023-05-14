@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:29:34 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/07 14:47:18 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/14 22:58:22 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,80 +17,126 @@
 #include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
 
+#define GREEN(w) "\033[92m" << w << "\033[0m"
+
 int	main(void)
 {
+	{
+		std::cout << std::endl
+			<< GREEN(">>> THE OG SCAV TRAP <<<") << std::endl << std::endl;
 
-	ClapTrap a("Alice");
-	ClapTrap b("Bobby");
-	ClapTrap c("Cindy");
+		ClapTrap a("Alice");
+		ClapTrap b("Bobby");
+		ClapTrap c("Cindy");
 
-	std::cout << std::endl;
+		std::cout << std::endl;
 
-	a.statRep();
-	a.takeDamage(4);
-	a.beRepaired(3);
-	a.beRepaired(5);
-	a.beRepaired(8);
-	a.statRep();
+		a.statRep();
+		a.takeDamage(4);
+		a.beRepaired(3);
+		a.beRepaired(5);
+		a.beRepaired(8);
+		a.statRep();
 
-	std::cout << std::endl;
+		std::cout << std::endl;
 
-	b.statRep();
-	b.takeDamage(91);
-	b.beRepaired(41);
-	b.statRep();
+		b.statRep();
+		b.takeDamage(91);
+		b.beRepaired(41);
+		b.statRep();
 
-	std::cout << std::endl;
+		std::cout << std::endl;
 
+		c.statRep();
+		c.attack("Gregg");
+		c.setAttackDmg(4);
+		c.attack("Georgina");
+		c.attack("Galia");
+		c.attack("Gleb");
+		c.statRep();
 
-	c.statRep();
-	c.attack("Gregg");
-	c.setAttackDmg(4);
-	c.attack("Georgina");
-	c.attack("Galia");
-	c.attack("Gleb");
-	c.statRep();
+		std::cout << std::endl;
+	}
+	{
+		std::cout << std::endl
+			<< GREEN(">>> THE OLD SCAV TRAP <<<") << std::endl << std::endl;
 
-	std::cout << std::endl;
+		ScavTrap s("Savyy");
 
-	ScavTrap s("Savyy");
+		s.statRep();
+		s.attack("Billy");
+		s.beRepaired(12);
+		s.takeDamage(2);
+		s.guardGate();
+		s.statRep();
 
-	s.statRep();
-	s.attack("Billy");
-	s.beRepaired(12);
-	s.takeDamage(2);
-	s.guardGate();
-	s.statRep();
+		std::cout << std::endl;
 
-	std::cout << std::endl;
+		ScavTrap z = s;
+		z.statRep();
 
-	ScavTrap z = s;
-	z.statRep();
+		std::cout << std::endl;
+	}
+	{
+		std::cout << std::endl
+			<< GREEN(">>> THE OLD FRAG TRAP <<<") << std::endl << std::endl;
 
-	std::cout << std::endl;
+		FragTrap f("Filly");
 
-	FragTrap f("Filly");
+		f.statRep();
+		f.attack("Hans");
+		f.takeDamage(42);
+		f.highFivesGuys();
+		f.beRepaired(64);
+		f.statRep();
 
-	f.statRep();
-	f.attack("Hans");
-	f.takeDamage(42);
-	f.highFivesGuys();
-	f.beRepaired(64);
-	f.statRep();
+		std::cout << std::endl;
 
-	std::cout << std::endl;
+		FragTrap _f(f);
 
-	DiamondTrap d("Dianna");
+		_f.statRep();
 
-	d.WhoAmI();
-	d.statRep();
-	d.attack("Charles");
-	d.ScavTrap::takeDamage(14);
-	d.FragTrap::beRepaired(9);
-	d.guardGate();
-	d.highFivesGuys();
+	}
+	{
+		std::cout << std::endl
+			<< GREEN(">>> THE NEW DIAMOND TRAP <<<") << std::endl << std::endl;
 
-	std::cout << std::endl;
+		DiamondTrap d("Dianna");
 
+		std::cout << std::endl;
+
+		d.ClapTrap::statRep();
+		std::cout << std::endl;
+
+		d.WhoAmI();
+		d.attack("Charles");
+		d.ScavTrap::takeDamage(14);
+		d.FragTrap::beRepaired(9);
+		d.guardGate();
+		d.highFivesGuys();
+
+		std::cout << std::endl;
+
+		DiamondTrap _d;
+
+		std::cout << std::endl;
+
+		_d = d;
+
+		std::cout << std::endl;
+
+		_d.ClapTrap::statRep();
+		d.ClapTrap::statRep();
+
+		std::cout << std::endl;
+
+		DiamondTrap	__d(d);
+
+		std::cout << std::endl;
+
+		__d.ClapTrap::statRep();
+
+		std::cout << std::endl;
+	}
 	return(0);
 }
