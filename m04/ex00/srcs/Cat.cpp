@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:15 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/07 19:40:09 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:55:58 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,21 @@
 // Default constructor
 Cat::Cat() : Animal()
 {
-	std::cout << "Constructing a Cat" << std::endl;
 	type = "Cat";
-	sound = "Miawww Miaowww";
+	std::cout << "   Cat: Constructing a " << type << std::endl;
 }
 
 // Copy constructor
 Cat::Cat(const Cat &other)
 {
-	std::cout << "Copy Constructing a Cat" << std::endl;
-	*this = other;
+	std::cout << "   Cat: Copy Constructing a " << type << std::endl;
+	Animal::operator=(other);
 }
 
 // Destructor
 Cat::~Cat()
 {
-	std::cout << "Destroying a Cat" << std::endl;
+	std::cout << "   Cat: Destroying a " << type << std::endl;
 }
 
 // Copy assignment operator
@@ -41,4 +40,10 @@ Cat &Cat::operator=(const Cat &other)
 	(void)other;
 	// TODO: insert return statement here
 	return *this;
+}
+
+// method
+void	Cat::makeSound(void) const
+{
+	std::cout << "Miawww Miaowww" << std::endl;
 }

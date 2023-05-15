@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/07 19:43:44 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:56:30 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,43 +16,39 @@
 #include <iostream>
 
 // Default constructor
-Animal::Animal()
+Animal::Animal() :
+	type("Animal")
 {
-	std::cout << "Constructing an Animal" << std::endl;
-	type = "Generic Animal";
-	sound = "Generic cry";
+	std::cout << "Animal: Constructing an " << getType() << std::endl;
 }
 
 // Copy constructor
-Animal::Animal(const Animal &other)
+Animal::Animal(const Animal &other) :
+	type(other.getType())
 {
-	std::cout << "Copy Constructing an Animal" << std::endl;
-
-	*this = other;
+	std::cout << "Animal: Copy Constructing an " << getType() << std::endl;
 }
 
 // Destructor
 Animal::~Animal()
 {
-	std::cout << "Destroying an Animal" << std::endl;
+	std::cout << "Animal: Destroying the " << getType() << std::endl;
 }
 
 // Copy assignment operator
 Animal &Animal::operator=(const Animal &other)
 {
-	std::cout << "Copy assigning an Animal" << std::endl;
-
+	std::cout << "Animal: Copy assigning an " << getType() << std::endl;
 	type = other.type;
-	sound = other.sound;
 	return *this;
 }
 
-void Animal::makeSound()
+void Animal::makeSound() const
 {
-	std::cout << sound << std::endl;
+	std::cout << "Animal Sounds" << std::endl;
 }
 
-std::string Animal::getType()
+std::string Animal::getType() const
 {
 	return type;
 }

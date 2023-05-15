@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/07 19:36:10 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:30:12 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 class Cat : public Animal
 {
-private:
-
 public:
 // Default constructor
 	Cat();
@@ -31,6 +29,9 @@ public:
 
 // Copy assignment operator
 	Cat & operator=(const Cat &other);
+
+// Methods
+	void	makeSound(void) const;
 };
 
 #endif /* CAT_HPP */

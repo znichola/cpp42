@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/07 19:36:04 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:52:19 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 class Dog : public Animal
 {
-private:
-
 public:
 // Default constructor
 	Dog();
@@ -31,6 +29,9 @@ public:
 
 // Copy assignment operator
 	Dog & operator=(const Dog &other);
+
+// Methods
+	void	makeSound(void) const;
 };
 
 #endif /* DOG_HPP */

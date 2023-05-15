@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/07 19:24:18 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:52:11 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 
 class Animal
 {
-private:
+protected:
 	std::string	type;
-	std::string	sound;
 
 public:
 // Default constructor
@@ -29,13 +28,14 @@ public:
 	Animal(const Animal &other);
 
 // Destructor
-	~Animal();
+	virtual ~Animal();
 
 // Copy assignment operator
 	Animal & operator=(const Animal &other);
 
-	std::string	getType();
-	void		makeSound();
+// Methods
+	std::string		getType() const;
+	virtual void	makeSound() const;
 };
 
 #endif /* ANIMAL_HPP */
