@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 19:56:39 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:42:39 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #define GREEN(w)	"\033[92m" << w << "\033[0m"
 #define PUT(w)		std::cout << w NL;
 #define NL			<< std::endl
+
 int	main(void)
 {
 	std::cout << "Welcome to my Animal Kingdom!" NL;

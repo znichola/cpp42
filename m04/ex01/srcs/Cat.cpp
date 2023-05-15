@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:15 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 19:48:47 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:40:44 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 // Default constructor
 Cat::Cat() : Animal()
 {
-	type = "Cat";
 	std::cout << "   Cat: Constructing a " << type << std::endl;
+	type = "Cat";
+	_Brain = new Brain();
 }
 
 // Copy constructor
@@ -32,6 +33,7 @@ Cat::Cat(const Cat &other)
 Cat::~Cat()
 {
 	std::cout << "   Cat: Destroying a " << type << std::endl;
+	delete _Brain;
 }
 
 // Copy assignment operator
