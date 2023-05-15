@@ -1,50 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/07 19:13:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 19:33:16 by znichola         ###   ########.fr       */
+/*   Created: 2023/05/15 19:44:13 by znichola          #+#    #+#             */
+/*   Updated: 2023/05/15 19:44:13 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "Dog.hpp"
-
-#include <iostream>
+#include "WrongCat.hpp"
 
 // Default constructor
-Dog::Dog() : Animal()
+WrongCat::WrongCat()
 {
-	type = "Dog";
-	std::cout << "   Dog: Constructing a " << type << std::endl;
 }
 
 // Copy constructor
-Dog::Dog(const Dog &other) : Animal(other)
+WrongCat::WrongCat(const WrongCat &other)
 {
-	std::cout << "   Dog: Copy Constructing a " << type << std::endl;
-	// Animal::operator=(other);
-	// *this = other;
+	*this = other;
 }
 
 // Destructor
-Dog::~Dog()
+WrongCat::~WrongCat()
 {
-	std::cout << "   Dog: Destroying a " << type << std::endl;
 }
 
 // Copy assignment operator
-Dog &Dog::operator=(const Dog &other)
+WrongCat &WrongCat::operator=(const WrongCat &other)
 {
-	Animal::operator=(other);
+	(void)other;
+	// TODO: insert return statement here
 	return *this;
 }
 
-// method
-void	Dog::makeSound(void) const
-{
-	std::cout << "Woof Woof" << std::endl;
-}
+

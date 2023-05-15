@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: niki <niki@student.42lausanne.ch>          +#+  +:+       +#+         #
+#    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:13:12 by znichola          #+#    #+#              #
-#    Updated: 2023/05/07 19:13:12 by znichola         ###   ########.fr        #
+#    Updated: 2023/05/15 19:38:13 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CFLAGS += -g3
 endif
 endif
 
-FILES	= main Animal Dog Cat
+FILES	= main Animal Dog Cat WrongAnimal WrongCat
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/
@@ -58,6 +58,3 @@ leaks : re
 	leaks -atExit -- ./$(NAME)
 
 .PHONY: all clean fclean re
-
-
-		

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:15 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 15:55:58 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:32:19 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ Cat::~Cat()
 // Copy assignment operator
 Cat &Cat::operator=(const Cat &other)
 {
-	(void)other;
-	// TODO: insert return statement here
+	Animal::operator=(other);
 	return *this;
 }
 
