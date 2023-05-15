@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 19:39:12 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:54:58 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 #define GREEN(w)	"\033[92m" << w << "\033[0m"
 #define PUT(w)		std::cout << w NL;
@@ -35,11 +37,26 @@ int	main(void)
 		j->makeSound();
 		meta->makeSound();
 
-		std::cout NL << "And cleanup to plug the leaks!" NL NL;
+		std::cout NL NL << "And cleanup to plug the leaks!" NL NL;
 		delete meta;
 		delete j;
 		delete i;
 	}
+	{
+		std::cout << "Given main with WrongAnimal!" NL NL;
+
+		const WrongAnimal* meta = new WrongAnimal();
+		const WrongAnimal* i = new WrongCat();
+
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound(); //will output the cat sound!
+		meta->makeSound();
+
+		std::cout NL << "And cleanup to plug the leaks!" NL NL;
+		delete meta;
+		delete i;
+	}
+
 	{
 		std::cout NL << "My main" NL NL;
 		{
@@ -115,9 +132,5 @@ int	main(void)
 			delete d;
 		}
 	}
-	{
-		std::cout NL << "Wrong Animal!!" NL NL;
-	}
-
 	return(0);
 }

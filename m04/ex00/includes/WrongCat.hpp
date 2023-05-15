@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:37:57 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 19:45:44 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:50:28 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ public:
 	WrongCat & operator=(const WrongCat &other);
 
 // Methods
-
+	void	makeSound(void) const;
 };
 
 #endif /* WRONGCAT_HPP */
