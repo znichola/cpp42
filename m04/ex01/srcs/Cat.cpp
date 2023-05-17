@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:15 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 20:40:44 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:45:13 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,30 @@ Cat::Cat() : Animal()
 {
 	std::cout << "   Cat: Constructing a " << type << std::endl;
 	type = "Cat";
-	_Brain = new Brain();
+	noggin = new Brain();
 }
 
 // Copy constructor
 Cat::Cat(const Cat &other)
 {
 	std::cout << "   Cat: Copy Constructing a " << type << std::endl;
+	noggin = other.noggin;
 	Animal::operator=(other);
 }
 
 // Destructor
 Cat::~Cat()
 {
+	delete noggin;
 	std::cout << "   Cat: Destroying a " << type << std::endl;
-	delete _Brain;
 }
 
 // Copy assignment operator
 Cat &Cat::operator=(const Cat &other)
 {
+	std::cout << "   Cat: Copy Assigning a " << type << std::endl;
 	Animal::operator=(other);
+	noggin = other.noggin;
 	return *this;
 }
 
@@ -47,4 +50,9 @@ Cat &Cat::operator=(const Cat &other)
 void	Cat::makeSound(void) const
 {
 	std::cout << "Miawww Miaowww" << std::endl;
+}
+
+const Brain	*Cat::exposeBrain(void) const
+{
+	return (noggin);
 }

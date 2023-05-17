@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 20:33:37 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:44:38 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Dog : public Animal
 {
 private:
-	Brain	*_Brain;
+	Brain	*noggin;
 
 public:
 // Default constructor
@@ -36,6 +36,7 @@ public:
 
 // Methods
 	void	makeSound(void) const;
+	const Brain	*exposeBrain(void) const;
 };
 
 #endif /* DOG_HPP */

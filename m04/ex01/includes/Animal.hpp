@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 12:52:11 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:44:54 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ANIMAL_HPP
 
 # include <string>
+# include "Brain.hpp"
 
 class Animal
 {
@@ -36,6 +37,7 @@ public:
 // Methods
 	std::string		getType() const;
 	virtual void	makeSound() const;
+	virtual const Brain	*exposeBrain(void) const;
 };
 
 #endif /* ANIMAL_HPP */

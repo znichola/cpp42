@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 19:34:39 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:58:07 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,5 @@ std::string Animal::getType() const
 {
 	return type;
 }
+
+const Brain	*Animal::exposeBrain(void) const { return NULL;}

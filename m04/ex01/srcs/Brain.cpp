@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 20:39:21 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:57:36 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 Brain::Brain()
 {
 	std::cout << " Brain: Is generating 100 ideas" << std::endl;
-	for (int i = 0; i < 100; i++) {ideas[i] = SSTR(clock());}
+	for (int i = 0; i < 100; i++) {ideas[i] = "idea_" + SSTR(clock());}
 }
 
 // Copy constructor
@@ -46,4 +46,17 @@ Brain &Brain::operator=(const Brain &other)
 	std::cout << " Brain: Is copying and assigning 100 ideas" << std::endl;
 	for (int i = 0; i < 100; i++) {ideas[i] = other.ideas[i];}
 	return *this;
+}
+
+// Methods
+void	Brain::printIdeas(unsigned int how_many) const
+{
+	if (how_many > 100)
+		how_many = 100;
+	for (int i = 0; i < (int)how_many; i++) {std::cout << ideas[i] << std::endl;}
+}
+
+std::string	Brain::getIdea(unsigned int index) const
+{
+	return ideas[index];
 }

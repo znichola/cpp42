@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 20:42:30 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/15 22:02:48 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,15 @@ int	main(void)
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
 
+		std::cout << std::endl;
 
+		i = j;
+
+		// assert(j->exposeBrain()->getIdea(1) == i->exposeBrain()->getIdea(1));
+
+		std::cout << std::endl;
+
+		// i->exposeBrain()->printIdeas(10);
 		delete j;//should not create a leak
 		delete i;
 	}
