@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 21:45:16 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/20 08:33:26 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 // Default constructor
 Dog::Dog() : Animal()
 {
-	std::cout << "   Dog: Constructing a " << type << std::endl;
 	type = "Dog";
+	std::cout << "   Dog: Constructing a " << type << std::endl;
 	noggin = new Brain();
 }
 
@@ -33,8 +33,8 @@ Dog::Dog(const Dog &other) : Animal(other)
 // Destructor
 Dog::~Dog()
 {
-	delete noggin;
 	std::cout << "   Dog: Destroying a " << type << std::endl;
+	delete noggin;
 }
 
 // Copy assignment operator

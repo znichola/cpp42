@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 21:57:36 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/20 08:24:57 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ void	Brain::printIdeas(unsigned int how_many) const
 
 std::string	Brain::getIdea(unsigned int index) const
 {
+	if (index >= 100)
+		index = 99;
 	return ideas[index];
 }
