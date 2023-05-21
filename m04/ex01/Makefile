@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:13:12 by znichola          #+#    #+#              #
-#    Updated: 2023/05/15 19:56:36 by znichola         ###   ########.fr        #
+#    Updated: 2023/05/20 08:42:20 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CFLAGS += -g3
 endif
 endif
 
-FILES	= main Animal Dog Cat WrongAnimal WrongCat Brain
+FILES	= main Animal Dog Cat Brain
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/
