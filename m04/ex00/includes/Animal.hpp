@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 12:52:11 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 10:30:50 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ public:
 	Animal & operator=(const Animal &other);
 
 // Methods
-	std::string		getType() const;
-	virtual void	makeSound() const;
+	std::string		getType( void ) const;
+	virtual void	makeSound( void ) const;
 };
 
 #endif /* ANIMAL_HPP */

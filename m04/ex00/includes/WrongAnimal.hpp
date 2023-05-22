@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:37:57 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 19:44:20 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 10:31:27 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ public:
 	WrongAnimal & operator=(const WrongAnimal &other);
 
 // Methods
-	std::string		getType() const;
-	void			makeSound() const;
+	std::string		getType(void) const;
+	void			makeSound(void) const;
 };
 
 #endif /* WRONGANIMAL_HPP */

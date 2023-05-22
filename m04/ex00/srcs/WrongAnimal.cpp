@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:37:57 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 19:48:29 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 10:31:19 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 	return *this;
 }
 
-void WrongAnimal::makeSound() const
+void WrongAnimal::makeSound(void) const
 {
 	std::cout << "WRRRONG" << std::endl;
 }
 
-std::string WrongAnimal::getType() const
+std::string WrongAnimal::getType(void) const
 {
 	return type;
 }

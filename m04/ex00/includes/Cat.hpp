@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 13:30:12 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 10:13:43 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	Cat & operator=(const Cat &other);
 
 // Methods
-	void	makeSound(void) const;
+	virtual void	makeSound(void) const;
 };
 
 #endif /* CAT_HPP */

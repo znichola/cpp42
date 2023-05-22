@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 12:52:19 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 10:13:49 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	Dog & operator=(const Dog &other);
 
 // Methods
-	void	makeSound(void) const;
+	virtual void	makeSound(void) const;
 };
 
 #endif /* DOG_HPP */
