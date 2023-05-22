@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/20 08:40:47 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 10:39:02 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ public:
 	Cat & operator=(const Cat &other);
 
 // Methods
-	void	makeSound(void) const;
-	const Brain	*exposeBrain(void) const;
+	virtual void		makeSound(void) const;
+	virtual	void		think(void) const;
+	virtual const Brain	*exposeBrain(void) const;
 };
 
 #endif /* CAT_HPP */

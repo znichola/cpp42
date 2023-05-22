@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 21:44:54 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:10:36 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ public:
 	virtual ~Animal();
 
 // Copy assignment operator
-	Animal & operator=(const Animal &other);
+	virtual Animal & operator=(const Animal &other);
 
 // Methods
-	std::string		getType() const;
-	virtual void	makeSound() const;
+	const std::string	getType(void) const;
+	virtual void		makeSound(void) const;
+	virtual	void		think(void) const;
 	virtual const Brain	*exposeBrain(void) const;
 };
 

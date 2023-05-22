@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 21:58:43 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 10:30:15 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ public:
 	Brain & operator=(const Brain &other);
 
 // Methods
-	void		printIdeas(unsigned int how_many) const;
-	std::string	getIdea(unsigned int idex) const;
+	void				printIdeas(unsigned int how_many) const;
+	const std::string	getIdea(unsigned int idex) const;
 };
 
 #endif /* BRAIN_HPP */

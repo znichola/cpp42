@@ -6,10 +6,9 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/20 08:34:11 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:10:54 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "Animal.hpp"
 
@@ -48,9 +47,10 @@ void Animal::makeSound() const
 	std::cout << "RAAAHHH" << std::endl;
 }
 
-std::string Animal::getType() const
+const std::string Animal::getType() const
 {
 	return type;
 }
 
 const Brain	*Animal::exposeBrain(void) const { return NULL;}
+void Animal::think(void) const { }

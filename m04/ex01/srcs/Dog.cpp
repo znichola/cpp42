@@ -6,10 +6,9 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/20 09:33:01 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:02:41 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "Dog.hpp"
 
@@ -21,6 +20,7 @@ Dog::Dog() : Animal()
 	type = "Dog";
 	std::cout << "   Dog: Constructing a " << type << std::endl;
 	_brain = new Brain();
+	std::cout << " Brain: " << &_brain << std::endl;
 }
 
 // Copy constructor
@@ -58,4 +58,9 @@ void	Dog::makeSound(void) const
 const Brain	*Dog::exposeBrain(void) const
 {
 	return (_brain);
+}
+
+void Dog::think(void) const
+{
+	std::cout << "   Dog: thought : " << _brain->getIdea(1) << std::endl;
 }

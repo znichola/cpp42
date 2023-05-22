@@ -6,10 +6,9 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/20 08:24:57 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:02:58 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "Brain.hpp"
 
@@ -56,7 +55,7 @@ void	Brain::printIdeas(unsigned int how_many) const
 	for (int i = 0; i < (int)how_many; i++) {std::cout << ideas[i] << std::endl;}
 }
 
-std::string	Brain::getIdea(unsigned int index) const
+const std::string	Brain::getIdea(unsigned int index) const
 {
 	if (index >= 100)
 		index = 99;

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/21 22:47:03 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:35:49 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,63 @@ int	main(void)
 		delete i;
 	}
 	{
-		PUT("My main") NL;
+		PUT("HERE");
 
-		Animal *jungle[NUM_ANIMALS];
-		for (int i = 0; i < NUM_ANIMALS; i++)
-		{
-			if (i % 2)
-				jungle[i] = new Cat();
-			else
-				jungle[i] = new Dog();
-		}
-		// assert(j->exposeBrain()->getIdea(1) == i->exposeBrain()->getIdea(1));
+		Animal *d = new Dog();
+		Animal *f = new Dog();
+		Animal *g = new Dog();
 
-		std::cout << std::endl;
+		PUT("HERE2");
 
-		for (int i = 0; i < NUM_ANIMALS; i++)
-		{
-			std::cout << "Checkeing idea #" << i << std::endl;
- 			// assert()
-		}
+		d->think();
+		f->think();
+		g->think();
 
-		for (int i = 0; i < NUM_ANIMALS; i++)
-			delete jungle[i];
+		PUT("HERE2");
 
+		*f = *((Dog*)d);
+
+		d->think();
+		f->think();
+		g->think();
+
+		PUT("HERE3");
+
+		delete d;
+		delete f;
+		delete g;
 	}
+		PUT("HERE4");
+
+
+
+	// {
+	// 	PUT("My main") NL;
+
+	// 	Animal *jungle[NUM_ANIMALS];
+	// 	for (int i = 0; i < NUM_ANIMALS; i++)
+	// 	{
+	// 		if (i % 2)
+	// 			jungle[i] = new Cat();
+	// 		else
+	// 			jungle[i] = new Dog();
+	// 	}
+	// 	// assert(j->exposeBrain()->getIdea(1) == i->exposeBrain()->getIdea(1));
+
+	// 	std::cout << std::endl;
+
+	// 	for (int i = 0; i < NUM_ANIMALS; i++)
+	// 	{
+	// 		std::cout << "      : Animal #" << i << " that's a " << jungle[i]->getType() NL;
+	// 		jungle[i]->think();
+	// 		// jungle[i]->makeSound();
+ 	// 		std::cout NL;
+	// 		// assert()
+	// 	}
+
+	// 	for (int i = 0; i < NUM_ANIMALS; i++)
+	// 		delete jungle[i];
+
+	// }
 	return(0);
 }
