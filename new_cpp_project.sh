@@ -215,6 +215,12 @@ CFLAGS += -g3
 endif
 endif
 
+ifdef WSL_DISTRO_NAME
+LEAKS_CHECK = valgrind
+else
+LEAKS_CHECK = leaks -atExit --
+endif
+
 FILES	= main'
 
 	for var in "$@"
@@ -252,7 +258,7 @@ run : all
 	./$(NAME)
 
 leaks : re
-	leaks -atExit -- ./$(NAME)
+	$(LEAKS_CHECK) ./$(NAME)
 
 .PHONY: all clean fclean re
 
