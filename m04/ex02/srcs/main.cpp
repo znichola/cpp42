@@ -6,11 +6,12 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/23 16:02:46 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 23:52:22 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <assert.h>
 
 #include "AAnimal.hpp"
 #include "Dog.hpp"
@@ -51,18 +52,32 @@ int	main(void)
 
 		std::cout NL << GREEN("Testing copying") NL;
 
-		Dog duplicatDog(*(Dog*)jungle[9]);
+		Dog duplicateDog(*(Dog*)jungle[9]);
+		Cat duplicateCat = *(Cat*)jungle[8];
 
 		jungle[9]->think();
-		duplicatDog.think();
+		duplicateDog.think();
+		jungle[8]->think();
+		duplicateCat.think();
+
+		PUT("Asserting ideas are the same");
+		for (int i = 0; i < 100; i++)
+		{
+			assert(jungle[9]->exposeBrain()->getIdea(i) ==
+				duplicateDog.exposeBrain()->getIdea(i));
+			assert(jungle[8]->exposeBrain()->getIdea(i) ==
+				duplicateCat.exposeBrain()->getIdea(i));
+		}
+		PUT("assertiong passed");
 
 		PUT("Deleting the jungle");
 		for (int i = 0; i < 10; i++)
 			delete jungle[i];
 
-		PUT("Checking the duplicat dog still has a brain");
+		PUT("Checking the duplicats still have a brains");
 
-		duplicatDog.think();
+		duplicateDog.think();
+		duplicateCat.think();
 
 		std::cout << GREEN("leaving scope") NL;
 	}
