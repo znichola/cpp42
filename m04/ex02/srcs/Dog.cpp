@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/23 15:20:36 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:52:52 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 
 // Default constructor
-Dog::Dog() : Animal()
+Dog::Dog() : AAnimal()
 {
 	type = "Dog";
 	std::cout << "   Dog: Constructing a " << type << std::endl;
@@ -23,7 +23,7 @@ Dog::Dog() : Animal()
 }
 
 // Copy constructor
-Dog::Dog(const Dog &other) : Animal(other)
+Dog::Dog(const Dog &other) : AAnimal(other)
 {
 	std::cout << "   Dog: Copy Constructing a " << type << std::endl;
 	_brain = new Brain();
@@ -40,7 +40,7 @@ Dog::~Dog()
 // Copy assignment operator
 Dog &Dog::operator=(const Dog &other)
 {
-	Animal::operator=(other);
+	AAnimal::operator=(other);
 	std::cout << "   Dog: Copy Assigning a " << type << std::endl;
 	*_brain = *other._brain;
 	return *this;

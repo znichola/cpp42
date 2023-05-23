@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:13:12 by znichola          #+#    #+#              #
-#    Updated: 2023/05/23 14:48:12 by znichola         ###   ########.fr        #
+#    Updated: 2023/05/23 16:01:02 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ else
 LEAKS_CHECK = leaks -atExit --
 endif
 
-FILES	= main Animal Dog Cat Brain
+FILES	= main AAnimal Dog Cat Brain
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/

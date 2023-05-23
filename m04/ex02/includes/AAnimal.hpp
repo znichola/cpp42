@@ -1,46 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/23 14:59:33 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:50:23 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef AANIMAL_HPP
+# define AANIMAL_HPP
 
 # include <string>
 
 # include "Brain.hpp"
 
 
-class Animal
+class AAnimal
 {
 protected:
 	std::string	type;
 
 public:
 // Default constructor
-	Animal();
+	AAnimal();
 
 // Copy constructor
-	Animal(const Animal &other);
+	AAnimal(const AAnimal &other);
 
 // Destructor
-	virtual ~Animal();
+	virtual ~AAnimal();
 
 // Copy assignment operator
-	virtual Animal & operator=(const Animal &other);
+	virtual AAnimal & operator=(const AAnimal &other);
 
 // Methods
 	const std::string	getType(void) const;
-	virtual void		makeSound(void) const;
-	virtual	void		think(void) const;
-	virtual const Brain	*exposeBrain(void) const;
+	virtual void		makeSound(void) const = 0;
+	virtual	void		think(void) const = 0;
+	virtual const Brain	*exposeBrain(void) const = 0;
 };
 
-#endif /* ANIMAL_HPP */
+#endif /* AANIMAL_HPP */

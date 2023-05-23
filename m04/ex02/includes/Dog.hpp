@@ -6,17 +6,17 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/22 10:39:00 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:52:23 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_HPP
 # define DOG_HPP
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Dog : public Animal
+class Dog : public AAnimal
 {
 private:
 	Brain	*_brain;

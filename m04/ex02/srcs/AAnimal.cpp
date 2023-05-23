@@ -1,56 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/23 14:59:29 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:49:32 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 // Default constructor
-Animal::Animal() :
-	type("Animal")
+AAnimal::AAnimal() :
+	type("AAnimal")
 {
-	std::cout << "Animal: Constructing an " << type << std::endl;
+	std::cout << "AAnimal: Constructing an " << type << std::endl;
 }
 
 // Copy constructor
-Animal::Animal(const Animal &other) :
+AAnimal::AAnimal(const AAnimal &other) :
 	type(other.getType())
 {
-	std::cout << "Animal: Copy Constructing an " << type << std::endl;
+	std::cout << "AAnimal: Copy Constructing an " << type << std::endl;
 }
 
 // Destructor
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
-	std::cout << "Animal: Destroying the " << type << std::endl;
+	std::cout << "AAnimal: Destroying the " << type << std::endl;
 }
 
 // Copy assignment operator
-Animal &Animal::operator=(const Animal &other)
+AAnimal &AAnimal::operator=(const AAnimal &other)
 {
-	std::cout << "Animal: Copy assigning an " << type << std::endl;
+	std::cout << "AAnimal: Copy assigning an " << type << std::endl;
 	type = other.type;
 	return *this;
 }
 
-void Animal::makeSound() const
-{
-	std::cout << "RAAAHHH" << std::endl;
-}
-
-const std::string Animal::getType() const
+const std::string AAnimal::getType() const
 {
 	return type;
 }
-
-const Brain	*Animal::exposeBrain(void) const { return NULL;}
-void Animal::think(void) const { }
