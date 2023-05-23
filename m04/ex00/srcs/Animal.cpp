@@ -6,10 +6,9 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/22 10:31:10 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:58:31 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "Animal.hpp"
 

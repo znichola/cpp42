@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/22 11:02:58 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:14:31 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@
 // Default constructor
 Brain::Brain()
 {
-	std::cout << " Brain: Is generating 100 ideas" << std::endl;
+	std::cout << " Brain: Construction .. generating 100 unique ideas" << std::endl;
 	for (int i = 0; i < 100; i++) {ideas[i] = "idea_" + SSTR(clock());}
 }
 
 // Copy constructor
 Brain::Brain(const Brain &other)
 {
-	std::cout << " Brain: Is copying 100 ideas" << std::endl;
+	std::cout << " Brain: Copy construction .. deep copying my 100 ideas" << std::endl;
 	for (int i = 0; i < 100; i++) {ideas[i] = other.ideas[i];}
 }
 
@@ -42,7 +42,7 @@ Brain::~Brain()
 // Copy assignment operator
 Brain &Brain::operator=(const Brain &other)
 {
-	std::cout << " Brain: Is copying and assigning 100 ideas" << std::endl;
+	std::cout << " Brain: Copying Assigning ..  deep copying my 100 ideas" << std::endl;
 	for (int i = 0; i < 100; i++) {ideas[i] = other.ideas[i];}
 	return *this;
 }

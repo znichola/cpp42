@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/22 11:35:49 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:26:25 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,38 @@ int	main(void)
 		delete i;
 	}
 	{
-		PUT("HERE");
+		PUT("My main") NL;
+		Animal	*jungle[10];
+		for (int i = 0; i < 10; i++)
+		{
+			std::cout << "Animal" GREEN("#" << i) << " spawning" NL;
+			if (i % 2)
+				jungle[i] = new Dog();
+			else
+				jungle[i] = new Cat();
+			std::cout NL;
+		}
+		jungle[0]->think();
+		jungle[1]->think();
+		jungle[2]->think();
 
-		Animal *d = new Dog();
-		Animal *f = new Dog();
-		Animal *g = new Dog();
+		std::cout NL << GREEN("Testing copying") NL;
 
-		PUT("HERE2");
+		Dog duplicatDog(*(Dog*)jungle[9]);
 
-		d->think();
-		f->think();
-		g->think();
+		jungle[9]->think();
+		duplicatDog.think();
 
-		PUT("HERE2");
+		PUT("Deleting the jungle");
+		for (int i = 0; i < 10; i++)
+			delete jungle[i];
 
-		*f = *((Dog*)d);
+		PUT("Checking the duplicat dog still has a brain");
 
-		d->think();
-		f->think();
-		g->think();
+		duplicatDog.think();
 
-		PUT("HERE3");
-
-		delete d;
-		delete f;
-		delete g;
+		std::cout << GREEN("leaving scope") NL;
 	}
-		PUT("HERE4");
-
-
 
 	// {
 	// 	PUT("My main") NL;

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/22 11:10:36 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:59:33 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define ANIMAL_HPP
 
 # include <string>
+
 # include "Brain.hpp"
+
 
 class Animal
 {
