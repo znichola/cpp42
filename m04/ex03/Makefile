@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: niki <niki@student.42lausanne.ch>          +#+  +:+       +#+         #
+#    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 23:57:15 by znichola          #+#    #+#              #
-#    Updated: 2023/05/23 23:57:15 by znichola         ###   ########.fr        #
+#    Updated: 2023/05/24 01:03:00 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ else
 LEAKS_CHECK = leaks -atExit --
 endif
 
-FILES	= main AMateria Ice Cure ICharacter Character
+FILES	= main AMateria Ice Cure ICharacter Character IMateriaSource
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/
@@ -64,6 +64,3 @@ leaks : re
 	$(LEAKS_CHECK) ./$(NAME)
 
 .PHONY: all clean fclean re
-
-
-		
