@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:44:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 19:51:02 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:55:53 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ WrongCat::WrongCat() : WrongAnimal()
 }
 
 // Copy constructor
-WrongCat::WrongCat(const WrongCat &other)
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other)
 {
 	std::cout << "   WrongCat: Copy Constructing a " << type << std::endl;
 	WrongAnimal::operator=(other);

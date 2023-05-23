@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:15 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/15 19:48:47 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:53:39 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ Cat::Cat() : Animal()
 }
 
 // Copy constructor
-Cat::Cat(const Cat &other)
+Cat::Cat(const Cat &other) : Animal(other)
 {
 	std::cout << "   Cat: Copy Constructing a " << type << std::endl;
-	Animal::operator=(other);
 }
 
 // Destructor

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:15 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/22 11:02:17 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:47:54 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Cat::Cat() : Animal()
 }
 
 // Copy constructor
-Cat::Cat(const Cat &other)
+Cat::Cat(const Cat &other) : Animal(other)
 {
 	std::cout << "   Cat: Copy Constructing a " << type << std::endl;
 	_brain = new Brain(*other.exposeBrain());
@@ -43,7 +43,7 @@ Cat::~Cat()
 Cat &Cat::operator=(const Cat &other)
 {
 	std::cout << "   Cat: Copy Assigning a " << type << std::endl;
-	_brain = other._brain;
+	*_brain = *other._brain;
 	Animal::operator=(other);
 	return *this;
 }

@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:13:12 by znichola          #+#    #+#              #
-#    Updated: 2023/05/20 08:42:20 by znichola         ###   ########.fr        #
+#    Updated: 2023/05/23 14:48:12 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,12 @@ else
 ifdef DEBUGL
 CFLAGS += -g3
 endif
+endif
+
+ifdef WSL_DISTRO_NAME
+LEAKS_CHECK = valgrind
+else
+LEAKS_CHECK = leaks -atExit --
 endif
 
 FILES	= main Animal Dog Cat Brain
@@ -55,6 +61,6 @@ run : all
 	./$(NAME)
 
 leaks : re
-	leaks -atExit -- ./$(NAME)
+	$(LEAKS_CHECK) ./$(NAME)
 
 .PHONY: all clean fclean re
