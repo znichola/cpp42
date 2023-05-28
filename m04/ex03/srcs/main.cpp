@@ -6,11 +6,13 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/28 21:25:20 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/29 00:22:31 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+
+#include <cassert>
 
 # include "AMateria.hpp"
 # include "Ice.hpp"
@@ -20,11 +22,19 @@
 # include "IMateriaSource.hpp"
 # include "MateriaSource.hpp"
 
+using std::cout;
+using std::endl;
+
+template<typename T>
+void testAMateria(std::string type);
+
 int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	// std::cout << "hello rgp!" << std::endl;
+	std::cout << "hello rgp!" << std::endl;
+
+	cout << "given main" << endl;
 
 	// IMateriaSource* src = new MateriaSource();
 	// src->learnMateria(new Ice());
@@ -42,5 +52,63 @@ int	main(int ac, char **av)
 	// delete me;
 	// delete src;
 
+	{
+		testAMateria<Ice>("ice");
+		testAMateria<Cure>("cure");
+		cout << "materia unit tests passed " << endl;
+	}
+
+	cout << endl;
+
+	cout << "my main" << endl;
+
+	AMateria *i = new Ice();
+	AMateria *c = new Cure();
+
+	cout << "i:" << i->getType() << endl;
+	cout << "c:" << c->getType() << endl;
+
+	AMateria *clone = i->clone();
+
+	cout << "i clone:" << clone->getType() << endl;
+
+	delete clone;
+
+	clone = c->clone();
+
+	cout << "c clone:" << clone->getType() << endl;
+
+	delete i;
+	delete c;
+	delete clone;
+
 	return(0);
+}
+
+template<typename T>
+void testAMateria(std::string type)
+{
+	// Test default constructor and getType()
+	T materia1;
+	assert(materia1.getType() == type);
+
+	// Test constructor and getType()
+	T materia2(materia1);
+	assert(materia2.getType() == type);
+
+	// Test copy constructor and getType()
+	T materia3 = materia2;
+	assert(materia3.getType() == type);
+
+	// Test assignment operator and getType()
+	T materia4;
+	materia4 = materia2;
+	assert(materia4.getType() == type);
+
+	// Test clone()
+	AMateria* clonedMateria = materia4.clone();
+
+	assert(clonedMateria->getType() == materia4.getType());
+
+	delete clonedMateria;
 }

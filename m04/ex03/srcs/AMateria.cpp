@@ -6,12 +6,14 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:16 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/28 21:47:13 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:42:24 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "AMateria.hpp"
+
+#include <iostream>
 
 // Default constructor
 AMateria::AMateria() : _type("FooBar") {}
@@ -31,8 +33,15 @@ AMateria &AMateria::operator=(const AMateria &other)
 	return *this;
 }
 
+std::string const &AMateria::getType() const
+{
+	return _type;
+}
+
 void	AMateria::use(ICharacter &target)
 {
 	(void)target;
 	/* do some shit to use ur ability on the target */
+	std::cout << "* materia can't do anything * " << std::endl;
+
 }

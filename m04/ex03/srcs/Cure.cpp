@@ -6,18 +6,15 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:17 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/28 22:19:01 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:48:37 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Cure.hpp"
 
-
 // Default constructor
-Cure::Cure()
-{
-}
+Cure::Cure() : AMateria("cure") {}
 
 // Copy constructor
 Cure::Cure(const Cure &other) : AMateria(other)
@@ -26,9 +23,7 @@ Cure::Cure(const Cure &other) : AMateria(other)
 }
 
 // Destructor
-Cure::~Cure()
-{
-}
+Cure::~Cure() {}
 
 // Copy assignment operator
 Cure &Cure::operator=(const Cure &other)

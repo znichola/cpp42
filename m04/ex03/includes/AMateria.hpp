@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:15 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/28 21:46:44 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/29 00:16:42 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ public:
 	AMateria(const AMateria &other);
 
 // Destructor
-	~AMateria();
+	virtual ~AMateria();
 
 // Copy assignment operator
 	AMateria & operator=(const AMateria &other);
