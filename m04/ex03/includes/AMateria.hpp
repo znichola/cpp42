@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:15 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/25 10:49:31 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/28 21:46:44 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 
 // # pragma once
 
-# include "ICharacter.hpp"
+# include <string>
+
+class ICharacter;
 
 class AMateria
 {
 protected:
 	/* some values */
-	const std::string _type;
+	std::string _type;
 
 public:
 // Default constructor

@@ -6,12 +6,14 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:06:00 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/25 10:46:11 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/28 22:01:52 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATERIASOURCE_HPP
 # define MATERIASOURCE_HPP
+
+# include "IMateriaSource.hpp"
 
 class MateriaSource : public IMateriaSource
 {

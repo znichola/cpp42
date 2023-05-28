@@ -6,14 +6,17 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:17 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/24 20:08:50 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/28 22:16:19 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CURE_HPP
 # define CURE_HPP
 
-#include "AMateria.hpp"
+# include "ICharacter.hpp"
+# include "AMateria.hpp"
+
+#include <iostream>
 
 class Cure : public AMateria
 {
@@ -32,7 +35,8 @@ public:
 // Copy assignment operator
 	Cure & operator=(const Cure &other);
 
-	virtual void	use(ICharacter &target);
+	virtual void		use(ICharacter &target);
+	virtual AMateria	*clone() const;
 };
 
 #endif /* CURE_HPP */
