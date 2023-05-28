@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ICharacter.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niki <niki@student.42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/23 23:57:18 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/25 10:58:02 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // Default constructor
 ICharacter::ICharacter()
 {
+	_index = 0;
 }
 
 // Copy constructor
@@ -25,9 +26,7 @@ ICharacter::ICharacter(const ICharacter &other)
 }
 
 // Destructor
-ICharacter::~ICharacter()
-{
-}
+ICharacter::~ICharacter() {}
 
 // Copy assignment operator
 ICharacter &ICharacter::operator=(const ICharacter &other)
@@ -36,5 +35,3 @@ ICharacter &ICharacter::operator=(const ICharacter &other)
 	// TODO: insert return statement here
 	return *this;
 }
-
-

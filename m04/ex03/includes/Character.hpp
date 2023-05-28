@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niki <niki@student.42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:19 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/23 23:57:19 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/25 10:46:50 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 
-class Character
+#include "ICharacter.hpp"
+
+class Character : ICharacter
 {
 private:
 

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:12 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/23 23:52:22 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:21:49 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int	main(void)
 		PUT("Main that's borken uncomment to see how we can't make AAnimals") NL;
 		// const AAnimal a();
 		// const Dog d();
-
 	}
 	return(0);
 }

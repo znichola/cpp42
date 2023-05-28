@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/24 01:04:52 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/25 10:45:45 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "ICharacter.hpp"
 # include "Character.hpp"
 # include "IMateriaSource.hpp"
+# include "MateriaSource.hpp"
 
 int	main(int ac, char **av)
 {

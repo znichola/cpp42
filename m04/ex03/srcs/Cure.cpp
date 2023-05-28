@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niki <niki@student.42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:17 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/23 23:57:17 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:45:56 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,7 @@ Cure &Cure::operator=(const Cure &other)
 	return *this;
 }
 
-
+AMateria	*Cure::clone() const
+{
+	return new Cure();
+}
