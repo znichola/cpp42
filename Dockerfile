@@ -10,6 +10,9 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 
 # ENV DEBUG=1
 
+ENV DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
+ENV WSL_DISTRO_NAME=docker
+
 RUN rm ~/.zshrc
 RUN echo 'export ZSH="$HOME/.oh-my-zsh"' > ~/.zshrc
 RUN echo 'ZSH_THEME="eastwood"' >> ~/.zshrc
