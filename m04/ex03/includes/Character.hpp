@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:19 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/28 21:56:47 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:25:35 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ public:
 
 // Copy assignment operator
 	Character & operator=(const Character &other);
+
+	const std::string &getName(void) const;
+	void equip(const AMateria *m);
+	void unequip(int idx);
+	void use(int idx, ICharacter &target);
 };
 
 #endif /* CHARACTER_HPP */

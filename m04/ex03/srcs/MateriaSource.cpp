@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:06:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/28 22:02:13 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:21:45 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,8 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 	// TODO: insert return statement here
 	return *this;
 }
+
+// void MateriaSource::learnMateria(AMateria *mat)
+// {
+// 	(void)mat;
+// }

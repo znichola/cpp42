@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/28 22:15:35 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:46:29 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include <string>
 
+# include "AMateria.hpp"
+
 // needed to fix the circular dependencies
-class AMateria;
 
 class ICharacter
 {
