@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/29 00:22:31 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:04:23 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 #include <cassert>
 
+# include "utils.hpp"
+
+# include "IMateriaSource.hpp"
+# include "MateriaSource.hpp"
+
 # include "AMateria.hpp"
 # include "Ice.hpp"
 # include "Cure.hpp"
+
 # include "ICharacter.hpp"
 # include "Character.hpp"
-# include "IMateriaSource.hpp"
-# include "MateriaSource.hpp"
 
 using std::cout;
 using std::endl;
@@ -36,27 +40,39 @@ int	main(int ac, char **av)
 
 	cout << "given main" << endl;
 
-	// IMateriaSource* src = new MateriaSource();
-	// src->learnMateria(new Ice());
-	// src->learnMateria(new Cure());
-	// ICharacter* me = new Character("me");
-	// AMateria* tmp;
-	// tmp = src->createMateria("ice");
-	// me->equip(tmp);
-	// tmp = src->createMateria("cure");
-	// me->equip(tmp);
-	// ICharacter* bob = new Character("bob");
-	// me->use(0, *bob);
-	// me->use(1, *bob);
-	// delete bob;
-	// delete me;
-	// delete src;
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 
-	{
-		testAMateria<Ice>("ice");
-		testAMateria<Cure>("cure");
-		cout << "materia unit tests passed " << endl;
-	}
+	// cout << "ice:" << src->createMateria("ice")->getType() << endl
+	// 	<< "cure:" << src->createMateria("cure")->getType() << endl;
+
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+
+	cout << "tmp:" << tmp->getType() << endl;
+
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+
+	cout << "tmp2:" << tmp->getType() << endl;
+
+	me->equip(tmp);
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+	delete bob;
+	delete me;
+	delete src;
+
+	cout << "end given main" << endl;
+
+	// {
+	// 	testAMateria<Ice>("ice");
+	// 	testAMateria<Cure>("cure");
+	// 	cout << "materia unit tests passed " << endl;
+	// }
 
 	cout << endl;
 

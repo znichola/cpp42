@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 23:57:15 by znichola          #+#    #+#              #
-#    Updated: 2023/05/24 01:06:10 by znichola         ###   ########.fr        #
+#    Updated: 2023/05/30 14:46:58 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ else
 LEAKS_CHECK = leaks -atExit --
 endif
 
-FILES	= main AMateria Ice Cure ICharacter Character IMateriaSource MateriaSource
+FILES	= main utils AMateria Ice Cure Character MateriaSource
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/

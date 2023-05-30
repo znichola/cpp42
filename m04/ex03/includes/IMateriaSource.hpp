@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:02:36 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/29 19:21:29 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:59:24 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,10 @@ class AMateria;
 
 class IMateriaSource
 {
-private:
-
 public:
-// Default constructor
-	IMateriaSource();
-
-// Copy constructor
-	IMateriaSource(const IMateriaSource &other);
-
-// Destructor
-	virtual ~IMateriaSource();
-
-// Copy assignment operator
-	IMateriaSource & operator=(const IMateriaSource &other);
-
-	virtual void		learnMateria(AMateria*) = 0;
-	virtual AMateria	*createMateria(std::string const & type) = 0;
+	virtual ~IMateriaSource() {}
+	virtual void learnMateria(AMateria*) = 0;
+	virtual AMateria* createMateria(std::string const & type) = 0;
 };
 
 #endif /* IMATERIASOURCE_HPP */

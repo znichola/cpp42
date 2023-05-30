@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.hpp                                     :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 23:57:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/30 15:33:26 by znichola         ###   ########.fr       */
+/*   Created: 2023/05/30 11:54:46 by znichola          #+#    #+#             */
+/*   Updated: 2023/05/30 11:58:40 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICHARACTER_HPP
-# define ICHARACTER_HPP
+#ifndef UTILS_HPP
+# define UTILS_HPP
 
-# include <string>
+#include "ICharacter.hpp"
 
-# include "AMateria.hpp"
+#include <iostream>
 
-class ICharacter
-{
-public:
-	virtual ~ICharacter() {}
-	virtual std::string const & getName() const = 0;
-	virtual void equip(AMateria* m) = 0;
-	virtual void unequip(int idx) = 0;
-	virtual void use(int idx, ICharacter& target) = 0;
-};
+std::ostream& operator<<(std::ostream& os, const ICharacter& character);
 
-#endif /* ICHARACTER_HPP */
+#endif

@@ -6,11 +6,11 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:16 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/28 23:42:24 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:02:53 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "utils.hpp"
 #include "AMateria.hpp"
 
 #include <iostream>
@@ -29,7 +29,8 @@ AMateria::~AMateria() {}
 // Copy assignment operator
 AMateria &AMateria::operator=(const AMateria &other)
 {
-	_type = other._type;
+	std::cout << "* can't transmute (copy assign) materia * " << std::endl;
+	(void)other;
 	return *this;
 }
 
@@ -42,6 +43,5 @@ void	AMateria::use(ICharacter &target)
 {
 	(void)target;
 	/* do some shit to use ur ability on the target */
-	std::cout << "* materia can't do anything * " << std::endl;
-
+	// std::cout << "* trying to use materia on " << target << " * " << std::endl;
 }
