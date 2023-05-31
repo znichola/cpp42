@@ -34,7 +34,7 @@ public:
 	virtual ~AAnimal();
 
 // Copy assignment operator
-	virtual AAnimal & operator=(const AAnimal &other);
+	AAnimal & operator=(const AAnimal &other);
 
 // Methods
 	const std::string	getType(void) const;

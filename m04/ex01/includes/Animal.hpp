@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:13:13 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/23 14:59:33 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:59:11 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ public:
 	virtual ~Animal();
 
 // Copy assignment operator
-	virtual Animal & operator=(const Animal &other);
+	Animal & operator=(const Animal &other);
 
 // Methods
 	const std::string	getType(void) const;
