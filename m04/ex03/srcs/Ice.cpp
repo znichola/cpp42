@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:16 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/30 21:02:58 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 08:00:14 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ Ice &Ice::operator=(const Ice &other)
 
 AMateria	*Ice::clone() const
 {
-	return new Ice();
+	_garbageBin[_i] = new Ice();
+	_notFreed[_i] = 1;
+	_i += 1;
+	return _garbageBin[_i - 1];
+	// return new Ice();
 }
 
 void	Ice::use(ICharacter &target)

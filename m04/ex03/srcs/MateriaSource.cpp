@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:06:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/30 20:37:08 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 08:11:38 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,14 @@ MateriaSource::MateriaSource(const MateriaSource &other) : _sIndex(0)
 }
 
 // Destructor
-MateriaSource::~MateriaSource() {}
+MateriaSource::~MateriaSource()
+{
+	for (unsigned int i = 0; i < _sIndex; i++)
+	{
+		AMateria::removeMat(_stock[i]);
+		// delete _stock[i];
+	}
+}
 
 // Copy assignment operator
 MateriaSource &MateriaSource::operator=(const MateriaSource &other)
@@ -38,10 +45,11 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 void MateriaSource::learnMateria(AMateria *mat)
 {
 	if (_sIndex >= 4)
-		_sIndex = 0;
-	delete _stock[_sIndex];
-	_stock[_sIndex] = mat->clone();
-	std::cout << "learned " << _stock[_sIndex]->getType() << std::endl;
+	{
+		std::cout << "already leard your 4 materia" << std::endl;
+		return ;
+	}
+	_stock[_sIndex] = mat;
 	_sIndex += 1;
 }
 
