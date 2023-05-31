@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:06:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/31 09:02:52 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:07:46 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void MateriaSource::learnMateria(AMateria *mat)
 {
 	if (_sIndex >= 4)
 	{
-		std::cout << "already leard your 4 materia" << std::endl;
+		std::cout << "already leard your 4 materia," << std:: endl
+		 << "hope you saved that pointer otherwise it's a leak!" << std::endl;
 		delete mat;
 		return ;
 	}

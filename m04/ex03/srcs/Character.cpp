@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:19 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/31 09:57:36 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:07:16 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void Character::equip(AMateria *m)
 			_iMask |= (1U << i);
 			return ;
 		}
+	std::cout << "no more space in inventory," << std::endl
+	<< "hope you saved that pointer otherwise, it's a leaks!" << std::endl;
 }
 
 void Character::unequip(int idx)

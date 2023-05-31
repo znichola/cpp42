@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:16 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/31 08:22:09 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:08:51 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include "AMateria.hpp"
 
 #include <iostream>
-
-unsigned int	AMateria::_i = 0;
-AMateria		*AMateria::_garbageBin[MAX_AMATERIA] = {0};
 
 // Default constructor
 AMateria::AMateria() : _type("FooBar") {}
