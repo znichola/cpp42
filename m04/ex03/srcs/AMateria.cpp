@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:16 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/31 08:12:45 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 08:22:09 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 unsigned int	AMateria::_i = 0;
 AMateria		*AMateria::_garbageBin[MAX_AMATERIA] = {0};
-int				AMateria::_notFreed[MAX_AMATERIA] = {0};
 
 // Default constructor
 AMateria::AMateria() : _type("FooBar") {}
@@ -47,24 +46,4 @@ void	AMateria::use(ICharacter &target)
 {
 	(void)target;
 	/* do some shit to use ur ability on the target */
-}
-
-void AMateria::emptyGarbage(void)
-{
-	for (unsigned i = 0; i < _i; i++) { delete _garbageBin[i]; };
-	_i = 0;
-}
-
-void AMateria::removeMat(AMateria *mat)
-{
-	for (unsigned int i = 0; i < _i; i++)
-	{
-		if (mat == _garbageBin[i])
-		{
-			delete _garbageBin[i];
-			_notFreed[i] = 0;
-			return ;
-		}
-	}
-	delete mat;
 }

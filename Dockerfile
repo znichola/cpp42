@@ -1,5 +1,3 @@
-
-
 FROM archlinux
 
 RUN pacman -Syu --noconfirm gcc git make zsh valgrind vim bat
@@ -25,3 +23,6 @@ RUN echo 'alias val="valgrind --leak-check=full --show-leak-kinds=all --track-or
 # COPY . cpp42_docker
 # WORKDIR cpp42_docker
 ENTRYPOINT [ "/bin/zsh" ]
+
+# docker build -t cpp .
+# docker run -itv $(pwd):/local cpp

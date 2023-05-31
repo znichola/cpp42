@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:15 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/31 08:06:32 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 08:15:14 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ class AMateria
 protected:
 	const std::string	_type;
 	static AMateria		*_garbageBin[MAX_AMATERIA];
-	static int			_notFreed[MAX_AMATERIA];
 	static unsigned int	_i;
 
 public:
@@ -46,9 +45,6 @@ public:
 
 	virtual AMateria	*clone() const = 0;
 	virtual void		use(ICharacter &target);
-
-	static void			emptyGarbage( void );
-	static void			removeMat(AMateria *mat);
 };
 
 #endif /* AMATERIA_HPP */

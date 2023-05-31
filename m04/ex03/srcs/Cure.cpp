@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:17 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/31 08:00:00 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 08:28:37 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ Cure &Cure::operator=(const Cure &other)
 
 AMateria	*Cure::clone() const
 {
+	if (_i >= MAX_AMATERIA)
+	{
+		std::cout << "sorry we can't make any more materia" << std::endl;
+		exit(42);
+	}
 	_garbageBin[_i] = new Cure();
-	_notFreed[_i] = 1;
 	_i += 1;
 	return _garbageBin[_i - 1];
 	// return new Cure();

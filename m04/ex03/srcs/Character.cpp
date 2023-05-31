@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:19 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/31 08:11:00 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 09:57:36 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,21 @@ Character::~Character()
 {
 	for (int i = 0; i < 4; i++)
 		if (_iMask & (1U << i))
-			AMateria::removeMat(_inventory[i]);
-			// delete _inventory[i];
+			delete _inventory[i];
 }
 
 // Copy assignment operator
 Character &Character::operator=(const Character &other)
 {
 	_name = other._name;
-	_iMask = other._iMask;
 	for (int i = 0; i < 4; i++)
-		if (_iMask & (1U << i))
+		if (other._iMask & (1U  << 1))
+		{
+			if (_iMask & (1U << i))
+				delete _inventory[i];
 			_inventory[i] = other._inventory[i]->clone();
+		}
+	_iMask = other._iMask;
 	return *this;
 }
 
@@ -61,7 +64,7 @@ void Character::equip(AMateria *m)
 	for (int i = 0; i < 4; i++)
 		if (!(_iMask & (1U << i)))
 		{
-			_inventory[i] = m->clone();
+			_inventory[i] = m;
 			_iMask |= (1U << i);
 			return ;
 		}
@@ -79,5 +82,6 @@ void Character::use(int idx, ICharacter &target)
 {
 	if (idx >= 4 || idx < 0)
 		return ;
-	_inventory[idx]->use(target);
+	if (_iMask & (1U << idx))
+		_inventory[idx]->use(target);
 }
