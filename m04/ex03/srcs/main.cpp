@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 23:57:14 by znichola          #+#    #+#             */
-/*   Updated: 2023/05/31 09:54:52 by znichola         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:29:20 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,14 +125,47 @@ int	main(int ac, char **av)
 	cout << "useing slot 1" << endl;
 	you->use(1, *it);
 
-	delete fountain;
 
 	delete you;
-	delete it;
 
 	// delete i;
 	delete c;
 	// delete clone;
+
+	cout << "testing char duplication" << endl;
+
+	Character def("def");
+
+	AMateria *lost = fountain->createMateria("ice");
+
+	def.equip(lost);
+	def.equip(fountain->createMateria("cure"));
+	def.equip(fountain->createMateria("cure"));
+	def.equip(fountain->createMateria("ice"));
+
+	def.unequip(0);
+	def.use(0, *it);
+
+	Character dup(def);
+
+	cout << dup.getName() << endl;
+	dup.use(0, *it);
+	dup.use(1, *it);
+
+	Character dup2;
+
+	dup2 = def;
+
+	cout << dup2.getName() << endl;
+	dup2.use(0, *it);
+	dup2.use(1, *it);
+
+
+
+	delete fountain;
+	delete it;
+
+	delete lost;
 
 	cout << "} end my main" << endl;
 	return(0);
