@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrate.hpp                                    :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 15:48:50 by znichola         ###   ########.fr       */
+/*   Created: 2023/06/01 15:48:18 by znichola          #+#    #+#             */
+/*   Updated: 2023/06/01 16:11:02 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRATE_HPP
-# define BUREAUCRATE_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 
-#include <stdexcept>
 #include <string>
+#include <stdexcept>
 
-class Bureaucrate
+class Form
 {
 private:
 	const std::string _name;
-	int _grade;
+	bool _signed;
+	const int _signGrade;
+	const int _execGrade;
+
 	int validateGrade(int grade);
 
 public:
@@ -35,18 +38,21 @@ public:
 			const char *what() const throw();
 	};
 
-	Bureaucrate();
-	Bureaucrate(const int grade);
-	Bureaucrate(const Bureaucrate &other);
-	~Bureaucrate();
+	Form();
+	Form(const int s, const int g);
+	Form(const Form &other);
 
-	Bureaucrate & operator=(const Bureaucrate &other);
+	~Form();
+
+	Form & operator=(const Form &other);
 
 	std::string getName() const;
-	int getGrade() const;
+	bool getSignedStat() const;
+	int getSignGrade() const;
+	int getExecGrade() const;
 
-	void prompte();
-	void demote();
 };
 
-#endif /* BUREAUCRATE_HPP */
+std::ostream& operator<<(std::ostream& os, const Form& b);
+
+#endif /* FORM_HPP */

@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 15:48:50 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:12:51 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ public:
 	void prompte();
 	void demote();
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrate& b);
 
 #endif /* BUREAUCRATE_HPP */
