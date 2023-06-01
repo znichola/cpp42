@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 15:03:56 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:17:10 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,40 +23,40 @@ int	main(void)
 
 	Bureaucrate a(150);
 	Bureaucrate b(1);
+	Bureaucrate c(42);
 
 	test(a);
 	test(b);
+	test(c);
 
-	std::cout << "instansing invalid grades" << std::endl;
-
-	Bureaucrate *foo;
+	std::cout << "instansing invalid grades" << std::endl << "<" << std::endl;
 	try
 	{
-		foo = new Bureaucrate(0);
+		Bureaucrate f(0);
+		std::cout << "badly instansed " << f << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-
 	try
 	{
-		foo = new Bureaucrate(151);
+		Bureaucrate f(151);
+		std::cout << "badly instansed " << f << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-
-	std::cout << "adress of badly instatiated bureucrate :" << foo << std::endl;
-	foo = new Bureaucrate(31);
-	std::cout << "adress of correctly instatiated bureucrate :" << foo << std::endl;
+	Bureaucrate f(31);
+	std::cout << ">" << std::endl
+	<< "correctly instatiated bureucrate :" << f << std::endl;
 	return(0);
 }
 
 static void test(Bureaucrate &b)
 {
-	std::cout << "////////////////////////////" << std::endl;
+	std::cout << "<" << std::endl;
 	std::cout << "testing: " << b << std::endl;
 	try
 	{
@@ -71,6 +71,8 @@ static void test(Bureaucrate &b)
 		std::cerr << e.what() << std::endl;
 	}
 	std::cout << " result: " << b << std::endl;
+	std::cout << ">" << std::endl;
+
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrate &b)
