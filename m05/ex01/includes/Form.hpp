@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:48:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 16:11:02 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:54:17 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <string>
 #include <stdexcept>
+
+#include "Bureaucrate.hpp"
 
 class Form
 {
@@ -37,9 +39,14 @@ public:
 		public:
 			const char *what() const throw();
 	};
+	class AlreadySignedException : public std::exception
+	{
+		public:
+			const char *what() const throw();
+	};
 
 	Form();
-	Form(const int s, const int g);
+	Form(const int s, const int e);
 	Form(const Form &other);
 
 	~Form();
@@ -51,6 +58,7 @@ public:
 	int getSignGrade() const;
 	int getExecGrade() const;
 
+	void beSigned(const Bureaucrate &b);
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& b);

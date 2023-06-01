@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 13:26:01 by znichola          #+#    #+#              #
-#    Updated: 2023/06/01 13:27:32 by znichola         ###   ########.fr        #
+#    Updated: 2023/06/01 16:55:28 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ else
 LEAKS_CHECK = leaks -atExit --
 endif
 
-FILES	= main Bureaucrate
+FILES	= main Bureaucrate Form
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/

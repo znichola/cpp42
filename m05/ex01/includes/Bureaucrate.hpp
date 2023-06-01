@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 16:12:51 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:52:14 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include <stdexcept>
 #include <string>
+
+// #include "Form.hpp"
+class Form;
 
 class Bureaucrate
 {
@@ -47,6 +50,8 @@ public:
 
 	void prompte();
 	void demote();
+
+	void signForm(Form &f);
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrate& b);

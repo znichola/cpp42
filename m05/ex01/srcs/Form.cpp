@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:48:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 16:11:50 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:11:52 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int Form::validateGrade(const int grade)
 }
 
 Form::Form()
-	: _name("F_" + getID()), _signed(false), _signGrade(150), _execGrade(150) {}
+	: _name("Form_" + getID()), _signed(false), _signGrade(150), _execGrade(150) {}
 
 Form::Form(const int s, const int e)
-	: _name("F_" + getID()), _signed(false),
+	: _name("Form_" + getID()), _signed(false),
 	_signGrade(validateGrade(s)),
 	_execGrade(validateGrade(e)) {}
 
@@ -59,13 +59,37 @@ bool		Form::getSignedStat() const { return _signed; }
 int			Form::getSignGrade() const { return _signGrade; }
 int			Form::getExecGrade() const { return _execGrade; }
 
+void Form::beSigned(const Bureaucrate &b)
+{
+	if (_signed == true)
+		throw Form::AlreadySignedException();
+	if (_signGrade < b.getGrade())
+		throw Form::GradeTooLowException();
+	_signed = true;
+}
+
+const char *Form::GradeTooHighException::what() const throw()
+{
+	return "Grade is too high";
+}
+
+const char *Form::GradeTooLowException::what() const throw()
+{
+	return "Grade is too low";
+}
+
+const char *Form::AlreadySignedException::what() const throw()
+{
+	return "Form already signed";
+}
+
 std::ostream &operator<<(std::ostream &os, const Form &f)
 {
 	os << "<"
-		<< f.getName() << " "
-		<< (f.getSignedStat() ? "signed  " : "unsigned") << " "
-		<< "sign grade: " << f.getSignGrade() << " "
-		<< "exec grade: " << f.getExecGrade()
+		<< f.getName() << ":"
+		<< (f.getSignedStat() ? "signed" : "unsigned") << " "
+		<< "s:" << f.getSignGrade() << " "
+		<< "e:" << f.getExecGrade()
 	<< ">";
 	return os;
 }

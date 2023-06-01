@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:02 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 16:13:19 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:09:39 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 
 #include "Bureaucrate.hpp"
+#include "Form.hpp"
 
 static std::string getID()
 {
@@ -63,18 +64,33 @@ int			Bureaucrate::getGrade() const { return _grade; }
 void Bureaucrate::prompte() { _grade = validateGrade(_grade - 1); }
 void Bureaucrate::demote() { _grade = validateGrade(_grade + 1); }
 
+void Bureaucrate::signForm(Form &f)
+{
+	try
+	{
+		f.beSigned(*this);
+		std::cout << *this << " signed " << f << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << *this << " couldn't sign " << f
+			<< " because " << e.what() << "." << std::endl;
+	}
+
+}
+
 const char *Bureaucrate::GradeTooHighException::what() const throw()
 {
-	return "GradeTooHighException";
+	return "Grade is too high";
 }
 
 const char *Bureaucrate::GradeTooLowException::what() const throw()
 {
-	return "GradeTooLowException";
+	return "Grade is too low";
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrate &b)
 {
-	os << b.getName() << ", bureaucrat grade " << b.getGrade();
+	os << "<" << b.getName() << ", bureaucrat grade " << b.getGrade() << ">";
 	return os;
 }

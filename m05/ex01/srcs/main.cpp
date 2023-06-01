@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 16:13:48 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:15:13 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,62 +15,43 @@
 #include "Bureaucrate.hpp"
 #include "Form.hpp"
 
-static void test(Bureaucrate &b);
-
 int	main(void)
 {
 	std::cout << "hello office!" << std::endl;
 
-	Bureaucrate a(150);
-	Bureaucrate b(1);
-	Bureaucrate c(42);
+	Bureaucrate b1(42);
+	Bureaucrate b2(89);
 
-	test(a);
-	test(b);
-	test(c);
+	Form f1(61, 40);
+	Form f2(42, 42);
+	Form f3(21, 90);
 
-	std::cout << "instansing invalid grades" << std::endl << "<" << std::endl;
+	b1.signForm(f1);
+	b1.signForm(f1);
+	b2.signForm(f2);
+	b1.signForm(f2);
+	b2.signForm(f3);
+	b1.signForm(f3);
+
+	std::cout << "form tests: " << std::endl;
+
 	try
 	{
-		Bureaucrate f(0);
-		std::cout << "badly instansed " << f << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		Bureaucrate f(151);
-		std::cout << "badly instansed " << f << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	Bureaucrate f(31);
-	std::cout << ">" << std::endl
-	<< "correctly instatiated bureucrate :" << f << std::endl;
-	return(0);
-}
-
-static void test(Bureaucrate &b)
-{
-	std::cout << "<" << std::endl;
-	std::cout << "testing: " << b << std::endl;
-	try
-	{
-		std::cout << "  demote:" << std::endl;
-		b.demote();
-		b.prompte();
-		std::cout << " prompte:" << std::endl;
-		b.prompte();
+		Form f4(-1, 12);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	std::cout << " result: " << b << std::endl;
-	std::cout << ">" << std::endl;
 
+	try
+	{
+		Form f5(160, 12);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	return(0);
 }
