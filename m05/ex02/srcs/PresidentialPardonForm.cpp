@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 21:30:16 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 21:49:50 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/01 21:53:41 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm()
-	: AForm("PP", 145, 137, false), _target("Generic") {}
+	: AForm("PP", 25, 5, false), _target("Generic") {}
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string target)
-	: AForm("PP", 145, 137, false), _target(target) {}
+	: AForm("PP", 25, 5, false), _target(target) {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other)
 	: AForm("PP",

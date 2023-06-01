@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 21:30:08 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 21:49:29 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/01 21:51:56 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm()
-	: AForm("RR", 145, 137, false), _target("Generic") {}
+	: AForm("RR", 72, 45, false), _target("Generic") {}
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string target)
-	: AForm("RR", 145, 137, false), _target(target) {}
+	: AForm("RR", 72, 45, false), _target(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
 	: AForm("RR",
