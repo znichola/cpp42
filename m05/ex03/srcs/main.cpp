@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/07 16:09:39 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/08 00:02:55 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,15 @@ int	main(void)
 
 	AForm *f[6];
 
-	f[0] = new ShrubberyCreationForm("ChillValley");
-	f[1] = new ShrubberyCreationForm("Foundation");
-	f[2] = new RobotomyRequestForm("Vincent");
-	f[3] = new RobotomyRequestForm("El_Capitain");
-	f[4] = new PresidentialPardonForm("Jo");
-	f[5] = new PresidentialPardonForm("Me?");
+	Intern intern;
 
-	for (int i = 0; i < 6; i++)
-	{
-		b1.signForm(*f[i]);
-		b2.executeForm(*f[i]);
-		b3.signForm(*f[i]);
-		b4.executeForm(*f[i]);
-	}
+	f[0] = intern.makeForm("robotomy request", "Bender");
 
+	b1.signForm(*f[0]);
+	b3.signForm(*f[0]);
+	b4.executeForm(*f[0]);
 
+	delete f[0];
 
-	for (int i = 0; i < 6; i++) delete f[i];
 	return(0);
 }
