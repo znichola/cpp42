@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 13:26:01 by znichola          #+#    #+#              #
-#    Updated: 2023/06/01 21:30:37 by znichola         ###   ########.fr        #
+#    Updated: 2023/06/07 16:09:18 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ else
 LEAKS_CHECK = leaks -atExit --
 endif
 
-FILES	= main Bureaucrate AForm \
+FILES	= main Bureaucrate Intern AForm \
 ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm
 
 OBJS_PATH = objs/

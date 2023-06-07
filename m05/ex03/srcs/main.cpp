@@ -6,13 +6,14 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 21:48:35 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:09:39 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
 #include "Bureaucrate.hpp"
+#include "Intern.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
