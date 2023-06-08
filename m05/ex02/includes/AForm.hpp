@@ -13,14 +13,14 @@
 #ifndef AFORM_HPP
 # define AFORM_HPP
 
-#include <time.h>
-#include <sstream>
-#include <iostream>
+# include <time.h>
+# include <sstream>
+# include <iostream>
 
-#include <string>
-#include <stdexcept>
+# include <string>
+# include <stdexcept>
 
-#include "Bureaucrate.hpp"
+# include "Bureaucrate.hpp"
 
 class AForm
 {

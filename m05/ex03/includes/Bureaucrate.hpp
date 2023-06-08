@@ -6,15 +6,15 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 19:56:54 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:20:13 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRATE_HPP
 # define BUREAUCRATE_HPP
 
-#include <stdexcept>
-#include <string>
+# include <stdexcept>
+# include <string>
 
 // #include "Form.hpp"
 class AForm;
