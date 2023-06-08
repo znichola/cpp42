@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/08 00:02:55 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:18:04 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,29 @@ int	main(void)
 	Bureaucrate b3(42);
 	Bureaucrate b4(2);
 
-	AForm *f[6];
+	AForm *f[4];
 
 	Intern intern;
 
 	f[0] = intern.makeForm("robotomy request", "Bender");
+	f[1] = intern.makeForm("shrubbery creation", "garden");
+	f[2] = intern.makeForm("presidential pardon", "George");
+
+	try
+	{
+		f[3] = intern.makeForm("made up form", "Sally");
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Intern error with form \"" << "made up form" << "\" : "
+		<< e.what() << std::endl;
+	}
 
 	b1.signForm(*f[0]);
 	b3.signForm(*f[0]);
 	b4.executeForm(*f[0]);
 
-	delete f[0];
+	for (int i = 0; i < 3; i++) delete f[i];
 
 	return(0);
 }

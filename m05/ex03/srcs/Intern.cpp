@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:08:57 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/07 23:55:55 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:11:26 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ AForm *Intern::makeForm(const std::string form, const std::string target) const
 		"shrubbery creation", "robotomy request", "presidential pardon"
 		};
 	int match = -1;
-	for (int i; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 		if (forms[i] == form)
 		{
 			match = i;
@@ -43,6 +43,12 @@ AForm *Intern::makeForm(const std::string form, const std::string target) const
 	case 0: return new ShrubberyCreationForm(target);
 	case 1: return new RobotomyRequestForm(target);
 	case 2: return new PresidentialPardonForm(target);
-	default: return NULL;
+	default: throw Intern::NonExistantForm();
 	}
+}
+
+const char *Intern::NonExistantForm::what() const throw()
+{
+	return "Form does not exist";
+
 }
