@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/08 11:18:04 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/10 12:47:12 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int	main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Intern error with form \"" << "made up form" << "\" : "
-		<< e.what() << std::endl;
+		std::cerr << "Intern error with form " << e.what() << std::endl;
 	}
 
 	b1.signForm(*f[0]);

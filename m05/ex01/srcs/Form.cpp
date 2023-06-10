@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:48:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 17:11:52 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/10 11:07:42 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ Form &Form::operator=(const Form &other)
 	return *this;
 }
 
-std::string	Form::getName() const { return _name; }
-bool		Form::getSignedStat() const { return _signed; }
-int			Form::getSignGrade() const { return _signGrade; }
-int			Form::getExecGrade() const { return _execGrade; }
+const std::string	Form::getName() const { return _name; }
+bool				Form::getSignedStat() const { return _signed; }
+int					Form::getSignGrade() const { return _signGrade; }
+int					Form::getExecGrade() const { return _execGrade; }
 
 void Form::beSigned(const Bureaucrate &b)
 {

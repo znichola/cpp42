@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:48:18 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 16:54:17 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/10 11:07:18 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ public:
 
 	Form & operator=(const Form &other);
 
-	std::string getName() const;
+	const std::string getName() const;
 	bool getSignedStat() const;
 	int getSignGrade() const;
 	int getExecGrade() const;

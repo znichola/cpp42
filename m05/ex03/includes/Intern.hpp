@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:08:57 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/08 11:19:23 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/10 12:45:26 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ class Intern
 public:
 	class NonExistantForm : public std::exception
 	{
+		private:
+			std::string _msg;
 		public:
+			NonExistantForm(const std::string msg);
+			~NonExistantForm() throw();
 			const char *what() const throw();
 	};
 

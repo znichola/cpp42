@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:08:57 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/08 11:11:26 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/10 12:42:15 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,42 @@ Intern &Intern::operator=(const Intern &other)
 	return *this;
 }
 
+static AForm *_ShrubberyCreationForm(const std::string t)
+{
+	return new ShrubberyCreationForm(t);
+}
+
+static AForm *_RobotomyRequestForm(const std::string t)
+{
+	return new RobotomyRequestForm(t);
+}
+
+static AForm *_PresidentialPardonForm(const std::string t)
+{
+	return new PresidentialPardonForm(t);
+}
+
 AForm *Intern::makeForm(const std::string form, const std::string target) const
 {
 	const std::string forms[] = {
 		"shrubbery creation", "robotomy request", "presidential pardon"
 		};
-	int match = -1;
+	static AForm *(*func[])(const std::string) = {
+		_ShrubberyCreationForm, _RobotomyRequestForm, _PresidentialPardonForm
+		};
 	for (int i = 0; i < 3; i++)
 		if (forms[i] == form)
-		{
-			match = i;
-			break ;
-		}
-	switch (match)
-	{
-	case 0: return new ShrubberyCreationForm(target);
-	case 1: return new RobotomyRequestForm(target);
-	case 2: return new PresidentialPardonForm(target);
-	default: throw Intern::NonExistantForm();
-	}
+			return func[i](target);
+	throw Intern::NonExistantForm(form);
 }
+
+Intern::NonExistantForm::NonExistantForm(const std::string msg)
+	: _msg("\"" + msg + "\" Form does not exist") {}
+
+Intern::NonExistantForm::~NonExistantForm() throw()
+{}
 
 const char *Intern::NonExistantForm::what() const throw()
 {
-	return "Form does not exist";
-
+	return _msg.c_str();
 }

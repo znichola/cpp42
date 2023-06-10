@@ -55,10 +55,10 @@ AForm &AForm::operator=(const AForm &other)
 	return *this;
 }
 
-std::string	AForm::getName() const { return _name; }
-bool		AForm::getSignedStat() const { return _signed; }
-int			AForm::getSignGrade() const { return _signGrade; }
-int			AForm::getExecGrade() const { return _execGrade; }
+const std::string	AForm::getName() const { return _name; }
+bool				AForm::getSignedStat() const { return _signed; }
+int					AForm::getSignGrade() const { return _signGrade; }
+int					AForm::getExecGrade() const { return _execGrade; }
 
 void AForm::beSigned(const Bureaucrate &b)
 {

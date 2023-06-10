@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:01 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 15:17:10 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/10 10:21:18 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(void)
 	}
 	Bureaucrate f(31);
 	std::cout << ">" << std::endl
-	<< "correctly instatiated bureucrate :" << f << std::endl;
+	<< "correctly instatiated bureucrate: " << f << std::endl;
 	return(0);
 }
 
@@ -60,10 +60,10 @@ static void test(Bureaucrate &b)
 	std::cout << "testing: " << b << std::endl;
 	try
 	{
-		std::cout << "  demote:" << std::endl;
+		std::cout << " demote:" << std::endl;
 		b.demote();
 		b.prompte();
-		std::cout << " prompte:" << std::endl;
+		std::cout << "prompte:" << std::endl;
 		b.prompte();
 	}
 	catch(const std::exception& e)
@@ -72,7 +72,6 @@ static void test(Bureaucrate &b)
 	}
 	std::cout << " result: " << b << std::endl;
 	std::cout << ">" << std::endl;
-
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrate &b)

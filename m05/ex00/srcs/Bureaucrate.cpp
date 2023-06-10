@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:26:02 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/01 16:55:55 by znichola         ###   ########.fr       */
+/*   Updated: 2023/06/10 10:20:52 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int Bureaucrate::validateGrade(const int grade)
 		throw Bureaucrate::GradeTooLowException();
 	if (grade < 1)
 		throw Bureaucrate::GradeTooHighException();
-	else
-		return grade;
-	return 0;
+	return grade;
 }
 
 // Default constructor
@@ -61,7 +59,7 @@ std::string	Bureaucrate:: getName() const { return _name; }
 int			Bureaucrate::getGrade() const { return _grade; }
 
 void Bureaucrate::prompte() { _grade = validateGrade(_grade - 1); }
-void Bureaucrate::demote() { _grade = validateGrade(_grade + 1); }
+void Bureaucrate:: demote() { _grade = validateGrade(_grade + 1); }
 
 const char *Bureaucrate::GradeTooHighException::what() const throw()
 {

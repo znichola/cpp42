@@ -66,7 +66,7 @@ public:
 
 	AForm & operator=(const AForm &other);
 
-	std::string getName() const;
+	const std::string getName() const;
 	bool getSignedStat() const;
 	int getSignGrade() const;
 	int getExecGrade() const;
