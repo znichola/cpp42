@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 19:35:33 by znichola          #+#    #+#              #
-#    Updated: 2023/06/29 20:13:04 by znichola         ###   ########.fr        #
+#    Updated: 2023/06/30 10:03:02 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= cast
 
 CC		= c++
 CFLAGS	= -Wall -Wextra
-# CFLAGS	+= -Werror
+CFLAGS	+= -Werror
 CFLAGS	+= -std=c++98 -pedantic
 
 ifdef DEBUG

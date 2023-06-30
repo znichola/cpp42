@@ -71,13 +71,13 @@ void ScalarConverter::convert(const std::string &s)
 		type = CHAR;
 		c = s[1];
 	}
-	else if (s.size() >= 4 && s.back() == 'f' && s.find('.') != std::string::npos)
+	else if (s.size() >= 4 && s.back() == 'f' && s.find('.') != std::string::npos && s.front() != '.' && s[s.find_last_of('f') - 1] != '.')
 	{
 		ss.str(s.substr(0, s.size() - 1));
 		type = FLOAT;
 		ss >> f;
 	}
-	else if (s.find('.') != std::string::npos)
+	else if (s.find('.') != std::string::npos && s.find('.') != 0 && s.back() != '.' && s.front() != '.')
 	{
 		type = DOUBLE;
 		ss >> d;
@@ -118,14 +118,16 @@ void ScalarConverter::convert(const std::string &s)
 		impossible = true;
 		d = std::numeric_limits<double>::signaling_NaN();
 	}
-	else
+	else if (s.find('.') == std::string::npos)
 	{
+		std::cout << "here\n";
 		type = INT;
 		ss >> i;
 	}
-	if (ss.fail())
+	if (ss.fail() || (!ss.eof() && !impossible && type != CHAR) || type == 0)
 	{
-		std::cout << "you failed to give me valid input" << std::endl;
+		std::cout << (!ss.eof()) << (!impossible) << (type != CHAR) << "\n";
+		std::cout << "you failed to give me valid input " << std::endl;
 		return ;
 	}
 	switch (type)
