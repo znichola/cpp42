@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:43:37 by znichola          #+#    #+#             */
-/*   Updated: 2023/07/03 21:12:35 by znichola         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:08:50 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,82 @@
 
 #include "BitcoinExchange.hpp"
 
-// Default constructor
-BitcoinExchange::BitcoinExchange()
-{
-}
+BitcoinExchange::BitcoinExchange() {}
 
-// Copy constructor
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
-{
-	*this = other;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) :
+	_mMap(other._mMap) {}
 
-// Destructor
-BitcoinExchange::~BitcoinExchange()
-{
-}
+BitcoinExchange::~BitcoinExchange() {}
 
-// Copy assignment operator
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
-	(void)other;
-	// TODO: insert return statement here
+	_mMap = other._mMap;
 	return *this;
 }
 
-int BitcoinExchange::readFile(std::ifstream &ifs)
+int BitcoinExchange::readFile_input(std::ifstream &ifs)
+{
+	std::string line;
+	int ln = 0;
+
+	// check the first line for seperator information
+	if(!std::getline(ifs, line)) return 1;
+
+	size_t x = line.find("date");
+	if (x == std::string::npos || x != 0) return 2;
+	line.erase(0, 4);
+	x = line.find("value");
+	if (x == std::string::npos || x == 0) return 2;
+	line.erase(x, 6);
+	if (x != line.length()) return 2;
+
+	std::string sep = line;
+	if (sep != " | ") return 2;
+
+	while(getline(ifs, line))
+	{
+		ln++;
+		x = line.find(sep);
+		if (x == std::string::npos || x == 0)
+		{
+			std::cerr << "\33[1;31mError:\33[0m bad input => " << line << std::endl;
+			continue;
+		}
+		line.replace(x, sep.length(), " ");
+
+		std::istringstream ss(line);
+		std::string date, dump;
+		float value = 0.0f;
+		ss >> date >> value;
+
+		if (ss.fail() || (ss >> dump))
+		{
+			std::cerr << "\33[1;31mError:\33[0m bad input => " << line << std::endl;
+			continue;
+		}
+		struct tm t = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		char *c = strptime(date.c_str(), "%Y-%m-%d", &t);
+		if (c == NULL || *c != '\0')
+		{
+			std::cerr << "\33[1;31mError:\33[0m invalid date => " << line << std::endl;
+			continue;
+		}
+		if (value < 0)
+		{
+			std::cerr << "\33[1;31mError:\33[0m not a positive number." << std::endl;
+			continue;
+		}
+		if (value > 1000)
+		{
+			std::cerr << "\33[1;31mError:\33[0m too large a number." << std::endl;
+			continue;
+		}
+		findBTCvalue(date, value);
+	}
+	return 0;
+}
+
+int BitcoinExchange::readFile_csv(std::ifstream &ifs)
 {
 	std::string line;
 	int ln = 0;
@@ -56,7 +107,6 @@ int BitcoinExchange::readFile(std::ifstream &ifs)
 
 	std::string sep = line;
 
-	std::cout << "sep is: <" << line << ">\n";
 	while(getline(ifs, line))
 	{
 		ln++;
@@ -88,7 +138,13 @@ int BitcoinExchange::readFile(std::ifstream &ifs)
 			<< "\n-> \33[1;31mError:\33[0m invalid date format" << std::endl;
 			continue;
 		}
+		_mMap.insert(std::make_pair(date, value));
 	}
-	std::cout << "done\n";
 	return 0;
+}
+
+void BitcoinExchange::findBTCvalue(const std::string &date, float quantity)
+{
+	float value = _mMap.lower_bound(date)->second;
+	std::cout << date << " => " << quantity << " = " << value * quantity << std::endl;
 }

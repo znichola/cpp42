@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:43:37 by znichola          #+#    #+#             */
-/*   Updated: 2023/07/03 17:02:11 by znichola         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:02:32 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,31 @@ int	main(int ac, char **av)
 		std::cerr << "Give file path as argument" << std::endl;
 		return 1;
 	}
-	std::ifstream file(av[1]);
-	if (!file.is_open())
+	std::ifstream file_csv("data.csv");
+	if (!file_csv.is_open())
 	{
-		std::cerr << "can't read config file: " << av[1] << std::endl;
+		std::cerr << "can't read csv file" << std::endl;
 		return 1;
 	}
-	BitcoinExchange btc;
-
-	switch (btc.readFile(file))
+	std::ifstream file_input(av[1]);
+	if (!file_input.is_open())
 	{
-	case 1:
-		std::cerr << "Error with readline" << std::endl;
-		break;
-	case 2:
-		std::cerr << "Header error" << std::endl;
-		break;
-	default:
-		break;
+		std::cerr << "can't read input file: " << av[1] << std::endl;
+		return 1;
 	}
 
+	BitcoinExchange btc;
+
+	switch (btc.readFile_csv(file_csv))
+	{
+	case 1: std::cerr << "\33[1;31mError:\33[0m csv : with readline" << std::endl; return 1;
+	case 2: std::cerr << "\33[1;31mError:\33[0m csv : invalid header" << std::endl; return 1;
+	}
+	switch (btc.readFile_input(file_input))
+	{
+	case 1: std::cerr << "\33[1;31mError:\33[0m with readline" << std::endl; return 1;
+	case 2: std::cerr << "\33[1;31mError:\33[0m invalid header" << std::endl; return 1;
+	}
 
 	return 0;
 }
