@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:43:37 by znichola          #+#    #+#             */
-/*   Updated: 2023/07/03 20:42:19 by znichola         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:12:35 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,32 @@ int BitcoinExchange::readFile(std::ifstream &ifs)
 		ln++;
 		x = line.find(sep);
 		if (x == std::string::npos || x == 0)
+		{
 			std::cout << ln << " | " << line
-			<< "\nError: invalid seperator" << std::endl;
+			<< "\n-> \33[1;31mError:\33[0m invalid seperator" << std::endl;
+			continue;
+		}
 		line.replace(x, sep.length(), " ");
+
 		std::istringstream ss(line);
-		std::string date;
-		float value;
+		std::string date, dump;
+		float value = 0.0f;
 		ss >> date >> value;
-		if (ss.fail())
+
+		if (ss.fail() || (ss >> dump) || value < 0 )
+		{
 			std::cout << ln << " | " << line
-			<< "\nError: date / value" << std::endl;
+			<< "\n-> \33[1;31mError:\33[0m date / value" << std::endl;
+			continue;
+		}
 		struct tm t = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		char *c = strptime(date.c_str(), "%Y-%m-%d", &t);
 		if (c == NULL || *c != '\0')
+		{
 			std::cout << ln << " | " << line
-			<< "\nError: invalid date format" << std::endl;
+			<< "\n-> \33[1;31mError:\33[0m invalid date format" << std::endl;
+			continue;
+		}
 	}
 	std::cout << "done\n";
 	return 0;
