@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:30:39 by znichola          #+#    #+#             */
-/*   Updated: 2023/06/30 18:19:50 by znichola         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:45:15 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ Base * generate(void)
 	switch (x % 3)
 	{
 	case 0:
-		std::cout << "generated an A" << std::endl;
+		std::cout << "generated A" << std::endl;
 		return new A;
 	case 1:
-		std::cout << "generated  a B" << std::endl;
+		std::cout << "generated B" << std::endl;
 		return new B;
 	case 2:
-		std::cout << "generated  a C" << std::endl;
+		std::cout << "generated C" << std::endl;
 		return new C;
 	}
 
@@ -45,11 +45,11 @@ Base * generate(void)
 void identify(Base *p)
 {
 	if (A *obj = dynamic_cast<A *>(p))
-		std::cout << "it's an A" <<std::endl;
+		std::cout << "it's A" <<std::endl;
 	else if (B *obj = dynamic_cast<B *>(p))
-		std::cout << "it's  a B" <<std::endl;
+		std::cout << "it's B" <<std::endl;
 	else if (C *obj = dynamic_cast<C *>(p))
-		std::cout << "it's  a C" <<std::endl;
+		std::cout << "it's C" <<std::endl;
 	else
 		std::cout << "no idea what type" <<std::endl;
 }
@@ -60,21 +60,21 @@ void identify(Base &p)
 	try
 	{
 		A &obj = dynamic_cast<A &>(p);
-		std::cout << "it's an A" <<std::endl;
+		std::cout << "it's A" <<std::endl;
 		(void)obj;
 	}
 	catch(const std::bad_cast) 	{}
 	try
 	{
 		B &obj = dynamic_cast<B &>(p);
-		std::cout << "it's  a B" <<std::endl;
+		std::cout << "it's B" <<std::endl;
 		(void)obj;
 	}
 	catch(const std::bad_cast) 	{}
 	try
 	{
 		C &obj = dynamic_cast<C &>(p);
-		std::cout << "it's  a C" <<std::endl;
+		std::cout << "it's C" <<std::endl;
 		(void)obj;
 	}
 	catch(const std::bad_cast) 	{}

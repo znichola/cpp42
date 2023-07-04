@@ -6,11 +6,11 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 13:38:01 by znichola          #+#    #+#              #
-#    Updated: 2023/06/11 13:38:01 by znichola         ###   ########.fr        #
+#    Updated: 2023/07/04 12:42:12 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= sreializer
+NAME	= serializer
 
 CC		= c++
 CFLAGS	= -Wall -Wextra
