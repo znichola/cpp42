@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 14:20:46 by znichola          #+#    #+#              #
-#    Updated: 2023/07/01 14:37:33 by znichola         ###   ########.fr        #
+#    Updated: 2023/07/04 14:18:48 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ else
 LEAKS_CHECK = leaks -atExit --
 endif
 
-FILES	= main
+FILES	= main main2
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/
@@ -46,8 +46,11 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $(INCS_PATH) -o $@ $<
 
-$(NAME)	: $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
+$(NAME)	: objs/main.o
+	$(CC) $(CFLAGS) $< -o $@
+
+$(NAME)_given	: objs/main2.o
+	$(CC) $(CFLAGS) $< -o $@
 
 clean	:
 	$(RM) $(OBJS)

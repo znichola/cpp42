@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:20:46 by znichola          #+#    #+#             */
-/*   Updated: 2023/07/02 12:15:15 by znichola         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:47:35 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(void)
 
 		Array<int> bar(foo);
 
-		foo[2] = 42;
+		foo[2] = 420;
 
 		for (int i = 0; i < 10; i++)
 			std::cout << foo[i] << " ";
@@ -35,9 +35,11 @@ int	main(void)
 		std::cout << std::endl;
 
 		for (int i = 0; i < 10; i++)
-			std::cout << foo[i] << " ";
+			std::cout << bar[i] << " ";
 
-		std::cout << "size: " << foo.size() << " " << foo.size() << std::endl;
+		std::cout << std::endl;
+
+		std::cout << "size: " << foo.size() << " " << bar.size() << std::endl;
 	}
 	{
 		Array<std::string> foo(5);
@@ -50,9 +52,9 @@ int	main(void)
 
 		Array<std::string> bar = foo;
 
-		foo[0] = "something new";
-		foo[1] = "to check";
-		foo[2] = "it's a proper deep copy";
+		foo[0] = "'something new'";
+		foo[1] = "'to check'";
+		foo[2] = "'it's a proper deep copy'";
 
 		for (int i = 0; i < 5; i++)
 			std::cout << foo[i] << " ";
