@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:43:37 by znichola          #+#    #+#             */
-/*   Updated: 2023/07/03 22:08:50 by znichola         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:43:52 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,11 @@ int BitcoinExchange::readFile_input(std::ifstream &ifs)
 		}
 		struct tm t = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		char *c = strptime(date.c_str(), "%Y-%m-%d", &t);
-		if (c == NULL || *c != '\0')
+		char x[11];
+		if (c == NULL || *c != '\0' || strftime(x, 11, "%F", &t) != 10 || std::string(x) != date)
 		{
-			std::cerr << "\33[1;31mError:\33[0m invalid date => " << line << std::endl;
+			std::cout << ln << " | " << line
+			<< "\n-> \33[1;31mError:\33[0m invalid date format" << std::endl;
 			continue;
 		}
 		if (value < 0)
@@ -132,7 +134,8 @@ int BitcoinExchange::readFile_csv(std::ifstream &ifs)
 		}
 		struct tm t = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		char *c = strptime(date.c_str(), "%Y-%m-%d", &t);
-		if (c == NULL || *c != '\0')
+		char x[11];
+		if (c == NULL || *c != '\0' || strftime(x, 11, "%F", &t) != 10 || std::string(x) != date)
 		{
 			std::cout << ln << " | " << line
 			<< "\n-> \33[1;31mError:\33[0m invalid date format" << std::endl;
@@ -145,6 +148,16 @@ int BitcoinExchange::readFile_csv(std::ifstream &ifs)
 
 void BitcoinExchange::findBTCvalue(const std::string &date, float quantity)
 {
-	float value = _mMap.lower_bound(date)->second;
+
+	std::multimap<const std::string, float>::const_iterator it = _mMap.lower_bound(date);
+	float value;
+	if (it == _mMap.begin())
+		value = it->second;
+	else
+	{
+		it--;
+		value = it->second;
+	}
+	// std::cout << "found date: " << it->first << "\n";
 	std::cout << date << " => " << quantity << " = " << value * quantity << std::endl;
 }
