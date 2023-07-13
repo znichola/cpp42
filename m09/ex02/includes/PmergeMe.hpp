@@ -26,7 +26,7 @@ bool sortp(std::pair<typename T::const_iterator, typename T::const_iterator> i,
 	return *i.first > *j.first; 
 }
 
-bool sorti(int a, int b)
+static bool sorti(int a, int b)
 {
 	return a > b;
 }
@@ -36,6 +36,7 @@ class PmergeMe
 {
 private:
 	T _elements;
+	struct timeval start, end;
 
 public:
 	PmergeMe() {}
@@ -65,12 +66,17 @@ public:
 
 	void print(std::string sep) const
 	{
-		for (typename T::const_iterator it = _elements.begin(); it < _elements.end(); it++)
+		typename T::const_iterator end = _elements.end();
+		if (_elements.size() > 11)
+			end = _elements.begin() + 10;
+		for (typename T::const_iterator it = _elements.begin(); it < end; it++)
 		{
 			if (it != _elements.begin())
 				std::cout << sep;
 			std::cout << *it;
 		}
+		if (_elements.size() > 11 )
+			std::cout << " [...]";
 		std::cout << std::endl;
 	}
 
@@ -78,18 +84,20 @@ public:
 
 	void after()  const { std::cout << "After:  "; print(" "); }
 
-	void time(const std::string &cont)
+	void timeSort()
 	{
-		struct timeval start, end;
-		std::cout << std::fixed << std::setprecision(5);
-		
-		std::cout << "Time to process range of " << _elements.size()
-		<< " elements with std::" << cont << " : ";
 		gettimeofday(&start, 0);
 		sort();
 		gettimeofday(&end, 0);
-		std::cout << double(end.tv_usec - start.tv_usec) << " us" << std::endl;
-		std::cout << 0.00f << " us" << std::endl;
+	}
+	
+	void timeReport(const std::string &cont)
+	{
+		std::cout << std::fixed << std::setw(5);
+		
+		std::cout << "Time to process range of " << _elements.size()
+		<< " elements with std::" << cont << " : ";
+		std::cout << long((end.tv_sec - start.tv_sec) * 1e6 + end.tv_usec - start.tv_usec) << " us" << std::endl;
 	}
 
 	void sort()
@@ -108,27 +116,14 @@ public:
 				pairs.push_back(std::make_pair(it, it + 1));
 			else
 				pairs.push_back(std::make_pair(it + 1, it));
-			std::cout << *it << " ";
 		}
 		std::sort(pairs.begin(), pairs.end(), sortp<T>);
-		std::cout << "\n new thinh\n";
 		for (typename std::vector<std::pair<typename T::const_iterator, typename T::const_iterator> >::const_iterator it = pairs.begin(); it < pairs.end(); it ++)
-		{
-			std::cout << "(" << *it->first << ", "<< *it->second << ") ";
-		}
-		std::cout << "\n";
-		for (typename std::vector<std::pair<typename T::const_iterator, typename T::const_iterator> >::const_iterator it = pairs.begin(); it < pairs.end(); it ++)
-		{
 			ne.push_back(*it->first);
-		}
 
 		size_t s = ne.size();
 		for (size_t i = s; i > 0; i--)
-		{
-			std::cout << " -" << *(ne.end() - i) << " " << *pairs[s - i].second <<"- ";
-			std::cout << "i:" << i << " " << *std::lower_bound(ne.begin(), ne.end() - i, *pairs[s - i].second, sorti) << "\n";
 			ne.insert(std::lower_bound(ne.begin(), ne.end() - i, *pairs[s - i].second, sorti), *pairs[s - i].second);
-		}
 		
 		std::reverse(ne.begin(), ne.end());
 		if (_elements.size() % 2)
