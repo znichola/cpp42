@@ -26,6 +26,11 @@ bool sortp(std::pair<typename T::const_iterator, typename T::const_iterator> i,
 	return *i.first > *j.first; 
 }
 
+bool sorti(int a, int b)
+{
+	return a > b;
+}
+
 template<typename T>
 class PmergeMe
 {
@@ -117,13 +122,19 @@ public:
 			ne.push_back(*it->first);
 		}
 
-		for (typename T::const_iterator it = ne.begin(); it < ne.end(); it ++)
+		size_t s = ne.size();
+		for (size_t i = s; i > 0; i--)
 		{
-			ne.insert(lower_bound(ne.begin(), ne.end(), *it->second), *it->second);
+			std::cout << " -" << *(ne.end() - i) << " " << *pairs[s - i].second <<"- ";
+			std::cout << "i:" << i << " " << *std::lower_bound(ne.begin(), ne.end() - i, *pairs[s - i].second, sorti) << "\n";
+			ne.insert(std::lower_bound(ne.begin(), ne.end() - i, *pairs[s - i].second, sorti), *pairs[s - i].second);
 		}
-		elements = ne;
+		
+		std::reverse(ne.begin(), ne.end());
+		if (_elements.size() % 2)
+			ne.insert(std::lower_bound(ne.begin(), ne.end(), _elements.back()), _elements.back());
+		_elements = ne;
 	}
-	
 };
 
 #endif /* PMERGEME_HPP */
