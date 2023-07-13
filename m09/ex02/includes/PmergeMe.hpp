@@ -17,6 +17,14 @@
 # include <cstdlib>
 # include <sys/time.h>
 # include <iomanip>
+# include <algorithm>
+
+template<typename T>
+bool sortp(std::pair<typename T::const_iterator, typename T::const_iterator> i,
+		std::pair<typename T::const_iterator, typename T::const_iterator> j)
+{
+	return *i.first > *j.first; 
+}
 
 template<typename T>
 class PmergeMe
@@ -45,7 +53,7 @@ public:
 		{
 			if (!ss.fail())
 				_elements.push_back(x);
-		}	
+		}
 	}
 
 	PmergeMe & operator=(const PmergeMe &other) { _elements = other._elements; return *this; }
@@ -68,21 +76,54 @@ public:
 	void time(const std::string &cont)
 	{
 		struct timeval start, end;
-		std::cout << std::setprecision(5);
+		std::cout << std::fixed << std::setprecision(5);
+		
 		std::cout << "Time to process range of " << _elements.size()
 		<< " elements with std::" << cont << " : ";
-		gettimeofday(&start,  0);
+		gettimeofday(&start, 0);
 		sort();
 		gettimeofday(&end, 0);
-		std::cout << end.tv_usec - start.tv_usec / 100000.0f << " us" << std::endl;
-		std::cout << 0.000001f << " us" << std::endl;
-
+		std::cout << double(end.tv_usec - start.tv_usec) << " us" << std::endl;
+		std::cout << 0.00f << " us" << std::endl;
 	}
+
 	void sort()
 	{
-		for (int i = 0; i < 100000; i++)
-			;
-	}	
+		//split into pairs of values for sorting
+		typename T::const_iterator end = _elements.end();
+		if (_elements.size() % 2)
+			end--;
+	
+		std::vector<std::pair<typename T::const_iterator, typename T::const_iterator> > pairs;
+		T ne;
+
+		for (typename T::const_iterator it = _elements.begin(); it < end; it += 2)
+		{
+			if (*it < it[1])
+				pairs.push_back(std::make_pair(it, it + 1));
+			else
+				pairs.push_back(std::make_pair(it + 1, it));
+			std::cout << *it << " ";
+		}
+		std::sort(pairs.begin(), pairs.end(), sortp<T>);
+		std::cout << "\n new thinh\n";
+		for (typename std::vector<std::pair<typename T::const_iterator, typename T::const_iterator> >::const_iterator it = pairs.begin(); it < pairs.end(); it ++)
+		{
+			std::cout << "(" << *it->first << ", "<< *it->second << ") ";
+		}
+		std::cout << "\n";
+		for (typename std::vector<std::pair<typename T::const_iterator, typename T::const_iterator> >::const_iterator it = pairs.begin(); it < pairs.end(); it ++)
+		{
+			ne.push_back(*it->first);
+		}
+
+		for (typename T::const_iterator it = ne.begin(); it < ne.end(); it ++)
+		{
+			ne.insert(lower_bound(ne.begin(), ne.end(), *it->second), *it->second);
+		}
+		elements = ne;
+	}
+	
 };
 
 #endif /* PMERGEME_HPP */

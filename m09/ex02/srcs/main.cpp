@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:53:03 by znichola          #+#    #+#             */
-/*   Updated: 2023/07/12 06:10:56 by znichola         ###   ########.fr       */
+/*   Updated: 2023/07/13 14:50:51 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	main(int ac, char **av)
 	foo.before();
 	foo.after();	
 	foo.time("vector");
+	foo.after();	
 	return(0);
 }
