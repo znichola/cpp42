@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 21:30:41 by znichola          #+#    #+#             */
-/*   Updated: 2023/07/06 14:12:25 by znichola         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:40:28 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void RPN::solve(const std::string &args)
 	if (stack.size() != 1)
 	{
 		error_out:
+//		std::cout << args << "test\n";
 		std::cerr << "Error" << std::endl;
 	}
 	else
