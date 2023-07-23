@@ -23,7 +23,7 @@ template<typename T>
 bool sortp(std::pair<typename T::const_iterator, typename T::const_iterator> i,
 		std::pair<typename T::const_iterator, typename T::const_iterator> j)
 {
-	return *i.first > *j.first; 
+	return *i.first > *j.first;
 }
 
 static bool sorti(int a, int b)
@@ -43,7 +43,7 @@ public:
 	PmergeMe(const PmergeMe &other) : _elements(other._elements) {}
 
 	~PmergeMe() {}
-	
+
 	void init(int ac, char **av)
 	{
 		for (int i = 0; i < ac; i++)
@@ -90,23 +90,23 @@ public:
 		sort();
 		gettimeofday(&end, 0);
 	}
-	
+
 	void timeReport(const std::string &cont)
 	{
 		std::cout << std::fixed << std::setw(5);
-		
+
 		std::cout << "Time to process range of " << _elements.size()
 		<< " elements with std::" << cont << " : ";
-		std::cout << long((end.tv_sec - start.tv_sec) * 1e6 + end.tv_usec - start.tv_usec) << " us" << std::endl;
+		std::cout << long(end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec) << " us" << std::endl;
 	}
 
-	void sort()
+	void sort(T elem)
 	{
 		//split into pairs of values for sorting
 		typename T::const_iterator end = _elements.end();
 		if (_elements.size() % 2)
 			end--;
-	
+
 		std::vector<std::pair<typename T::const_iterator, typename T::const_iterator> > pairs;
 		T ne;
 
@@ -124,7 +124,7 @@ public:
 		size_t s = ne.size();
 		for (size_t i = s; i > 0; i--)
 			ne.insert(std::lower_bound(ne.begin(), ne.end() - i, *pairs[s - i].second, sorti), *pairs[s - i].second);
-		
+
 		std::reverse(ne.begin(), ne.end());
 		if (_elements.size() % 2)
 			ne.insert(std::lower_bound(ne.begin(), ne.end(), _elements.back()), _elements.back());

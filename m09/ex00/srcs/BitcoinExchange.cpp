@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:43:37 by znichola          #+#    #+#             */
-/*   Updated: 2023/07/23 12:20:55 by znichola         ###   ########.fr       */
+/*   Updated: 2023/07/23 15:29:16 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int BitcoinExchange::readFile_input(std::ifstream &ifs)
 		char x[11];
 		if (c == NULL || *c != '\0' || strftime(x, 11, "%F", &t) != 10 || std::string(x) != date)
 		{
-			// std::cout << ln << " | " << line
-			// << "\n-> \33[1;31mError:\33[0m invalid date format" << std::endl;
 			std::cerr << "\33[1;31mError:\33[0m invalid date format." << std::endl;
 			continue;
 		}
