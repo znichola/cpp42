@@ -6,7 +6,7 @@
 #    By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/07 11:53:03 by znichola          #+#    #+#              #
-#    Updated: 2023/07/10 15:42:30 by znichola         ###   ########.fr        #
+#    Updated: 2023/07/23 18:14:33 by znichola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ else
 LEAKS_CHECK = leaks -atExit --
 endif
 
-FILES	= main 
+FILES	= main
 
 OBJS_PATH = objs/
 SRCS_PATH = srcs/
@@ -64,6 +64,3 @@ leaks : re
 	$(LEAKS_CHECK) ./$(NAME)
 
 .PHONY: all clean fclean re
-
-
-		

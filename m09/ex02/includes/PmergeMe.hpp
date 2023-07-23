@@ -87,7 +87,10 @@ public:
 	void timeSort()
 	{
 		gettimeofday(&start, 0);
-		sort();
+		if (0)
+			sort_old();
+		else
+			sort(_elements.begin(), _elements.end());
 		gettimeofday(&end, 0);
 	}
 
@@ -100,7 +103,7 @@ public:
 		std::cout << long(end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec) << " us" << std::endl;
 	}
 
-	void sort(T elem)
+	void sort_old()
 	{
 		//split into pairs of values for sorting
 		typename T::const_iterator end = _elements.end();
@@ -129,6 +132,41 @@ public:
 		if (_elements.size() % 2)
 			ne.insert(std::lower_bound(ne.begin(), ne.end(), _elements.back()), _elements.back());
 		_elements = ne;
+	}
+
+	void sort(typename T::iterator begin, typename T::iterator end)
+	{
+		size_t size = end - begin;
+		typename T::iterator last;
+
+		std::cout << size << "\n";
+
+		if (size == 1)
+			return ;
+		if (size == 2)
+		{
+			if (*begin > begin[1])
+				std::iter_swap(begin, begin+1);
+			return ;
+		}
+		std::cout << "size: " << size << "\n";
+		if (size & 1U) // is odd
+		{
+			last = end - 1; // end should point to the value after the last one
+			end = end - 1;  // such what begin - end is the size
+		}
+
+		size /= 2;
+		for (size_t i = 0; i < size; ++i)
+		{
+			std::cout << " [" << begin[i] << ", " << begin[size + i] << "]";
+			if (begin[i] < begin[size + i])
+			{
+				std::iter_swap(begin + i, begin + size + i);
+				std::cout << "!";
+			}
+		}
+		std::cout << "\n\n";
 	}
 };
 
