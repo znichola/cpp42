@@ -32,14 +32,33 @@ static bool sorti(int a, int b)
 }
 
 template<typename T>
+static void swap_pairs(int sequence_length, typename T::iterator a, typename T::iterator b)
+{
+	if (std::distance(a, b) == sequence_length) // Check if the distance between a and b is 2
+	{
+		for (int i = 0; i < sequence_length; i++) {
+			std::iter_swap(a + i, b + i);
+		}
+	}
+}
+
+template<typename T>
 class PmergeMe
 {
 private:
 	T _elements;
+	std::string _ct;
 	struct timeval start, end;
 
 public:
-	PmergeMe() {}
+	PmergeMe(const std::string &ct) : _ct(ct)
+	{
+		if (_ct == "vector" || _ct == "deque")
+			return ;
+		std::cout << _ct << " unsupported type" << std::endl;
+		exit(1);
+	}
+
 	PmergeMe(const PmergeMe &other) : _elements(other._elements) {}
 
 	~PmergeMe() {}
@@ -90,16 +109,21 @@ public:
 		if (0)
 			sort_old();
 		else
-			sort(_elements.begin(), _elements.end());
+		{
+			if (_ct == "vector")
+				sort_vector(_elements.begin(), _elements.end());
+			else
+				sort_deque(_elements.begin(), _elements.end());
+		}
 		gettimeofday(&end, 0);
 	}
 
-	void timeReport(const std::string &cont)
+	void timeReport()
 	{
 		std::cout << std::fixed << std::setw(5);
 
 		std::cout << "Time to process range of " << _elements.size()
-		<< " elements with std::" << cont << " : ";
+		<< " elements with std::" << _ct << " : ";
 		std::cout << long(end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec) << " us" << std::endl;
 	}
 
@@ -134,7 +158,14 @@ public:
 		_elements = ne;
 	}
 
-	void sort(typename T::iterator begin, typename T::iterator end)
+	void sort_deque(typename T::iterator begin, typename T::iterator end)
+	{
+		(void)begin;
+		(void)end;
+	}
+
+
+	void sort_vector(typename T::iterator begin, typename T::iterator end)
 	{
 		size_t size = end - begin;
 		typename T::iterator last;
@@ -156,16 +187,42 @@ public:
 			end = end - 1;  // such what begin - end is the size
 		}
 
-		size /= 2;
-		for (size_t i = 0; i < size; ++i)
+		// make the pairs
+		for (size_t i = 0; i < size; i += 2)
 		{
-			std::cout << " [" << begin[i] << ", " << begin[size + i] << "]";
-			if (begin[i] < begin[size + i])
+			std::cout << " [" << begin[i] << ", " << begin[1 + i] << "]";
+			if (begin[i] < begin[1 + i])
 			{
-				std::iter_swap(begin + i, begin + size + i);
+				std::iter_swap(begin + i, begin + 1 + i);
 				std::cout << "!";
 			}
 		}
+		std::cout << "\n";
+		after();
+		std::cout << "\n";
+
+		// sort the pairs
+		size = (size-1) / 2;
+		int l = 2;
+		for (size_t s = size; s > 2; s= (s+1) / 2)
+		{
+			std::cout << l << " l\n";
+			for (size_t i = 0; i < s; i += 2)
+			{
+				std::cout << " [" << begin[i] << ", " << begin[2 + i] << "]";
+				if (begin[i] > begin[2 + i])
+				{
+					swap_pairs<T>(2, begin + i, begin + 2 + i);
+					std::cout << "!";
+				}
+			}
+			std::cout << "\n";
+			after();
+			std::cout << "\n";
+			l = l << 1U;;
+		}
+
+
 		std::cout << "\n\n";
 	}
 };

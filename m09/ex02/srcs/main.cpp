@@ -6,7 +6,7 @@
 /*   By: znichola <znichola@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:53:03 by znichola          #+#    #+#             */
-/*   Updated: 2023/07/13 17:56:02 by znichola         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:14:03 by znichola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	main(int ac, char **av)
 	{
 		std::cout << "give me some arguments" << std::endl;
 		return 1;
-	}	
-	PmergeMe<std::vector<int> >vec;
-	PmergeMe<std::deque<int> >lst;
+	}
+	PmergeMe<std::vector<int> >vec("vector");
+	PmergeMe<std::deque<int> >lst("deque");
 
 	if (ac == 2)
 	{
@@ -43,9 +43,9 @@ int	main(int ac, char **av)
 	lst.timeSort();
 	vec.after();
 
-	vec.timeReport("vector");
-	lst.timeReport("deque");	
-	
-	
+	vec.timeReport();
+	lst.timeReport();
+
+
 	return(0);
 }
