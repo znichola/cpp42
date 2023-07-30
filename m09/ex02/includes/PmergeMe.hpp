@@ -18,6 +18,7 @@
 # include <sys/time.h>
 # include <iomanip>
 # include <algorithm>
+#include <variant>
 
 template<typename T>
 bool sortp(std::pair<typename T::const_iterator, typename T::const_iterator> i,
@@ -111,7 +112,7 @@ public:
 		else
 		{
 			if (_ct == "vector")
-				sort_vector_wrap(_elements.begin(), _elements.end());
+				sort_vector(_elements.begin(), _elements.end());
 			else
 				sort_deque(_elements.begin(), _elements.end());
 		}
@@ -164,123 +165,32 @@ public:
 		(void)end;
 	}
 
-
-//	typename T sort_vector2(typename T::iterator begin, typename T::iterator end)
-//	{
-//		size_t size = end - begin;
-//		typename T::iterator last;
-//
-//		std::cout << size << "\n";
-//
-//		if (size == 1)
-//			return ;
-//		if (size == 2)
-//		{
-//			if (*begin > begin[1])
-//				std::iter_swap(begin, begin+1);
-//			return ;
-//		}
-//		std::cout << "size: " << size << "\n";
-//		if (size & 1U) // is odd
-//		{
-//			last = end - 1; // end should point to the value after the last one
-//			end = end - 1;  // such what begin - end is the size
-//		}
-//
-//		// make the pairs
-//		for (size_t i = 0; i < size; i += 2)
-//		{
-//			std::cout << " [" << begin[i] << ", " << begin[1 + i] << "]";
-//			if (begin[i] < begin[1 + i])
-//			{
-//				std::iter_swap(begin + i, begin + 1 + i);
-//				std::cout << "!";
-//			}
-//		}
-//		std::cout << "\n";
-//		after();
-//		std::cout << "\n";
-//
-//		// sort the pairs
-//		size = (size-1) / 2;
-//		int l = 2;
-//		for (size_t s = size; s > 2; s= (s+1) / 2)
-//		{
-//			std::cout << l << " l\n";
-//			for (size_t i = 0; i < s; i += 2)
-//			{
-//				std::cout << " [" << begin[i] << ", " << begin[2 + i] << "]";
-//				if (begin[i] > begin[2 + i])
-//				{
-//					swap_pairs<T>(2, begin + i, begin + 2 + i);
-//					std::cout << "!";
-//				}
-//			}
-//			std::cout << "\n";
-//			after();
-//			std::cout << "\n";
-//			l = l << 1U;;
-//		}
-//		std::cout << "\n\n";
-//	}
-
-	void sort_vector_wrap(typename T::iterator begin, typename T::iterator end)
-	{
-		std::vector<std::pair<typename T::iterator, int> > pairs;
-		int i = 0;
-		for (typename T::iterator it = begin; it < end; ++it)
-		{
-			pairs.push_back(std::make_pair(it, i));
-			++i;
-		}
-		(void)sort_vector(pairs.begin(), pairs.end());
-
-		for (typename std::vector<std::pair<typename T::iterator, int> >::iterator it = pairs.begin(); it < pairs.end(); ++it)
-		{
-			std::cout << *it->first << " ";
-		}
-	}
-
 	T sort_vector(typename T::iterator begin, typename T::iterator end)
 	{
 		size_t dist = end - begin;
-
-		std::vector<std::pair<typename T::iterator, int> > pairs;
-		int i = 0;
-		for (typename std::vector<std::pair<typename T::iterator, int> >::iterator it = begin; it < end; ++it)
+		size_t mid = dist/2;
+		T ret;
+	
+		for (size_t i = 0; i < dist; ++i)
+			ret.push_back(i);
+		for (size_t i = 0; i < mid; ++i)
 		{
-			pairs.push_back(std::make_pair(it, i));
-			++i;
-		}
-
-		if (dist == 2 && begin[0] > begin[1])
-				std::iter_swap(begin, begin+1);
-		else if (dist === 3)
-		{
-			if (begin[0] > begin[1])
-				std::iter_swap(begin, begin+1);
-			if (begin[1] > begin[2])
+			if (begin[i] > begin[i + mid])
 			{
-				std::iter_swap(begin+1, beign+2);
-				if (begin[0] > begin[1])
-					std::iter_swap(begin, begin+1);
+				std::iter_swap(begin+i, begin+i+mid);
+				std::swap(ret.begin()+i, ret.begin()+i+mid);	
 			}
 		}
-		else if (dist != 1 && dist != 2 && dist != 0)
+		T right = T(begin + mid, end);
+		for (typename T::iterator it = right.begin(); it < right.end(); ++it)
 		{
-			
-			T sort_vector(
+			std::cout << " " << *it;	
 		}
-
-
-		T ret;
-		for (typename std::vector<std::pair<typename T::iterator, int> >::iterator it = pairs.begin(); it < pairs.end(); ++it)
-		{
-			ret.push_back(it->second);
-			std::cout << it->second << " ";
-		}
-		return ret;
+		std::cout << "\n";
+		return right;
 	}
+
+
 };
 
 #endif /* PMERGEME_HPP */
