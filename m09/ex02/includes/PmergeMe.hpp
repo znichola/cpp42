@@ -241,8 +241,7 @@ public:
 		}
 	}
 
-	T sort_vector(typename std::vector<std::pair<typename T::iterator, int> >::iterator begin, typename std::vector<std::pair<typename T::iterator, int> >::iterator end)
-//	T sort_vector(typename T::iterator begin, typename T::iterator end)
+	T sort_vector(typename T::iterator begin, typename T::iterator end)
 	{
 		size_t dist = end - begin;
 
@@ -250,15 +249,27 @@ public:
 		int i = 0;
 		for (typename std::vector<std::pair<typename T::iterator, int> >::iterator it = begin; it < end; ++it)
 		{
-			pairs.push_back(std::make_pair(it->first, i));
+			pairs.push_back(std::make_pair(it, i));
 			++i;
 		}
 
 		if (dist == 2 && begin[0] > begin[1])
 				std::iter_swap(begin, begin+1);
+		else if (dist === 3)
+		{
+			if (begin[0] > begin[1])
+				std::iter_swap(begin, begin+1);
+			if (begin[1] > begin[2])
+			{
+				std::iter_swap(begin+1, beign+2);
+				if (begin[0] > begin[1])
+					std::iter_swap(begin, begin+1);
+			}
+		}
 		else if (dist != 1 && dist != 2 && dist != 0)
 		{
-			//T sorted = sort_vector(std::vector<std::pair<typename T::iterator, int> >::iterator begin, std::vector<std::pair<typename T::iterator, int> >::iterator end);
+			
+			T sort_vector(
 		}
 
 
