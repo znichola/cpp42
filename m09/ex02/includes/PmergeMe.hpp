@@ -111,7 +111,7 @@ public:
 		else
 		{
 			if (_ct == "vector")
-				sort_vector(_elements.begin(), _elements.end());
+				sort_vector_wrap(_elements.begin(), _elements.end());
 			else
 				sort_deque(_elements.begin(), _elements.end());
 		}
@@ -165,65 +165,110 @@ public:
 	}
 
 
-	void sort_vector(typename T::iterator begin, typename T::iterator end)
+//	typename T sort_vector2(typename T::iterator begin, typename T::iterator end)
+//	{
+//		size_t size = end - begin;
+//		typename T::iterator last;
+//
+//		std::cout << size << "\n";
+//
+//		if (size == 1)
+//			return ;
+//		if (size == 2)
+//		{
+//			if (*begin > begin[1])
+//				std::iter_swap(begin, begin+1);
+//			return ;
+//		}
+//		std::cout << "size: " << size << "\n";
+//		if (size & 1U) // is odd
+//		{
+//			last = end - 1; // end should point to the value after the last one
+//			end = end - 1;  // such what begin - end is the size
+//		}
+//
+//		// make the pairs
+//		for (size_t i = 0; i < size; i += 2)
+//		{
+//			std::cout << " [" << begin[i] << ", " << begin[1 + i] << "]";
+//			if (begin[i] < begin[1 + i])
+//			{
+//				std::iter_swap(begin + i, begin + 1 + i);
+//				std::cout << "!";
+//			}
+//		}
+//		std::cout << "\n";
+//		after();
+//		std::cout << "\n";
+//
+//		// sort the pairs
+//		size = (size-1) / 2;
+//		int l = 2;
+//		for (size_t s = size; s > 2; s= (s+1) / 2)
+//		{
+//			std::cout << l << " l\n";
+//			for (size_t i = 0; i < s; i += 2)
+//			{
+//				std::cout << " [" << begin[i] << ", " << begin[2 + i] << "]";
+//				if (begin[i] > begin[2 + i])
+//				{
+//					swap_pairs<T>(2, begin + i, begin + 2 + i);
+//					std::cout << "!";
+//				}
+//			}
+//			std::cout << "\n";
+//			after();
+//			std::cout << "\n";
+//			l = l << 1U;;
+//		}
+//		std::cout << "\n\n";
+//	}
+
+	void sort_vector_wrap(typename T::iterator begin, typename T::iterator end)
 	{
-		size_t size = end - begin;
-		typename T::iterator last;
-
-		std::cout << size << "\n";
-
-		if (size == 1)
-			return ;
-		if (size == 2)
+		std::vector<std::pair<typename T::iterator, int> > pairs;
+		int i = 0;
+		for (typename T::iterator it = begin; it < end; ++it)
 		{
-			if (*begin > begin[1])
+			pairs.push_back(std::make_pair(it, i));
+			++i;
+		}
+		(void)sort_vector(pairs.begin(), pairs.end());
+
+		for (typename std::vector<std::pair<typename T::iterator, int> >::iterator it = pairs.begin(); it < pairs.end(); ++it)
+		{
+			std::cout << *it->first << " ";
+		}
+	}
+
+	T sort_vector(typename std::vector<std::pair<typename T::iterator, int> >::iterator begin, typename std::vector<std::pair<typename T::iterator, int> >::iterator end)
+//	T sort_vector(typename T::iterator begin, typename T::iterator end)
+	{
+		size_t dist = end - begin;
+
+		std::vector<std::pair<typename T::iterator, int> > pairs;
+		int i = 0;
+		for (typename std::vector<std::pair<typename T::iterator, int> >::iterator it = begin; it < end; ++it)
+		{
+			pairs.push_back(std::make_pair(it->first, i));
+			++i;
+		}
+
+		if (dist == 2 && begin[0] > begin[1])
 				std::iter_swap(begin, begin+1);
-			return ;
-		}
-		std::cout << "size: " << size << "\n";
-		if (size & 1U) // is odd
+		else if (dist != 1 && dist != 2 && dist != 0)
 		{
-			last = end - 1; // end should point to the value after the last one
-			end = end - 1;  // such what begin - end is the size
+			//T sorted = sort_vector(std::vector<std::pair<typename T::iterator, int> >::iterator begin, std::vector<std::pair<typename T::iterator, int> >::iterator end);
 		}
 
-		// make the pairs
-		for (size_t i = 0; i < size; i += 2)
+
+		T ret;
+		for (typename std::vector<std::pair<typename T::iterator, int> >::iterator it = pairs.begin(); it < pairs.end(); ++it)
 		{
-			std::cout << " [" << begin[i] << ", " << begin[1 + i] << "]";
-			if (begin[i] < begin[1 + i])
-			{
-				std::iter_swap(begin + i, begin + 1 + i);
-				std::cout << "!";
-			}
+			ret.push_back(it->second);
+			std::cout << it->second << " ";
 		}
-		std::cout << "\n";
-		after();
-		std::cout << "\n";
-
-		// sort the pairs
-		size = (size-1) / 2;
-		int l = 2;
-		for (size_t s = size; s > 2; s= (s+1) / 2)
-		{
-			std::cout << l << " l\n";
-			for (size_t i = 0; i < s; i += 2)
-			{
-				std::cout << " [" << begin[i] << ", " << begin[2 + i] << "]";
-				if (begin[i] > begin[2 + i])
-				{
-					swap_pairs<T>(2, begin + i, begin + 2 + i);
-					std::cout << "!";
-				}
-			}
-			std::cout << "\n";
-			after();
-			std::cout << "\n";
-			l = l << 1U;;
-		}
-
-
-		std::cout << "\n\n";
+		return ret;
 	}
 };
 
