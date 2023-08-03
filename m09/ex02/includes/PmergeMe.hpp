@@ -18,7 +18,9 @@
 # include <sys/time.h>
 # include <iomanip>
 # include <algorithm>
-#include <variant>
+# include <variant>
+
+#define B(s) "\033[36m" << s << "\033[0m"
 
 template<typename T>
 bool sortp(std::pair<typename T::const_iterator, typename T::const_iterator> i,
@@ -42,6 +44,14 @@ static void swap_pairs(int sequence_length, typename T::iterator a, typename T::
 		}
 	}
 }
+
+template<typename T>
+static void insert2(T &a, int ia, int va, T &b, int ib, int vb)
+{
+	a.insert(a.begin() + ia, va);
+	b.insert(b.being() + ib, vb);
+}
+
 
 template<typename T>
 class PmergeMe
@@ -165,29 +175,96 @@ public:
 		(void)end;
 	}
 
+#include <vector>
+
 	T sort_vector(typename T::iterator begin, typename T::iterator end)
 	{
 		size_t dist = end - begin;
 		size_t mid = dist/2;
-		T ret;
-	
+		T loc, seq;
+		T loc2, seq2;
+
 		for (size_t i = 0; i < dist; ++i)
-			ret.push_back(i);
+		{
+			loc.push_back(begin[i]);
+			seq.push_back(i);
+		}
+
+		std::cout << "     ->";
+		for (size_t i = 0; i < dist; ++i)
+				std::cout << " " << B(seq[i]);
+
+		// make pairs and swap them,
+		//  at the same time build up the list of swap instructions
 		for (size_t i = 0; i < mid; ++i)
 		{
-			if (begin[i] > begin[i + mid])
+			if (begin[i] < begin[i + mid])
 			{
-				std::iter_swap(begin+i, begin+i+mid);
-				std::swap(ret.begin()+i, ret.begin()+i+mid);	
+				std::swap(loc[i], loc[i+mid]);
+				std::swap(seq[i], seq[i+mid]);
 			}
 		}
-		T right = T(begin + mid, end);
-		for (typename T::iterator it = right.begin(); it < right.end(); ++it)
-		{
-			std::cout << " " << *it;	
-		}
+
+
+		// std::cout << "\n       ";
+		// T right = T(begin + mid, end); // this will be used for the recursive sort
+		// for (typename T::iterator it = right.begin(); it < right.end(); ++it)
+		// {
+		// 	std::cout << " " << *it;
+		// }
 		std::cout << "\n";
-		return right;
+		std::cout << "\n     =>";
+		for (size_t i = 0; i < dist; ++i)
+			std::cout << " " << loc[i];
+		std::cout << "\n     ->";
+			for (size_t i = 0; i < dist; ++i)
+				std::cout << " " << B(seq[i]);
+
+		// prep the new half vectors to insert into
+		for (size_t i = 0; i < mid; ++i)
+		{
+			loc2.insert(loc2.begin() + i, loc[i]);
+			seq2.insert(seq2.begin() + i, seq[i]);
+		}
+
+		// now once it's sorted do the binary insection on pairs
+		for (size_t i = 0; i < mid; ++i)
+		{
+
+			int loc_n = loc[seq[i]];
+			// insertion point
+			typename T::iterator ip = std::lower_bound(loc.begin(), loc.begin() + seq[i], n);
+			size_t li = ip - loc.begin();
+
+			loc.erase(loc.begin() + seq[i]);
+			loc.insert(loc.begin() + li, loc_n);
+
+			int x = seq[seq[i]];
+			// n = seq[i];
+			seq.erase(seq.begin() + i);
+			seq.insert(seq.begin() + li, x);
+
+
+			std::cout << "\n  " << n << "  --";
+			for (size_t i = 0; i < dist; ++i)
+				std::cout << " " << loc[i];
+			std::cout << "  li: " << li << "";
+			std::cout << "\n     ->";
+			for (size_t i = 0; i < dist; ++i)
+				std::cout << " " << B(seq[i]);
+		}
+
+		std::cout << "\n     =>";
+		for (size_t i = 0; i < dist; ++i)
+			std::cout << " " << loc[i];
+
+		std::cout << "\n     ->";
+		for (size_t i = 0; i < dist; ++i)
+			std::cout << " " << B(seq[i]);
+
+		std::cout << "\n";
+		std::cout << "\n";
+		return seq;
 	}
 
 
