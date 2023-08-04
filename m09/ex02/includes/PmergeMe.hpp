@@ -23,37 +23,6 @@
 #define B(s) "\033[36m" << s << "\033[0m"
 
 template<typename T>
-bool sortp(std::pair<typename T::const_iterator, typename T::const_iterator> i,
-		std::pair<typename T::const_iterator, typename T::const_iterator> j)
-{
-	return *i.first > *j.first;
-}
-
-static bool sorti(int a, int b)
-{
-	return a > b;
-}
-
-template<typename T>
-static void swap_pairs(int sequence_length, typename T::iterator a, typename T::iterator b)
-{
-	if (std::distance(a, b) == sequence_length) // Check if the distance between a and b is 2
-	{
-		for (int i = 0; i < sequence_length; i++) {
-			std::iter_swap(a + i, b + i);
-		}
-	}
-}
-
-template<typename T>
-static void insert2(T &a, int ia, int va, T &b, int ib, int vb)
-{
-	a.insert(a.begin() + ia, va);
-	b.insert(b.being() + ib, vb);
-}
-
-
-template<typename T>
 class PmergeMe
 {
 private:
@@ -116,16 +85,12 @@ public:
 
 	void timeSort()
 	{
+		T res, seq;
 		gettimeofday(&start, 0);
-		if (0)
-			sort_old();
-		else
-		{
-			if (_ct == "vector")
-				sort_vector(_elements.begin(), _elements.end());
-			else
-				sort_deque(_elements.begin(), _elements.end());
-		}
+		seq = sort(_elements.begin(), _elements.end());
+		for (size_t i = 0; i < seq.size(); ++i)
+			res.push_back(_elements[seq[i]]);
+		_elements = res;
 		gettimeofday(&end, 0);
 	}
 
@@ -135,49 +100,10 @@ public:
 
 		std::cout << "Time to process range of " << _elements.size()
 		<< " elements with std::" << _ct << " : ";
-		std::cout << long(end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec) << " us" << std::endl;
+		std::cout << long((end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec)) << " us" << std::endl;
 	}
 
-	void sort_old()
-	{
-		//split into pairs of values for sorting
-		typename T::const_iterator end = _elements.end();
-		if (_elements.size() % 2)
-			end--;
-
-		std::vector<std::pair<typename T::const_iterator, typename T::const_iterator> > pairs;
-		T ne;
-
-		for (typename T::const_iterator it = _elements.begin(); it < end; it += 2)
-		{
-			if (*it < it[1])
-				pairs.push_back(std::make_pair(it, it + 1));
-			else
-				pairs.push_back(std::make_pair(it + 1, it));
-		}
-		std::sort(pairs.begin(), pairs.end(), sortp<T>);
-		for (typename std::vector<std::pair<typename T::const_iterator, typename T::const_iterator> >::const_iterator it = pairs.begin(); it < pairs.end(); it ++)
-			ne.push_back(*it->first);
-
-		size_t s = ne.size();
-		for (size_t i = s; i > 0; i--)
-			ne.insert(std::lower_bound(ne.begin(), ne.end() - i, *pairs[s - i].second, sorti), *pairs[s - i].second);
-
-		std::reverse(ne.begin(), ne.end());
-		if (_elements.size() % 2)
-			ne.insert(std::lower_bound(ne.begin(), ne.end(), _elements.back()), _elements.back());
-		_elements = ne;
-	}
-
-	void sort_deque(typename T::iterator begin, typename T::iterator end)
-	{
-		(void)begin;
-		(void)end;
-	}
-
-#include <vector>
-
-	static void ptr_state(T loc, T seq, std::string msg)
+	void ptr_state(T loc, T seq, std::string msg)
 	{
 		std::cout << "\n     =>";
 		for (size_t i = 0; i < loc.size(); ++i)
@@ -188,7 +114,7 @@ public:
 		std::cout << "\n";
 	}
 
-	static void prt_1(T one, std::string msg)
+	void prt_1(T one, std::string msg)
 	{
 		std::cout << "\n     =>";
 		for (size_t i = 0; i < one.size(); ++i)
@@ -196,13 +122,23 @@ public:
 		std::cout << " " << msg << "\n";
 	}
 
-	T sort_vector(typename T::iterator begin, typename T::iterator end)
+	T sort(typename T::iterator begin, typename T::iterator end)
 	{
 		size_t dist = end - begin;
 		size_t mid = dist/2;
-		T loc, seq;
-		T locL, locR, seqL, seqR;
-		T seqRec;
+		T loc, seq, locL, locR, seqL, seqR, seqRec;
+		bool was_odd = false;
+		int	locLast, seqLast;
+
+		if (dist % 2) // case when it's odd
+		{
+			// std::cout << "dist is " << dist << "\n";
+			end = end-1;
+			locLast = *end;
+			seqLast = dist-1;
+			dist -= 1;
+			was_odd = true;
+		}
 
 		for (size_t i = 0; i < dist; ++i)
 		{
@@ -212,24 +148,23 @@ public:
 
 		ptr_state(loc, seq, "start");
 
-		// make pairs and swap them,
-		//  at the same time build up the list of swap instructions
-		for (size_t i = 0; i < mid; ++i)
-		{
-			if (loc[i] < loc[i+mid])
-			{
-				std::swap(loc[i], loc[i+mid]);
-				std::swap(seq[i], seq[i+mid]);
-			}
-		}
-
 		if (dist > 2)
 		{
-			std::cout << "\nenter recursion\n";
-			ptr_state(loc, seq, "before rec");
-			seqRec = sort_vector(loc.begin(), loc.begin() + mid);
-			prt_1(seqRec, "single");
-			ptr_state(loc, seq, "out rec");
+			// make pairs and swap them,
+			//  at the same time build up the list of swap instructions
+			for (size_t i = 0; i < mid; ++i)
+			{
+				if (loc[i] < loc[i+mid])
+				{
+					std::swap(loc[i], loc[i+mid]);
+					std::swap(seq[i], seq[i+mid]);
+				}
+			}
+			// std::cout << "\nenter recursion\n";
+			// ptr_state(loc, seq, "before rec");
+			seqRec = sort(loc.begin(), loc.begin() + mid);
+			// prt_1(seqRec, "single");
+			// ptr_state(loc, seq, "out rec");
 			for (size_t i = 0; i < seqRec.size(); ++i)
 			{
 				locL.push_back(loc[seqRec[i]]);
@@ -237,38 +172,42 @@ public:
 				locR.push_back(loc[seqRec[i]+mid]);
 				seqR.push_back(seq[seqRec[i]+mid]);
 			}
-			ptr_state(locL, seqL, "shuffy rec L");
-			ptr_state(locR, seqR, "shuffy rec R");
+			// ptr_state(locL, seqL, "shuffy rec L");
+			// ptr_state(locR, seqR, "shuffy rec R");
 
 			// now once it's sorted do the binary insection on pairs
-			for (size_t i = 0; i < mid; ++i)
+			for (size_t i = 0; i < locR.size(); ++i)
 			{
-				typename T::iterator ip = std::lower_bound(locL.begin(), locL.end(), locR[i]);
+				typename T::iterator ip = std::lower_bound(locL.begin(), locL.end() - i, locR[i]);
 				int dist = ip - locL.begin();
-				std::cout << "dist:" << dist << " \n";
+				// std::cout << "dist:" << dist << " \n";
 				locL.insert(ip, locR[i]);
-				prt_1(locL, "locL");
+				// prt_1(locL, "locL");
 				seqL.insert(seqL.begin() + dist, seqR[i]);
 			}
-			ptr_state(locL, seqL, "locL");
+			if (was_odd)
+			{
+				typename T::iterator ip = std::lower_bound(locL.begin(), locL.end(), locLast);
+				int dist = ip - locL.begin();
+				locL.insert(ip, locLast);
+				seqL.insert(seqL.begin() + dist, seqLast);
+			}
+			// ptr_state(locL, seqL, "locL");
 		}
 		else
 		{
+			seqL.push_back(0);
 			if (dist == 2)
 			{
-				seqL.push_back(0);
 				seqL.push_back(1);
 				if (loc[0] > loc[1])
 					std::swap(seqL[1], seqL[0]);
 			}
-			else
-				seqL[0] = 0;
 		}
 		return seqL;
 	}
-
-//
-// 4 1 3 2
 };
+
+// 6 2 4 5 10 4 4 3 7 6
 
 #endif /* PMERGEME_HPP */
