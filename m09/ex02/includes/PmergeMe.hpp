@@ -177,12 +177,32 @@ public:
 
 #include <vector>
 
+	static void ptr_state(T loc, T seq, std::string msg)
+	{
+		std::cout << "\n     =>";
+		for (size_t i = 0; i < loc.size(); ++i)
+			std::cout << " " << loc[i];
+		std::cout << "  " << msg << "\n     ->";
+			for (size_t i = 0; i < seq.size(); ++i)
+				std::cout << " " << B(seq[i]);
+		std::cout << "\n";
+	}
+
+	static void prt_1(T one, std::string msg)
+	{
+		std::cout << "\n     =>";
+		for (size_t i = 0; i < one.size(); ++i)
+			std::cout << " " << one[i];
+		std::cout << " " << msg << "\n";
+	}
+
 	T sort_vector(typename T::iterator begin, typename T::iterator end)
 	{
 		size_t dist = end - begin;
 		size_t mid = dist/2;
 		T loc, seq;
-		T loc2, seq2;
+		T locL, locR, seqL, seqR;
+		T seqRec;
 
 		for (size_t i = 0; i < dist; ++i)
 		{
@@ -190,84 +210,65 @@ public:
 			seq.push_back(i);
 		}
 
-		std::cout << "     ->";
-		for (size_t i = 0; i < dist; ++i)
-				std::cout << " " << B(seq[i]);
+		ptr_state(loc, seq, "start");
 
 		// make pairs and swap them,
 		//  at the same time build up the list of swap instructions
 		for (size_t i = 0; i < mid; ++i)
 		{
-			if (begin[i] < begin[i + mid])
+			if (loc[i] < loc[i+mid])
 			{
 				std::swap(loc[i], loc[i+mid]);
 				std::swap(seq[i], seq[i+mid]);
 			}
 		}
 
-
-		// std::cout << "\n       ";
-		// T right = T(begin + mid, end); // this will be used for the recursive sort
-		// for (typename T::iterator it = right.begin(); it < right.end(); ++it)
-		// {
-		// 	std::cout << " " << *it;
-		// }
-		std::cout << "\n";
-		std::cout << "\n     =>";
-		for (size_t i = 0; i < dist; ++i)
-			std::cout << " " << loc[i];
-		std::cout << "\n     ->";
-			for (size_t i = 0; i < dist; ++i)
-				std::cout << " " << B(seq[i]);
-
-		// prep the new half vectors to insert into
-		for (size_t i = 0; i < mid; ++i)
+		if (dist > 2)
 		{
-			loc2.insert(loc2.begin() + i, loc[i]);
-			seq2.insert(seq2.begin() + i, seq[i]);
-		}
+			std::cout << "\nenter recursion\n";
+			ptr_state(loc, seq, "before rec");
+			seqRec = sort_vector(loc.begin(), loc.begin() + mid);
+			prt_1(seqRec, "single");
+			ptr_state(loc, seq, "out rec");
+			for (size_t i = 0; i < seqRec.size(); ++i)
+			{
+				locL.push_back(loc[seqRec[i]]);
+				seqL.push_back(seq[seqRec[i]]);
+				locR.push_back(loc[seqRec[i]+mid]);
+				seqR.push_back(seq[seqRec[i]+mid]);
+			}
+			ptr_state(locL, seqL, "shuffy rec L");
+			ptr_state(locR, seqR, "shuffy rec R");
 
-		// now once it's sorted do the binary insection on pairs
-		for (size_t i = 0; i < mid; ++i)
+			// now once it's sorted do the binary insection on pairs
+			for (size_t i = 0; i < mid; ++i)
+			{
+				typename T::iterator ip = std::lower_bound(locL.begin(), locL.end(), locR[i]);
+				int dist = ip - locL.begin();
+				std::cout << "dist:" << dist << " \n";
+				locL.insert(ip, locR[i]);
+				prt_1(locL, "locL");
+				seqL.insert(seqL.begin() + dist, seqR[i]);
+			}
+			ptr_state(locL, seqL, "locL");
+		}
+		else
 		{
-
-			int loc_n = loc[seq[i]];
-			// insertion point
-			typename T::iterator ip = std::lower_bound(loc.begin(), loc.begin() + seq[i], n);
-			size_t li = ip - loc.begin();
-
-			loc.erase(loc.begin() + seq[i]);
-			loc.insert(loc.begin() + li, loc_n);
-
-			int x = seq[seq[i]];
-			// n = seq[i];
-			seq.erase(seq.begin() + i);
-			seq.insert(seq.begin() + li, x);
-
-
-			std::cout << "\n  " << n << "  --";
-			for (size_t i = 0; i < dist; ++i)
-				std::cout << " " << loc[i];
-			std::cout << "  li: " << li << "";
-			std::cout << "\n     ->";
-			for (size_t i = 0; i < dist; ++i)
-				std::cout << " " << B(seq[i]);
+			if (dist == 2)
+			{
+				seqL.push_back(0);
+				seqL.push_back(1);
+				if (loc[0] > loc[1])
+					std::swap(seqL[1], seqL[0]);
+			}
+			else
+				seqL[0] = 0;
 		}
-
-		std::cout << "\n     =>";
-		for (size_t i = 0; i < dist; ++i)
-			std::cout << " " << loc[i];
-
-		std::cout << "\n     ->";
-		for (size_t i = 0; i < dist; ++i)
-			std::cout << " " << B(seq[i]);
-
-		std::cout << "\n";
-		std::cout << "\n";
-		return seq;
+		return seqL;
 	}
 
-
+//
+// 4 1 3 2
 };
 
 #endif /* PMERGEME_HPP */
