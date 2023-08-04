@@ -160,11 +160,11 @@ public:
 					std::swap(seq[i], seq[i+mid]);
 				}
 			}
-			// std::cout << "\nenter recursion\n";
-			// ptr_state(loc, seq, "before rec");
+			std::cout << "\nenter recursion\n";
+			ptr_state(loc, seq, "before rec");
 			seqRec = sort(loc.begin(), loc.begin() + mid);
-			// prt_1(seqRec, "single");
-			// ptr_state(loc, seq, "out rec");
+			prt_1(seqRec, "single");
+			ptr_state(loc, seq, "out rec");
 			for (size_t i = 0; i < seqRec.size(); ++i)
 			{
 				locL.push_back(loc[seqRec[i]]);
