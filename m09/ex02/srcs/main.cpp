@@ -19,7 +19,6 @@
 
 int	main(int ac, char **av)
 {
-	std::cout << "hello PmergeMe!" << std::endl;
 	if (ac < 2)
 	{
 		std::cout << "give me some arguments" << std::endl;
@@ -38,14 +37,25 @@ int	main(int ac, char **av)
 		vec.init(ac - 1, av + 1);
 		lst.init(ac - 1, av + 1);
 	}
-	vec.before();
-	vec.timeSort();
-	lst.timeSort();
-	vec.after();
-
-	vec.timeReport();
-	lst.timeReport();
-
-
+	if (vec.is_positive() == false)
+	{
+		std::cout << "Error: entered non positive number" << std::endl;
+		return 1;
+	}
+	
+	try
+	{
+		vec.before();
+		vec.timeSort();
+		lst.timeSort();
+		vec.after();
+		vec.timeReport();
+		lst.timeReport();
+	}
+	catch (...)
+	{
+		std::cout << "Error: something went wrong.";
+		return (1);
+	}
 	return(0);
 }

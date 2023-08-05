@@ -61,6 +61,16 @@ public:
 		}
 	}
 
+	bool is_positive() const
+	{
+		for (typename T::const_iterator it = _elements.begin(); it < _elements.end(); ++it)
+		{
+			if (*it < 0)
+				return false;
+		}
+		return true;
+	}
+
 	PmergeMe & operator=(const PmergeMe &other) { _elements = other._elements; return *this; }
 
 	void print(std::string sep) const
@@ -139,6 +149,12 @@ public:
 			was_odd = true;
 		}
 
+		if (dist <= 1)
+		{
+			seqR.push_back(0);
+			return seqR;
+		}
+
 		for (size_t i = 0; i < dist; ++i)
 		{
 			loc.push_back(begin[i]);
@@ -146,59 +162,47 @@ public:
 		}
 
 		// ptr_state(loc, seq, "start");
-		if (dist > 2)
+		// make pairs and swap them,
+		//  at the same time build up the list of swap instructions
+		for (size_t i = 0; i < mid; ++i)
 		{
-			// make pairs and swap them,
-			//  at the same time build up the list of swap instructions
-			for (size_t i = 0; i < mid; ++i)
+			if (loc[i] > loc[i+mid])
 			{
-				if (loc[i] > loc[i+mid])
-				{
-					std::swap(loc[i], loc[i+mid]);
-					std::swap(seq[i], seq[i+mid]);
-				}
+				std::swap(loc[i], loc[i+mid]);
+				std::swap(seq[i], seq[i+mid]);
 			}
-			// std::cout << "\nenter recursion\n";
-			// ptr_state(loc, seq, "before rec");
-			seqRec = sort(loc.begin() + mid, loc.end());
-			// prt_1(seqRec, "re return");
-			for (size_t i = 0; i < seqRec.size(); ++i)
-			{
-				locL.push_back(loc[seqRec[i]]);
-				seqL.push_back(seq[seqRec[i]]);
-				locR.push_back(loc[seqRec[i]+mid]);
-				seqR.push_back(seq[seqRec[i]+mid]);
-			}
-			// ptr_state(locL, seqL, "shuffy rec L");
-			// ptr_state(locR, seqR, "shuffy rec R");
+		}
+		// std::cout << "\nenter recursion\n";
+		// ptr_state(loc, seq, "before rec");
+		seqRec = sort(loc.begin() + mid, loc.end());
+		// prt_1(seqRec, "re return");
+		for (size_t i = 0; i < seqRec.size(); ++i)
+		{
+			locL.push_back(loc[seqRec[i]]);
+			seqL.push_back(seq[seqRec[i]]);
+			locR.push_back(loc[seqRec[i]+mid]);
+			seqR.push_back(seq[seqRec[i]+mid]);
+		}
+		// ptr_state(locL, seqL, "shuffy rec L");
+		// ptr_state(locR, seqR, "shuffy rec R");
 
-			// now once it's sorted do the binary insection on pairs
-			for (size_t i = 0; i < locL.size(); ++i)
-			{
-				typename T::iterator ip = std::lower_bound(locR.begin(), locR.end(), locL[i]);
-				int dist = ip - locR.begin();
-				locR.insert(ip, locL[i]);
-				seqR.insert(seqR.begin() + dist, seqL[i]);
-			}
-			if (was_odd)
-			{
-				typename T::iterator ip = std::lower_bound(locR.begin(), locR.end(), locLast);
-				int dist = ip - locR.begin();
-				locR.insert(ip, locLast);
-				seqR.insert(seqR.begin() + dist, seqLast);
-			}
-			// ptr_state(locR, seqR, "locR endif");
-		}
-		else
+		// now once it's sorted do the binary insertion on pairs
+		for (size_t i = 0; i < locL.size(); ++i)
 		{
-			seqR.push_back(0);
-			if (dist == 2)
-			{
-				seqR.push_back(1);
-				if (loc[0] > loc[1])
-					std::swap(seqR[1], seqR[0]);
-			}
+			typename T::iterator ip = std::lower_bound(locR.begin(), locR.end(), locL[i]);
+			int dist = ip - locR.begin();
+			locR.insert(ip, locL[i]);
+			seqR.insert(seqR.begin() + dist, seqL[i]);
 		}
+		if (was_odd)
+		{
+//			std::cout << "last: " << locLast << "\n";
+			typename T::iterator ip = std::lower_bound(locR.begin(), locR.end(), locLast);
+			int dist = ip - locR.begin();
+			locR.insert(ip, locLast);
+			seqR.insert(seqR.begin() + dist, seqLast);
+		}
+		// ptr_state(locR, seqR, "locR endif");
 		return seqR;
 	}
 };
