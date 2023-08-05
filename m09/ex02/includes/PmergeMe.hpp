@@ -132,7 +132,6 @@ public:
 
 		if (dist % 2) // case when it's odd
 		{
-			// std::cout << "dist is " << dist << "\n";
 			end = end-1;
 			locLast = *end;
 			seqLast = dist-1;
@@ -146,25 +145,23 @@ public:
 			seq.push_back(i);
 		}
 
-		ptr_state(loc, seq, "start");
-
+		// ptr_state(loc, seq, "start");
 		if (dist > 2)
 		{
 			// make pairs and swap them,
 			//  at the same time build up the list of swap instructions
 			for (size_t i = 0; i < mid; ++i)
 			{
-				if (loc[i] < loc[i+mid])
+				if (loc[i] > loc[i+mid])
 				{
 					std::swap(loc[i], loc[i+mid]);
 					std::swap(seq[i], seq[i+mid]);
 				}
 			}
-			std::cout << "\nenter recursion\n";
-			ptr_state(loc, seq, "before rec");
-			seqRec = sort(loc.begin(), loc.begin() + mid);
-			prt_1(seqRec, "single");
-			ptr_state(loc, seq, "out rec");
+			// std::cout << "\nenter recursion\n";
+			// ptr_state(loc, seq, "before rec");
+			seqRec = sort(loc.begin() + mid, loc.end());
+			// prt_1(seqRec, "re return");
 			for (size_t i = 0; i < seqRec.size(); ++i)
 			{
 				locL.push_back(loc[seqRec[i]]);
@@ -176,35 +173,33 @@ public:
 			// ptr_state(locR, seqR, "shuffy rec R");
 
 			// now once it's sorted do the binary insection on pairs
-			for (size_t i = 0; i < locR.size(); ++i)
+			for (size_t i = 0; i < locL.size(); ++i)
 			{
-				typename T::iterator ip = std::lower_bound(locL.begin(), locL.end() - i, locR[i]);
-				int dist = ip - locL.begin();
-				// std::cout << "dist:" << dist << " \n";
-				locL.insert(ip, locR[i]);
-				// prt_1(locL, "locL");
-				seqL.insert(seqL.begin() + dist, seqR[i]);
+				typename T::iterator ip = std::lower_bound(locR.begin(), locR.end(), locL[i]);
+				int dist = ip - locR.begin();
+				locR.insert(ip, locL[i]);
+				seqR.insert(seqR.begin() + dist, seqL[i]);
 			}
 			if (was_odd)
 			{
-				typename T::iterator ip = std::lower_bound(locL.begin(), locL.end(), locLast);
-				int dist = ip - locL.begin();
-				locL.insert(ip, locLast);
-				seqL.insert(seqL.begin() + dist, seqLast);
+				typename T::iterator ip = std::lower_bound(locR.begin(), locR.end(), locLast);
+				int dist = ip - locR.begin();
+				locR.insert(ip, locLast);
+				seqR.insert(seqR.begin() + dist, seqLast);
 			}
-			// ptr_state(locL, seqL, "locL");
+			// ptr_state(locR, seqR, "locR endif");
 		}
 		else
 		{
-			seqL.push_back(0);
+			seqR.push_back(0);
 			if (dist == 2)
 			{
-				seqL.push_back(1);
+				seqR.push_back(1);
 				if (loc[0] > loc[1])
-					std::swap(seqL[1], seqL[0]);
+					std::swap(seqR[1], seqR[0]);
 			}
 		}
-		return seqL;
+		return seqR;
 	}
 };
 
