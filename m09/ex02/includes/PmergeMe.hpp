@@ -51,7 +51,6 @@ public:
 
 	void init(std::string args)
 	{
-			std::cout << "string input\n";
 		int x = 0;
 		std::stringstream ss(args);
 		while (ss >> x)

@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 	}
 	if (vec.is_positive() == false)
 	{
-		std::cout << "Error: entered non positive number" << std::endl;
+		std::cout << "Error: don't support negative numbers" << std::endl;
 		return 1;
 	}
 	
