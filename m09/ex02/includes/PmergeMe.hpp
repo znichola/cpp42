@@ -92,6 +92,8 @@ public:
 
 	void after()  const { std::cout << "After:  "; print(" "); }
 
+	bool is_sorted() const { return std::is_sorted(_elements.begin(), _elements.end()); }
+
 	void timeSort()
 	{
 		T res, seq;
@@ -185,10 +187,11 @@ public:
 		// ptr_state(locL, seqL, "shuffy rec L");
 		// ptr_state(locR, seqR, "shuffy rec R");
 
+		// std::cout << "     --";
 		// now once it's sorted do the binary insertion on pairs
 		for (size_t i = 0; i < locL.size(); ++i)
 		{
-			typename T::iterator ip = std::lower_bound(locR.begin(), locR.end(), locL[i]);
+			typename T::iterator ip = std::lower_bound(locR.begin(), locR.begin() + 2 * i, locL[i]);
 			int dist = ip - locR.begin();
 			locR.insert(ip, locL[i]);
 			seqR.insert(seqR.begin() + dist, seqL[i]);
